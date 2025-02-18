@@ -20,7 +20,7 @@ def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
     data = json.loads(data_str)
     df = pd.DataFrame(data["results"])
 
-    df.sort_values(by="t", ascending=False, inplace=True)
+    df.sort_values(by="t", ascending=True, inplace=True)
     df["Date"] = pd.to_datetime(df["t"], unit="ms", utc=True).dt.tz_convert("America/New_York")
     df["Date"] = df["Date"].dt.strftime("%d-%m-%Y %H:%M:%S %Z")
 
