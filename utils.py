@@ -117,13 +117,17 @@ async def async_update_market_data():
         while remaining_exchanges:
             batch = remaining_exchanges[:20]  # Take first 20 exchanges
             print(f"📦 Fetching stocks for batch: {batch}")
-    
+
             tasks = [get_all_stocks(session, exchange) for exchange in batch]
             results = await asyncio.gather(*tasks)
 
             # Flatten results
             stock_data = []
             for result in results:
+                print(result)
+                #append the stock data, only the code and exchange
+                result = [{"Exchange": stock["Exchange"], "Stock": stock["Code"]} for stock in result]
+                print(result)
                 stock_data.extend(result)
 
             # Save to CSV (append to avoid overwriting)
