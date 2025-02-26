@@ -1,0 +1,3758 @@
+Symbol,Name,Country
+AAPL,Apple ,US
+MSFT,Microsoft ,US
+AMZN,Amazon.com,US
+GOOGL,Alphabet Class A,US
+META,Meta Platforms Class A,US
+TSLA,Tesla,US
+DA,IDIA ,US
+BRK.B,Berkshire Hathaway Class B,US
+AVGO,Broadcom ,US
+LLY,Eli Lilly and Company,US
+WMT,Walmart ,US
+JPM,JPMorgan Chase & Co.,US
+V,Vi Class A,US
+UNH,UnitedHealth Group ,US
+XOM,Exxon Mobil ,US
+ORCL,Oracle ,US
+MA,Mastercard Class A,US
+COST,Costco Wholele ,US
+HD,Home Depot,US
+PG,Procter & Gamble Company,US
+JNJ,Johnson & Johnson,US
+NFLX,Netflix,US
+BAC,Bank of America Corp,US
+CRM,lesforce,US
+ABBV,AbbVie,US
+CVX,Chevron ,US
+TMUS,T-Mobile US,US
+KO,Coca-Cola Company,US
+MRK,Merck & Co.,US
+WFC,Wells Fargo & Company,US
+CSCO,Cisco Systems,US
+ADBE,Adobe ,US
+ACN,Accenture Class A,US
+AMD,Advanced Micro Devices,US
+PEP,PepsiCo,US
+BX,Blackstone ,US
+LIN,Linde ,US
+NOW,ServiceNow,US
+MS,Morgan Stanley,US
+MCD,McDonald's ,US
+TMO,Thermo Fisher Scientific ,US
+AXP,American Express Company,US
+ABT,Abbott Laboratories,US
+GE,GE Aerospace,US
+INTU,Intuit ,US
+IBM,International Business Machines ,US
+PM,Philip Morris International ,US
+ISRG,Intuitive Surgical,US
+TXN,Texas Instruments ,US
+CAT,Caterpillar ,US
+GS,Goldman chs Group,US
+DIS,Walt Disney Company,US
+QCOM,QUALCOMM ,US
+DHR,Danaher ,US
+VZ,Verizon Communications ,US
+CMC,Comcast Class A,US
+BKNG,Booking Holdings ,US
+RTX,RTX ,US
+AMGN,Amgen ,US
+T,AT&T ,US
+BLK,BlackRock,US
+SPGI,S&P Global,US
+PDD,PDD Holdings Sponsored ADR Class A,US
+LOW,Lowe's Companies,US
+PGR,Progressive ,US
+NEE,NextEra Energy,US
+HON,Honeywell International ,US
+PFE,Pfizer ,US
+AMAT,Applied Materials,US
+UBER,Uber Technologies,US
+SYK,Stryker ,US
+ETN,Eaton Corp. ,US
+UNP,Union Pacific ,US
+SCHW,Charles Schwab Corp,US
+ARM,ARM Holdings ADR,US
+PLTR,Palantir Technologies Class A,US
+TJX,TJX Companies,US
+KKR,KKR & Co,US
+LMT,Lockheed Martin ,US
+PANW,Palo Alto Networks,US
+BSX,Boston Scientific ,US
+C,Citigroup ,US
+COP,ConocoPhillips,US
+VRTX,Vertex Pharmaceuticals ,US
+ADP,Automatic Data Processing,US
+ANET,Arista Networks,US
+FI,Fiserv,US
+BMY,Bristol-Myers Squibb Company,US
+CHTR,Charter Communications Class A,US
+GILD,Gilead Sciences,US
+CB,Chubb Limited,US
+UPS,United Parcelrvice Class B,US
+NKE,NIKE Class B,US
+SBUX,Starbucks ,US
+MDT,Medtronic ,US
+MMC,Marsh & McLennan Companies,US
+MU,Micron Technology,US
+PLD,Prologis,US
+INTC,Intel ,US
+DE,Deere & Company,US
+ADI,Analog Devices,US
+BA,Boeing Company,US
+DELL,Dell Technologies Class C,US
+MELI,MercadoLibre,US
+SHW,Sherwin-Williams Company,US
+SO,Southern Company,US
+ELV,Elevance Health,US
+APP,AppLovin Corp. Class A,US
+LRCX,Lam Research ,US
+MO,Altria Group,US
+TT,Trane Technologies ,US
+SPOT,Spotify Technology ,US
+APO,Apollo Global Management,US
+CI,Cigna Group,US
+GEV,GE Vernova ,US
+AMT,American Tower ,US
+PH,Parker-Hannifin ,US
+WM,Waste Management,US
+CTAS,Cintas ,US
+ICE,Intercontinental Exchange,US
+HCA,HCA Healthcare,US
+REGN,Regeneron Pharmaceuticals,US
+MDLZ,Mondelez International Class A,US
+PYPL,PayPal Holdings,US
+APH,Amphenol Class A,US
+EQIX,Equinix,US
+MCO,Moody's ,US
+GD,General Dynamics ,US
+KLAC,KLA ,US
+DUK,Duke Energy ,US
+SNPS,Synopsys,US
+CRWD,CrowdStrike Holdings Class A,US
+ABNB,Airbnb Class A,US
+CDNS,Cadence Design Systems,US
+WELL,Welltower ,US
+AON,Aon Class A,US
+PNC,PNC Financialrvices Group,US
+MSI,Motorola Solutions,US
+CME,CME Group Class A,US
+CMG,Chipotle Mexican Grill,US
+ITW,Illinois Tool Works ,US
+ZTS,Zoetis Class A,US
+USB,U.S. Bancorp,US
+SCCO,Southern Copper ,US
+MAR,Marriott International Class A,US
+MCK,McKesson ,US
+MRVL,Marvell Technology,US
+TDG,TransDigm Group ,US
+NOC,Northrop Grumman Corp.,US
+EOG,EOG Resources,US
+IBKR,Interactive Brokers Group Class A,US
+FTNT,Fortinet,US
+NU,Nu Holdings. Class A,US
+CL,Colgate-Palmolive Company,US
+EMR,Emerson Electric Co.,US
+WDAY,Workday Class A,US
+DASH,DoorDash Class A,US
+MMM,3M Company,US
+ORLY,O'Reilly Automotive,US
+TGT,Target ,US
+FDX,FedEx ,US
+COIN,Coinbase Global Class A,US
+COF,Capital One Financial Corp,US
+ECL,Ecolab ,US
+CEG,Constellation Energy ,US
+CSX,CSX ,US
+APD,Air Products and Chemicals,US
+CARR,Carrier Global Corp.,US
+CVS,CVS Health ,US
+WMB,Williams Companies,US
+CRH,CRH public limited company,US
+ADSK,Autodesk,US
+SPG,Simon Property Group,US
+RSG,Republicrvices,US
+BDX,"Becton, Dickinson and Company",US
+MSTR,MicroStrategy Class A,US
+TEAM,Atlassian Corp Class A,US
+EPD,Enterprise Products Partners L.P.,US
+AJG,Arthur J. Gallagher & Co.,US
+GM,General Motors Company,US
+OKE,ONEOK,US
+RCL,Royal Caribbean Group,US
+TTD,Trade Desk Class A,US
+FCX,Freeport-McMoRan,US
+TFC,Truist Financial ,US
+HLT,Hilton Worldwide Holdings ,US
+SLB,Schlumberger Limited,US
+AFL,Aflac,US
+ROP,Roper Technologies,US
+PCAR,PACCAR,US
+NSC,Norfolk Southern ,US
+SE,Sea Limited Sponsored ADR Class A,US
+KMI,Kinder Morgan Class P,US
+DLR,Digital Realty Trust,US
+P,Public Storage,US
+ET,Energy Transfer LP,US
+GWW,W.W. Grainger,US
+SRE,Sempra,US
+TRV,Travelers Companies,US
+JCI,Johnson Controls International ,US
+FICO,Fair Iac ,US
+MET,MetLife,US
+NXPI,NXPmiconductors ,US
+BK,Bank of New York Mellon Corp,US
+URI,United Rentals,US
+CPRT,Copart,US
+MNST,Monster Beverage ,US
+AMP,Ameriprise Financial,US
+PSX,Phillips 66,US
+AZO,AutoZone,US
+FANG,Diamondback Energy,US
+SQ,Block Class A,US
+PAYX,Paychex,US
+DHI,D.R. Horton,US
+ARES,Ares Management ,US
+ALL,Allstate ,US
+MPC,Marathon Petroleum ,US
+CMI,Cummins ,US
+CVNA,Carvana Co. Class A,US
+O,Realtyome ,US
+AEP,American Electric Power Company,US
+LHX,L3Harris Technologies,US
+COR,Cencora,US
+VST,Vistra Corp.,US
+PWR,Quantarvices,US
+ODFL,Old Dominion Freight Line,US
+FAST,Fastenal Company,US
+FIS,Fidelity National Informationrvices,US
+MSCI,MSCI Class A,US
+D,Dominion Energy,US
+AIG,American International Group,US
+FLUT,Flutter Entertainment ,US
+LNG,Cheniere Energy,US
+HWM,Howmet Aerospace ,US
+NEM,Newmont ,US
+VRT,Vertiv Holdings Co. Class A,US
+ROST,Ross Stores,US
+CPNG,Coupang Class A,US
+MPLX,MPLX LP,US
+OXY,Occidental Petroleum ,US
+TEL,TE Connectivity ,US
+NDAQ,Nasdaq,US
+AXON,Axon Enterprise,US
+KDP,Keurig Dr Pepper ,US
+PCG,PG&E ,US
+AME,AMETEK,US
+LEN,Lennar Class A,US
+CCI,Crown Castle ,US
+PRU,Prudential Financial,US
+KVUE,Keue,US
+VLO,Valero Energy ,US
+F,Ford Motor Company,US
+KMB,Kimberly-Clark ,US
+HES,Hess ,US
+DFS,Discover Financialrvices,US
+SNOW,Snowflake Class A,US
+STZ,Constellation Brands Class A,US
+DDOG,Datadog Class A,US
+PEG,Publicrvice Enterprise Group,US
+KR,Kroger Co.,US
+EA,Electronic Arts ,US
+BKR,Baker Hughes Company Class A,US
+IT,Gartner,US
+TRGP,Targa Resources Corp.,US
+IR,Ingersoll Rand ,US
+LULU,lululemon athletica ,US
+DAL,Delta Air Lines,US
+CBRE,CBRE Group Class A,US
+FERG,Ferguson Enterprises ,US
+VRSK,Verisk Analytics,US
+GRMN,Garmin.,US
+XEL,Xcel Energy ,US
+CTSH,Cognizant Technology Solutions Class A,US
+GLW,Corning,US
+OTIS,Otis Worldwide ,US
+CTVA,Corteva,US
+EW,Edwards Lifesciences ,US
+KHC,Kraft Heinz Company,US
+A,Agilent Technologies,US
+GEHC,GE Healthcare Technologies ,US
+IQV,IQVIA Holdings,US
+EXC,Exelon ,US
+ACGL,Arch Capital Group.,US
+VMC,Vulcan Materials Company,US
+VEEV,Veeva Systems Class A,US
+YUM,Yum! Brands,US
+SYY,Sysco ,US
+HSY,Hershey Company,US
+MLM,Martin Marietta Materials,US
+DKNG,DraftKings Class A,US
+GIS,General Mills,US
+EXR,Extra Space Storage ,US
+HUBS,HubSpot,US
+LVS,Las Vegas nds Corp.,US
+CCEP,Coca-Cola Europacific Partners ,US
+MCHP,Microchip Technology ,US
+NUE,Nucor ,US
+HPQ,HP ,US
+IDXX,IDEXX Laboratories,US
+MTB,M&T Bank ,US
+RBLX,Roblox Corp. Class A,US
+DD,DuPont de Nemours,US
+HUM,Humana ,US
+RMD,ResMed ,US
+WAB,Westinghouse Air Brake Technologies ,US
+ALNY,Alnylam Pharmaceuticals ,US
+HIG,Hartford Financialrvices Group,US
+IRM,Iron Mountain,US
+OWL,Blue Owl Capital Class A,US
+AVB,AvalonBay Communities,US
+ED,Consolidated Edison,US
+VICI,VICI Properties,US
+EFX,Equifax ,US
+HEI,HEICO ,US
+RJF,Raymond James Financial,US
+ROK,Rockwell Automation,US
+NET,Cloudflare Class A,US
+BRO,Brown & Brown,US
+ZS,Zscaler,US
+TTWO,Take-Two Interactive Software,US
+WTW,Willis Towers Watson Public Limited Company,US
+EIX,Edison International,US
+FITB,Fifth Third Bancorp,US
+ETR,Entergy ,US
+DOW,Dow,US
+CSGP,CoStar Group,US
+WEC,WEC Energy Group,US
+CAH,Cardinal Health,US
+ANSS,ANSYS,US
+TW,Tradeweb Markets Class A,US
+XYL,Xylem ,US
+FCNCA,First Citizens BancShares Class A,US
+TSCO,Tractor Supply Company,US
+EBAY,eBay ,US
+GPN,Global Payments ,US
+UAL,United Airlines Holdings,US
+IOT,mra Class A,US
+MPWR,Monolithic Power Systems,US
+CNC,Centene ,US
+LYV,Live Nation Entertainment,US
+EQR,Equity Residential,US
+ON,ONmiconductor ,US
+PPG,PPG Industries,US
+HPE,Hewlett Packard Enterprise Co.,US
+DXCM,DexCom,US
+HOOD,Robinhood Markets Class A,US
+RKT,Rocket Companies Class A,US
+DOV,Dover ,US
+K,Kellanova,US
+STT,State Street ,US
+R,R,US
+VTR,Ventas,US
+CCL,Carnival ,US
+KEYS,Keysight Technologies,US
+LYB,LyondellBasell Industries ,US
+DECK,Deckers Outdoor ,US
+BR,Broadridge Financial Solutions,US
+BNTX,BioNTech Sponsored ADR,US
+MTD,Mettler-Toledo International ,US
+SW,Smurfit Westrock ,US
+HAL,Halliburton Company,US
+GDDY,GoDaddy Class A,US
+FTV,Fortive Corp.,US
+TYL,Tyler Technologies,US
+BXP,BXP,US
+TROW,T. Rowe Price Group,US
+CHD,Church & Dwight Co.,US
+ZM,Zoom Video Communications Class A,US
+PHM,PulteGroup,US
+FWONK,Liberty Media Corp.ries C Liberty Formula One,US
+LDOS,Leidos Holdings,US
+VLTO,Veralto ,US
+CPAY,Corpay,US
+EQT,EQT ,US
+AWK,American Water Works Company,US
+DVN,Devon Energy ,US
+HBAN,Huntington Bancshares ,US
+SYF,Synchrony Financial,US
+CQP,"Cheniere Energy Partners, L.P.",US
+WST,West Pharmaceuticalrvices,US
+ROL,Rollins,US
+ADM,Archer-Daniels-Midland Company,US
+CDW,CDW ,US
+PPL,PPL ,US
+DTE,DTE Energy Company,US
+NTAP,NetApp,US
+AEE,Ameren ,US
+HUBB,Hubbell ,US
+BIIB,Biogen ,US
+TPG,TPG Class A,US
+WBD,Warner Bros. Discoveryries A,US
+FE,FirstEnergy Corp.,US
+RF,Regions Financial ,US
+CINF,Cincinnati Financial ,US
+LPLA,LPL Financial Holdings ,US
+GFS,GlobalFoundries ,US
+SBAC,SBA Communications Corp. Class A,US
+PTC,PTC ,US
+RDDT,Reddit Class A,US
+ILMN,Illumina,US
+EXPE,Expedia Group,US
+EME,EMCOR Group,US
+IFF,International Flavors & Fragrances ,US
+WRB,W. R. Berkley ,US
+WAT,Waters ,US
+ATO,Atmos Energy ,US
+TDY,Teledyne Technologies ,US
+TOST,Toast Class A,US
+EL,Estee Lauder Companies Class A,US
+BIP,Brookfield Infrastructure Partners L.P.,US
+WY,Weyerhaeuser Company,US
+ES,Eversource Energy,US
+MDB,MongoDB Class A,US
+EXE,Expand Energy ,US
+TSN,Tyson Foods Class A,US
+LII,Lennox International ,US
+BAH,Booz Allen Hamilton Holding Class A,US
+STE,STERIS ,US
+WSO,Watsco,US
+ZBH,Zimmer Biomet Holdings,US
+WDC,Western Digital ,US
+STLD,Steel Dynamics,US
+PKG,Packaging of America,US
+MKL,Markel Group ,US
+NTRA,Natera,US
+NTRS,Northern Trust ,US
+STX,Seagate Technology Holdings ,US
+IH,Iitation Homes,US
+BLDR,Builders FirstSource,US
+ZBRA,Zebra Technologies Class A,US
+CSL,Carlisle Companies ,US
+LH,Labcorp Holdings ,US
+FOXA,Fox Class A,US
+CLX,Clorox Company,US
+ESS,Essex Property Trust,US
+CFG,Citizens Financial Group,US
+UI,Ubiquiti ,US
+MKC,McCormick & Company orporated,US
+COO,Cooper Companies,US
+PINS,Pinterest Class A,US
+CMS,CMS Energy ,US
+OMC,Omnicom Group,US
+TKO,TKO Group Holdings Class A,US
+TRU,TransUnion,US
+DRI,Darden Restaurants,US
+CNP,CenterPoint Energy,US
+PFG,Principal Financial Group,US
+EDR,Endeavor Group Holdings Class A,US
+VIK,Viking Holdings,US
+IP,International Paper Company,US
+FSLR,First Solar,US
+CHKP,Check Point Software Technologies.,US
+BBY,Best Buy Co.,US
+LUV,Southwest Airlines Co.,US
+GRAB,Grab Holdings Limited Class A,US
+MAA,Mid-America Apartment Communities,US
+NTNX,Nutanix Class A,US
+AER,AerCap Holdings ,US
+ERIE,Erie Indemnity Company Class A,US
+JBHT,J.B. Hunt Transportrvices,US
+ARE,Alexandria Real Estate Equities,US
+BF.B,Brown-Forman Class B,US
+SNA,Snap-on ,US
+KEY,KeyCorp,US
+PODD,Insulet ,US
+CTRA,Coterra Energy ,US
+GEN,Gen Digital ,US
+RYAN,Ryan Specialty Holdings Class A,US
+NRG,NRG Energy,US
+FDS,FactSet Research Systems ,US
+BALL,Ball ,US
+SNAP,Snap Class A,US
+J,Jacobs Solutions ,US
+SSNC,SS&C Technologies Holdings,US
+HOLX,Hologic,US
+CG,Carlyle Group,US
+YUMC,Yum China Holdings,US
+ULTA,Ulta Beauty ,US
+DGX,Quest Diagnostics ,US
+UTHR,United Therapeutics ,US
+VRSN,VeriSign,US
+TRMB,Trimble ,US
+MOH,Molina Healthcare,US
+PNR,Pentair ,US
+MANH,Manhattan Associates,US
+CRBG,Corebridge Financial,US
+IEX,IDEX ,US
+RPM,RPM International ,US
+XPO,XPO,US
+TER,Teradyne,US
+Z,Zillow Group Class C,US
+AFRM,Affirm Holdings Class A,US
+GPC,Genuine Parts Company,US
+WMG,Warner Music Group Corp. Class A,US
+MAS,Masco ,US
+BURL,Burlington Stores,US
+NW,News Class A,US
+RS,Reliance,US
+NI,NiSource,US
+DG,Dollar General ,US
+ONON,On Holding Class A,US
+CAVA,CAVA Group,US
+ICLR,ICON ,US
+OC,Owens Corning,US
+KIM,Kimco Realty ,US
+EXPD,Expeditors International of Washington,US
+HRL,Hormel Foods ,US
+BAX,Baxter International ,US
+FTAI,FTAI Aviation.,US
+FNF,Fidelity National Financial - FNF Group,US
+DOCU,DocuSign,US
+WLK,Westlake ,US
+GWRE,Guidewire Software,US
+WSM,Williams-Sonoma,US
+PSTG,Pure Storage Class A,US
+AVY,Avery Dennison ,US
+TXT,Textron ,US
+MRNA,Moderna,US
+DKS,Dick's Sporting Goods,US
+ALGN,Align Technology,US
+SUI,Sun Communities,US
+DT,Dynatrace,US
+MRO,Marathon Oil ,US
+EG,Everest Group,US
+COHR,Coherent Corp.,US
+FIX,Comfort Systems U,US
+ENTG,Entegris,US
+USFD,US Foods Holding Corp.,US
+AZPN,Aspen Technology,US
+VTRS,Viatris,US
+INCY,Incyte ,US
+THC,Tenet Healthcare ,US
+DOC,Healthpeak Properties,US
+LNT,Alliant Energy ,US
+JEF,Jefferies Financial Group ,US
+H,Hyatt Hotels Class A,US
+TWLO,Twilio Class A,US
+TOL,Toll Brothers,US
+RPRX,Royalty Pharma Class A,US
+CASY,Casey's General Stores,US
+DPZ,Domino's Pizza,US
+RGA,Reinsurance Group of America orporated,US
+ACM,AECOM,US
+EQH,Equitable Holdings,US
+GGG,Graco ,US
+UDR,UDR,US
+BAP,Credicorp.,US
+JBL,Jabil ,US
+CF,CF Industries Holdings,US
+MORN,Morningstar,US
+NDSN,Nordson ,US
+LINE,Lineage,US
+AVTR,Avantor,US
+FLEX,Flex.,US
+SOFI,SoFi Technologies,US
+BSY,Bentley Systems orporated Class B,US
+CW,Curtiss-Wright ,US
+AMCR,Amcor ,US
+EVRG,Evergy,US
+RVTY,Revvity,US
+SFM,Sprouts Farmers Market,US
+ELS,Equity LifeStyle Properties,US
+EWBC,East West Bancorp,US
+FFIV,F5,US
+SMMT,Summit Therapeutics,US
+SN,SharkNinja,US
+IA,ia,US
+DUOL,Duolingo Class A,US
+ALAB,Astera Labs,US
+EPAM,EPAM Systems,US
+MBLY,Mobileye Global Class A,US
+AMH,American Homes 4 Rent Class A,US
+DLTR,Dollar Tree,US
+WES,"Western Midstream Partners, LP",US
+CLH,Clean Harbors,US
+ARCC,Ares Capital ,US
+PAGP,Plains GP Holdings LP Class A,US
+AGR,Avangrid,US
+RNR,RenaisnceRe Holdings.,US
+REG,Regency Centers ,US
+GLPI,Gaming and Leisure Properties,US
+MNDY,monday.com.,US
+TXRH,Texas Roadhouse,US
+POOL,Pool ,US
+CHWY,Chewy Class A,US
+AKAM,Akamai Technologies,US
+OKTA,Okta Class A,US
+PFGC,Performance Food Group Co,US
+SWKS,Skyworks Solutions,US
+SWK,Stanley Black & Decker,US
+LBRDK,Liberty Broadband Corp. Class C,US
+CHRW,C.H. Robinson Worldwide,US
+APTV,Aptiv ,US
+CAG,Conagra Brands,US
+CPB,Campbell Soup Company,US
+TAP,Molson Coors Beverage Company Class B,US
+CPT,Camden Property Trust,US
+LAMR,Lamar Advertising Company Class A,US
+RL,Ralph Lauren Class A,US
+CNA,CNA Financial ,US
+UNM,Unum Group,US
+HLI,Houlihan Lokey Class A,US
+DVA,DaVita ,US
+JKHY,Jack Henry & Associates,US
+PAYC,Paycom Software,US
+ALB,Albemarle ,US
+NBIX,Neurocrine Biosciences,US
+CYBR,CyberArk Software.,US
+BMRN,BioMarin Pharmaceutical ,US
+TTEK,Tetra Tech,US
+JLL,Jones Lang Lalle ,US
+JNPR,Juniper Networks,US
+INSM,Insmed ,US
+T,ent Electric ,US
+HST,Host Hotels & Resorts,US
+CNH,CNH Industrial ,US
+ITT,ITT,US
+PPC,Pilgrim's Pride ,US
+SCI,Service International,US
+RIVN,Rivian Automotive Class A,US
+ALLE,Allegion Public Limited Company,US
+DAY,Dayforce,US
+PR,Permian Resources Class A,US
+CACI,CACI International Class A,US
+WPC,W. P. Carey ,US
+SOLV,Solventum ,US
+BG,Bunge Global ,US
+BWXT,BWX Technologies,US
+AFG,American Financial Group,US
+TECH,Bio-Techne ,US
+KMX,CarMax,US
+PCVX,Vaxcyte,US
+FTI,TechnipFMC ,US
+NCLH,Norwegian Cruise Line Holdings.,US
+TPR,Tapestry,US
+PAA,"Plains All American Pipeline, L.P.",US
+SMCI,Super Micro Computer,US
+UHS,Univerl Healthrvices Class B,US
+PSN,Parsons ,US
+LECO,Lincoln Electric Holdings,US
+SJM,J.M. Smucker Company,US
+PCTY,Paylocity Holding Corp.,US
+SF,Stifel Financial Corp,US
+BJ,BJ's Wholele Club Holdings,US
+EMN,Eastman Chemical Company,US
+ATR,AptarGroup,US
+EVR,Evercore Class A,US
+MMYT,MakeMyTrip.,US
+LW,Lamb Weston Holdings,US
+RRX,Regal Rexnord ,US
+GNRC,Generac Holdings ,US
+MGM,MGM Resorts International,US
+GME,GameStop Corp. Class A,US
+BEN,Franklin Resources,US
+MEDP,Medpace Holdings,US
+GMED,Globus Medical Class A,US
+BEPC,Brookfield Renewable Corp. Class A,US
+ALLY,Ally Financial,US
+KNSL,Kinle Capital Group,US
+ACI,Albertsons Companies Class A,US
+CART,Maplebear ,US
+CUBE,CubeSmart,US
+MTZ,MasTec,US
+CCK,Crown Holdings,US
+NLY,Annaly Capital Management,US
+OVV,Ovintiv,US
+FND,Floor & Decor Holdings Class A,US
+AAON,AAON,US
+AIZ,Assurant,US
+ROKU,Roku Class A,US
+PCOR,Procore Technologies,US
+IPG,Interpublic Group of Companies,US
+OHI,Omega Healthcare Iestors,US
+PAG,Penske Automotive Group,US
+SRPT,repta Therapeutics,US
+CTLT,Catalent,US
+TEM,Tempus AI Class A,US
+MU,Murphy U,US
+FHN,First Horizon ,US
+AOS,A. O. Smith ,US
+BLD,TopBuild Corp.,US
+WTRG,Essential Utilities,US
+CRL,Charles River Laboratories International,US
+HLNE,Hamilton Lane Class A,US
+TLN,Talen Energy Corp,US
+AA,Alcoa ,US
+WWD,Woodward,US
+AIT,Applied Industrial Technologies,US
+CHDN,Churchill Downs ,US
+SEIC,SEI Iestments Company,US
+PNW,Pinnacle West Capital ,US
+EHC,Encompass Health ,US
+EXP,Eagle Materials ,US
+WMS,Advanced Drainage Systems,US
+CIEN,Ciena ,US
+ALSN,Allison Transmission Holdings,US
+ARMK,Aramark,US
+WIX,Wix.com.,US
+WBS,Webster Financial ,US
+GLOB,Globant ,US
+WAL,Western Alliance Bancorp,US
+AYI,Acuity Brands,US
+APG,APi Group ,US
+BIO,Bio-Rad Laboratories Class A,US
+ULS,UL Solutions Class A,US
+AU,Anglogold Ashanti ,US
+WCC,WESCO International,US
+MKTX,MarketAxess Holdings ,US
+CR,Crane Company,US
+LKQ,LKQ ,US
+SNX,TD SYNNEX ,US
+EXEL,Exelixis,US
+DOX,Amdocs Limited,US
+LAD,Lithia Motors,US
+PRI,Primerica,US
+AS,Amer Sports,US
+WING,Wingstop,US
+RBC,RBC Bearings ,US
+VNOM,Viper Energy,US
+KVYO,Klaviyo Class A,US
+DOCS,Doximity Class A,US
+RVMD,Revolution Medicines,US
+GTLB,Gitlab Class A,US
+INGR,Ingredion ,US
+FRT,Federal Realty Iestment Trust,US
+RO,StandardAero,US
+AR,Antero Resources ,US
+UWMC,UWM Holdings Corp. Class A,US
+AES,AES ,US
+PNFP,Pinnacle Financial Partners,US
+VFS,VinFast Auto.,US
+TPX,Tempuraly International,US
+DRS,Leonardo DRS,US
+DTM,DT Midstream,US
+CFLT,Confluent Class A,US
+ORI,Old Republic International ,US
+QGEN,QIAGEN ,US
+WYNN,"Wynn Resorts, Limited",US
+RKLB,Rocket Lab U,US
+EXAS,Exact Sciences ,US
+FBIN,Fortune Brands Innovations,US
+ITCI,Intra-Cellular Therapies,US
+BRBR,BellRing Brands,US
+KBR,KBR,US
+MTSI,MACOM Technology Solutions Holdings,US
+REXR,Rexford Industrial Realty,US
+BILL,BILL Holdings,US
+DCI,Donaldson Company,US
+ESTC,Elastic ,US
+KNX,Knight-Swift Transportation Holdings Class A,US
+GL,Globe Life ,US
+CMA,Comerica ,US
+CBSH,Commerce Bancshares,US
+SKX,Skechers U. Class A,US
+XP,XP Class A,US
+AAL,American Airlines Group ,US
+RGLD,Royal Gold,US
+FN,Fabrinet,US
+AUR,Aurora Innovation Class A,US
+PEN,Penumbra,US
+LUMN,Lumen Technologies,US
+TFX,Teleflex ,US
+SIRI,SiriusXM Holdings ,US
+FOUR,Shift4 Payments Class A,US
+NYT,New York Times Company Class A,US
+MHK,Mohawk Industries,US
+INFA,Informatica Class A,US
+CFR,Cullen/Frost Bankers,US
+ZION,"Zions Ban, N.A.",US
+APPF,AppFolio Class A,US
+AXTA,Axalta Coating Systems.,US
+ALTR,Altair Engineering Class A,US
+WTFC,Wintrust Financial ,US
+CRS,Carpenter Technology ,US
+YMM,Full Truck Alliance Co.. Sponsored ADR,US
+S,SentinelOne Class A,US
+KNTK,Kinetik Holdings Class A,US
+HAS,Hasbro,US
+VNO,Vornado Realty Trust,US
+BRX,Brixmor Property Group,US
+ROIV,Roivant Sciences.,US
+EGP,EastGroup Properties,US
+MASI,Masimo ,US
+FYBR,Frontier Communications Parent,US
+FLR,Fluor ,US
+OGE,OGE Energy Corp.,US
+GPK,Graphic Packaging Holding Company,US
+SUM,Summit Materials Class A,US
+ENSG,Ensign Group,US
+CNM,Core & Main Class A,US
+X,United States Steel ,US
+TTC,Toro Company,US
+BRKR,Bruker ,US
+CHE,Chemed ,US
+HSIC,Henry Schein,US
+AGNC,AGNC Iestment Corp.,US
+RGEN,Repligen ,US
+BIRK,Birkenstock Holding ,US
+DBX,Dropbox Class A,US
+GAP,Gap,US
+CZR,Caers Entertainment,US
+ATI,ATI ,US
+MOS,Moic Company,US
+HQY,HealthEquity,US
+PLNT,Planet Fitness Class A,US
+RRC,Range Resources ,US
+ENPH,Enphase Energy,US
+SSB,SouthState ,US
+LNW,Light & Wonder,US
+APA,APA ,US
+ONTO,Onto Innovation,US
+HRB,H&R Block,US
+RBRK,Rubrik Class A,US
+G,Genpact Limited,US
+CE,Celanese ,US
+RLI,RLI Corp.,US
+OS,Onestream Class A,US
+S,Synovus Financial Corp.,US
+UFPI,UFP Industries,US
+JXN,Jackson Financial In Class A,US
+HII,Huntington Ingalls Industries,US
+DINO,HF Sinclair ,US
+ALV,Autoliv ,US
+OLED,Univerl Display ,US
+NNN,NNN REIT,US
+ADC,Agree Realty ,US
+IVZ,Iesco.,US
+RHI,Robert Half ,US
+PARA,Paramount Global Class B,US
+PB,Prosperity Bancshares(R),US
+VOYA,Voya Financial,US
+GKOS,Glaukos Corp,US
+CHRD,Chord Energy ,US
+VERX,Vertex Class A,US
+ASTS,AST SpaceMobile Class A,US
+FLS,Flowserve ,US
+SUN,Sunoco LP,US
+LPX,Louisiana-Pacific ,US
+WBA,Walgreens Boots Alliance,US
+EB,EB ,US
+VFC,V.F. ,US
+TREX,Trex Company,US
+SMAR,Smartsheet Class A,US
+SPXC,SPX Technologies,US
+SSD,Simpson Manufacturing Co.,US
+PEGA,Pegasystems ,US
+CVLT,Commvault Systems,US
+MTCH,Match Group,US
+JAZZ,Jazz Pharmaceuticals Public Limited Company,US
+BERY,Berry Global Group,US
+U,Unity Software,US
+CRDO,Credo Technology Group Holding.,US
+BWA,BorgWarner ,US
+WH,Wyndham Hotels & Resorts,US
+MKSI,MKS Instruments,US
+CWAN,Clearwater Analytics Holdings Class A,US
+FRPT,Freshpet,US
+HALO,Halozyme Therapeutics,US
+HESM,Hess Midstream LP Class A,US
+PATH,UiPath Class A,US
+VIPS,Vipshop Holdings Sponsored ADR,US
+EXLS,ExlService Holdings,US
+MIDD,Middleby ,US
+BOKF,BOK Financial ,US
+STEP,StepStone Group Class A,US
+GTLS,Chart Industries,US
+LYFT,Lyft Class A,US
+KEX,Kirby ,US
+IC,Science Applications International Corp.,US
+BROS,Dutch Bros Class A,US
+FR,First Industrial Realty Trust,US
+CCCS,CCC Intelligent Solutions Holdings,US
+LOAR,Loar Holdings ,US
+ANF,Abercrombie & Fitch Co. Class A,US
+AM,Antero Midstream Corp.,US
+MTDR,Matador Resources Company,US
+ASND,Ascendis Pharma Sponsored ADR,US
+TMHC,Taylor Morrison Home ,US
+GXO,GXO Logistics,US
+ZK,ZEEKR Intelligent Technology Holding Limited Sponsored ADR,US
+LEGN,Legend Biotech Corp. Sponsored ADR,US
+FCN,FTI Consulting,US
+OSK,Oshkosh Corp,US
+WEX,WEX ,US
+CGNX,Cognex ,US
+R,Ryder System,US
+MOG.A,Moog Class A,US
+ONB,Old National Bancorp,US
+JHG,Janus Henderson Group ,US
+AXS,Axis Capital Holdings Limited,US
+GLBE,Global-e Online.,US
+CADE,Cadence Bank,US
+ELAN,Elanco Animal Health,US
+SPSC,SPS Commerce,US
+BPOP,Popular,US
+DLB,Dolby Laboratories Class A,US
+WTS,Watts Water Technologies Class A,US
+CDP,COPT Defense Properties,US
+LSCC,Latticemiconductor ,US
+MARA,MARA Holdings,US
+CSWI,CSW Industrials,US
+GNTX,Gentex ,US
+BLCO,Bausch + Lomb ,US
+FMC,FMC ,US
+CWST,Casella Waste Systems Class A,US
+M,M fety,US
+ENLC,EnLink Midstream LLC,US
+ELF,e.l.f. Beauty,US
+BBWI,Bath & Body Works,US
+STAG,STAG Industrial,US
+CMC,Commercial Metals Company,US
+ESI,Element Solutions,US
+HCP,HashiCorp Class A,US
+ADT,ADT,US
+MDGL,Madrigal Pharmaceuticals,US
+AZEK,AZEK Co. Class A,US
+VMI,Valmont Industries,US
+WSC,WillScot Holdings Class A,US
+CHH,Choice Hotels International,US
+RHP,Ryman Hospitality Properties,US
+MTN,Vail Resorts,US
+LEVI,Levi Strauss & Co. Class A,US
+BXSL,Blackstonecured Lending Fund,US
+TX,Ternium Sponsored ADR,US
+LSTR,Landstar System,US
+AWI,Armstrong World Industries,US
+ZWS,Zurn Elkay Water Solutions ,US
+MOD,Modine Manufacturing Company,US
+DAR,Darling Ingredients,US
+AGCO,AGCO ,US
+KD,Kyndryl Holdings In,US
+AN,AutoNation,US
+FAF,First American Financial ,US
+CYTK,Cytokinetics orporated,US
+BMI,Badger Meter,US
+LCID,Lucid Group,US
+ALK,Alaska Air Group,US
+STWD,Starwood Property Trust,US
+OMF,OneMain Holdings,US
+BYD,Boyd Gaming ,US
+SITE,SiteOne Landscape Supply,US
+COLB,Columbia Banking System,US
+BFAM,Bright Horizons Family Solutions,US
+GBCI,Glacier Bancorp,US
+MTH,Meritage Homes ,US
+COTY,Coty Class A,US
+AMKR,Amkor Technology,US
+POST,Post Holdings,US
+SMR,NuScale Power Class A,US
+CELH,Celsius Holdings,US
+COLD,Americold Realty Trust,US
+BECN,Beacon Roofing Supply,US
+MAT,Mattel,US
+NOV,NOV ,US
+HRI,Herc Holdings,US
+NUVL,Nuvalent Class A,US
+DDS,Dillard's Class A,US
+WHR,Whirlpool ,US
+LFUS,Littelfuse,US
+RNA,Avidity Biosciences,US
+MTG,MGIC Iestment ,US
+COOP,Mr. Cooper Group,US
+IDA,IDACORP,US
+QTWO,Q2 Holdings,US
+HR,Healthcare Realty Trust Class A,US
+PJT,PJT Partners Class A,US
+QRVO,Qorvo,US
+WFRD,Weatherford International ,US
+UPST,Upstart Holdings,US
+TRNO,Terreno Realty ,US
+BPMC,Blueprint Medicines Corp.,US
+AVAV,AeroVironment,US
+VKTX,Viking Therapeutics,US
+HOMB,Home BancShares,US
+NOVT,Novanta,US
+RDNT,RadNet,US
+CBT,Cabot ,US
+SIGI,Selective Insurance Group,US
+LITE,Lumentum Holdings,US
+ESNT,Essent Group.,US
+UMBF,UMB Financial ,US
+RCM,R1 RCM,US
+RH,RH,US
+HIMS,Hims & Hers Health Class A,US
+ARW,Arrow Electronics,US
+ETSY,Etsy,US
+KRG,Kite Realty Group Trust,US
+FNB,F.N.B. ,US
+VRNS,Varonis Systems,US
+FFIN,First Financial Bankshares,US
+LNC,Lincoln National Corp,US
+IONS,Ionis Pharmaceuticals,US
+ACIW,ACI Worldwide,US
+PIPR,Piper ndler Companies,US
+MMSI,Merit Medical Systems,US
+FSK,FS KKR Capital Corp.,US
+CORT,Corcept Therapeutics,US
+CHX,ChampionX ,US
+CLF,Cleveland-Cliffs,US
+SLGN,Silgan Holdings ,US
+VNT,Vontier Corp,US
+THG,Hanover Insurance Group,US
+TS,EchoStar Class A,US
+IBP,Installed Building Products,US
+EPRT,Essential Properties Realty Trust,US
+REYN,Reynolds Consumer Products,US
+IONQ,IonQ,US
+RMBS,Rambus ,US
+OBDC,Blue Owl Capital ,US
+MC,Moelis & Co. Class A,US
+TAL,TAL Education Group Sponsored ADR Class A,US
+BCPC,Balchem Corp,US
+THO,Thor Industries,US
+CNX,CNX Resources ,US
+N,National Storage Affiliates Trust,US
+CROX,Crocs,US
+UBSI,United Bankshares,US
+KBH,KB Home,US
+STRL,Sterling Infrastructure,US
+PVH,PVH Corp.,US
+CTRE,CareTrust REIT,US
+OLLI,Ollie's Bargain Outlet Holdings,US
+ALTM,Arcadium Lithium ,US
+AMG,Affiliated Managers Group,US
+FSS,Federal Signal ,US
+VLY,Valley National Bancorp,US
+LXP,LXP Industrial Trust,US
+STVN,Stevanato Group SpA,US
+RITM,Rithm Capital Corp.,US
+NFG,National Fuel Gas Company,US
+MATX,Matson,US
+GPI,Group 1 Automotive,US
+NE,Noble Class A,US
+LNTH,Lantheus Holdings,US
+SKY,Champion Homes,US
+QLYS,Qualys,US
+MI,Nova.,US
+SWX,Southwest Gas Holdings,US
+AL,Air Lease Class A,US
+VVV,Valvoline,US
+DNB,Dun & Bradstreet Holdings,US
+SNDR,Schneider National Class B,US
+BCC,Boise Cascade Co.,US
+CRNX,Crinetics Pharmaceuticals,US
+INSP,Inspire Medical Systems,US
+GATX,GATX ,US
+TGTX,TG Therapeutics,US
+OZK,Bank OZK,US
+NXT,Nextracker Class A,US
+SHAK,Shake Shack Class A,US
+RRR,Red Rock Resorts Class A,US
+DY,Dycom Industries,US
+ACLX,Arcellx,US
+VIRT,Virtu Financial Class A,US
+KNF,Knife River ,US
+CWEN,Clearway Energy Class C,US
+BC,Brunswick ,US
+TSEM,Towermiconductor,US
+ITRI,Itron,US
+LEA,Lear ,US
+CACC,Credit Acceptance ,US
+SLG,SL Green Realty Corp.,US
+CRUS,Cirrus Logic,US
+MSGS,Madison Square Garden Sports Corp. Class A,US
+USM,United States Cellular Corp,US
+PECO,Phillips Edison & Company,US
+MGY,Magnolia Oil & Gas Corp. Class A,US
+WHD,Cactus Class A,US
+WAY,Waystar Holding Corp.,US
+BWIN,Baldwin Insurance Group Class A,US
+KRYS,Krystal Biotech,US
+MMS,MAXIMUS,US
+EAT,Brinker International,US
+CRC,California Resources Corp,US
+ACT,Enact Holdings,US
+PFSI,PennyMac Financialrvices,US
+GTES,Gates Industrial ,US
+PI,Impinj,US
+WK,Workiva Class A,US
+SFBS,ServisFirst Bancshares,US
+TKR,Timken Company,US
+EXPO,Exponent,US
+SEE,Sealed Air ,US
+ABG,Asbury Automotive Group,US
+LANC,Lancaster Colony ,US
+NXST,Nexstar Media Group,US
+HWC,Hancock Whitney ,US
+RDN,Radian Group ,US
+SRAD,Sportradar Group Class A,US
+SLM,SLM Corp,US
+ADMA,ADMA Biologics,US
+CNS,Cohen & Steers,US
+TENB,Tenable Holdings,US
+UGI,UGI ,US
+FRSH,Freshworks Class A,US
+ACA,Arco,US
+PRCT,PROCEPT BioRobotics Corp.,US
+NSIT,Insight Enterprises,US
+LTH,Life Time Group Holdings,US
+SM,SM Energy Company,US
+OLN,Olin ,US
+FELE,Franklin Electric Co.,US
+SON,Sonoco Products Company,US
+KTB,Kontoor Brands,US
+LAZ,Lazard,US
+BOX,Box Class A,US
+HXL,Hexcel ,US
+BHVN,Biohaven.,US
+SEM,Select Medical Holdings ,US
+CIVI,Civitas Resources,US
+FCFS,FirstCash Holdings,US
+LOPE,Grand Canyon Education,US
+BDC,Belden ,US
+MSM,MSC Industrial Direct Co. Class A,US
+CUZ,Cousins Properties ,US
+ST,Senta Technologies Holding ,US
+POR,Portland General Electric Company,US
+COLM,Columbia Sportswear Company,US
+ABCB,Ameris Bancorp,US
+IRT,Independence Realty Trust,US
+RUSHA,Rush Enterprises Class A,US
+ROAD,Construction Partners Class A,US
+W,Wayfair Class A,US
+TNET,TriNet Group,US
+NCNO,nCino,US
+ORA,Ormat Technologies,US
+KRC,Kilroy Realty ,US
+AXSM,Axsome Therapeutics,US
+NJR,New Jersey Resources ,US
+MUR,Murphy Oil ,US
+ALKS,Alkermes Public Limited Company,US
+SITM,SiTime ,US
+AVNT,Avient ,US
+BBIO,BridgeBio Pharma,US
+IDCC,InterDigital,US
+AX,Axos Financial,US
+FIVE,Five Below,US
+FIZZ,National Beverage Corp.,US
+FUN,Six Flags Entertainment ,US
+KAI,Kadant ,US
+ITGR,Integer Holdings ,US
+AVT,Avnet,US
+HAE,Haemonetics ,US
+MAIN,Main Street Capital ,US
+ALIT,Alight Class A,US
+EEFT,Euronet Worldwide,US
+FLG,Flagstar Financial,US
+FLO,Flowers Foods,US
+PRMB,Primo Brands Class A,US
+AGO,Assured Guaranty.,US
+BKH,Black Hills ,US
+SKYW,SkyWest ,US
+JOBY,Joby Aviation,US
+MAC,Macerich Company,US
+CORZ,Core Scientific,US
+GSHD,Goosehead Insurance Class A,US
+RARE,Ultragenyx Pharmaceutical,US
+RYN,Rayonier ,US
+RXO,RXO,US
+INTA,Intapp,US
+KMPR,Kemper Corp,US
+CALM,Cal-Maine Foods,US
+SBRA,bra Health Care REIT,US
+BLKB,Blackbaud,US
+LRN,Stride,US
+SHC,Sotera Health Company,US
+SIG,Signet Jewelers Limited,US
+LBTYA,Liberty Global. Class A,US
+HGV,Hilton Grand Vacations,US
+FRO,Frontline ,US
+NM,nmina ,US
+FTDR,Frontdoor,US
+ICUI,ICU Medical,US
+DNLI,Denali Therapeutics ,US
+OGS,ONE Gas,US
+PRIM,Primorisrvices ,US
+AEIS,Advanced Energy Industries,US
+CRSP,CRISPR Therapeutics,US
+PLXS,Plexus Corp.,US
+IMVT,Immunovant,US
+GVA,Granite Construction ,US
+IGT,International Game Technology ,US
+ZETA,Zeta Global Holdings Corp. Class A,US
+ASGN,ASGN ,US
+RIOT,Riot Platforms,US
+PAY,Paymentus Holdings Class A,US
+DORM,Dorman Products,US
+KTOS,Kratos Defense &curity Solutions,US
+M,Macy's,US
+MHO,M/I Homes,US
+GOLF,Acushnet Holdings Corp.,US
+BCO,Brink's Company,US
+CPA,"Copa Holdings, Class A",US
+AHR,American Healthcare REIT,US
+FUL,H.B. Fuller Company,US
+TXNM,TXNM Energy,US
+AROC,Archrock ,US
+SMG,Scotts Miracle-Gro Company Class A,US
+GBTG,Global Business Travel Group Class A,US
+ASB,Associated Banc-Corp,US
+SG,Sweetgreen Class A,US
+VCTR,Victory Capital Holdings Class A,US
+MCY,Mercury General ,US
+TCBI,Texas Capital Bancshares,US
+HHH,Howard Hughes Holdings ,US
+IPAR,Interparfums,US
+PBH,Prestige Consumer Healthcare,US
+KFY,Korn Ferry,US
+GBDC,Golub Capital BDC,US
+HOG,Harley-Davidson,US
+BANF,BancFirst ,US
+AB,AllianceBernstein Holding L.P.,US
+DXC,DXC Technology Co.,US
+CNO,CNO Financial Group,US
+NOG,Northern Oil and Gas,US
+IAC,IAC ,US
+BOOT,Boot Barn Holdings,US
+FUTU,Futu Holdings. Sponsored ADR Class A,US
+CRK,Comstock Resources,US
+UAA,Under Armour Class A,US
+OGN,Organon & Co.,US
+RELY,Remitly Global,US
+EBC,Eastern Bankshares,US
+GMS,GMS,US
+GFF,Griffon ,US
+CBZ,CBIZ,US
+SKT,Tanger ,US
+GH,Guardant Health,US
+ENS,EnerSys,US
+BL,BlackLine,US
+MWA,Mueller Water Products Class A,US
+CNK,Cinemark Holdings,US
+UCB,United Community Banks,US
+WDFC,WD-40 Company,US
+TPH,Tri Pointe Homes,US
+CLSK,Cleanspark,US
+VRRM,Verra Mobility Corp. Class A,US
+CCOI,Cogent Communications Holdings,US
+JBT,John Bean Technologies ,US
+FULT,Fulton Financial ,US
+AUB,Atlantic Union Bankshares ,US
+APLE,Apple Hospitality REIT,US
+POWL,Powell Industries,US
+ALKT,Alkami Technology,US
+SR,Spire ,US
+CARG,CarGurus Class A,US
+APAM,Artin Partners Asset Management Class A,US
+JWN,Nordstrom,US
+ASH,Ashland ,US
+CVCO,Cavco Industries,US
+NWL,Newell Brands,US
+OPCH,Option Care Health,US
+PII,Polaris ,US
+BRZE,Braze Class A,US
+STR,Sitio Royalties Corp. Class A,US
+WEN,Wendy's Company,US
+ALE,ALLETE,US
+REZI,Resideo Technologies,US
+MDU,MDU Resources Group,US
+M,Boston Beer Company Class A,US
+RIG,Transocean.,US
+CAR,Avis Budget Group,US
+CLBT,Cellebrite DI.,US
+ACHC,Acadia Healthcare Company,US
+TBBB,BBB Foods Class A,US
+YOU,Clearcure Class A,US
+RYTM,Rhythm Pharmaceuticals,US
+ESE,ESCO Technologies ,US
+SMTC,Semtech ,US
+ALGM,Allegro MicroSystems,US
+WD,Walker & Dunlop,US
+PAYO,Payoneer Global ,US
+CEIX,CONSOL Energy,US
+CATY,Cathay General Bancorp,US
+TNL,Travel + Leisure Co.,US
+ATAT,Atour Lifestyle Holdings. Sponsored ADR,US
+PRGO,Perrigo Co. ,US
+SMPL,Simply Good Foods Co,US
+FLNC,Fluence Energy Class A,US
+GLNG,Golar LNG Limited,US
+DEI,Douglas Emmett ,US
+BRC,Brady Class A,US
+CAMT,Camtek,US
+URBN,Urban Outfitters,US
+ATMU,Atmus Filtration Technologies,US
+ZI,ZoomInfo Technologies,US
+CBU,Community Financial System,US
+POWI,Power Integrations,US
+AXNX,Axonics,US
+WU,Western Union Company,US
+HP,Helmerich & Payne,US
+ABM,ABM Industries ,US
+GEO,GEO Group,US
+UNF,UniFirst ,US
+SPR,Spirit AeroSystems Holdings Class A,US
+NHI,National Health Iestors,US
+COMP.EQ,Compass Class A,US
+VAL,Valaris.,US
+AEO,American Eagle Outfitters,US
+APLS,Apellis Pharmaceuticals,US
+DOCN,DigitalOcean Holdings,US
+FHB,First Hawaiian,US
+FIBK,First Interstate BancSystem,US
+FROG,JFrog.,US
+ST,Eista Holdings Corp.,US
+AGYS,Agilysys,US
+MIR,Mirion Technologies Class A,US
+PBF,PBF Energy Class A,US
+FBP,First Bancorp,US
+MRUS,Merus ,US
+E,Eestnet,US
+ASO,Academy Sports and Outdoors,US
+DYN,Dyne Therapeutics,US
+TGLS,Tecnoglass ,US
+AI,C3.ai Class A,US
+HL,Hecla Mining Company,US
+XRAY,DENTSPLY SIRONA,US
+YETI,YETI Holdings,US
+WSFS,WSFS Financial ,US
+TEX,Terex ,US
+DV,DoubleVerify Holdings,US
+SLAB,Silicon Laboratories ,US
+RNG,RingCentral Class A,US
+HCC,Warrior Met Coal,US
+BTSG,BrightSpring Healthrvices,US
+NPO,Enpro ,US
+ACVA,ACV Auctions Class A,US
+HIW,Highwoods Properties,US
+ARLP,"Alliance Resource Partners, L.P.",US
+FHI,Federated Hermes Class B,US
+EPR,EPR Properties,US
+HUN,Huntsman ,US
+HAYW,Hayward Holdings,US
+PTCT,PTC Therapeutics,US
+NWE,NorthWestern Energy Group,US
+CLVT,Clarivate ,US
+ATGE,Adtalem Global Education ,US
+JJSF,J & J Snack Foods Corp.,US
+IBRX,ImmunityBio,US
+BTU,Peabody Energy ,US
+OTTR,Otter Tail ,US
+AN,Ana Class A,US
+SXT,Sensient Technologies ,US
+AGIO,Agios Pharmaceuticals,US
+SLVM,Sylvamo ,US
+GEF,Greif Class A,US
+OSCR,Oscar Health Class A,US
+ATKR,Atkore,US
+CWK,Cushman & Wakefield ,US
+GT,Globalstar,US
+IPGP,IPG Photonics ,US
+LIF,Life360,US
+NEOG,Neogen Corp,US
+IRDM,Iridium Communications ,US
+TDS,Telephone and Data Systems,US
+PCH,PotlatchDeltic ,US
+SYM,Symbotic Class A,US
+PTEN,Patterson-UTI Energy,US
+MLTX,MoonLake Immunotherapeutics Class A,US
+SGRY,Surgery Partners,US
+HASI,HA Sustainable Infrastructure Capital,US
+PENN,PENN Entertainment,US
+VAC,Marriott Vacations Worldwide ,US
+PRKS,United Parks & Resorts ,US
+AWR,American States Water Company,US
+STNE,StoneCo. Class A,US
+BNL,Broadstone Net Lease,US
+XENE,Xenon Pharmaceuticals ,US
+SHOO,Steven Madden,US
+BSM,Black Stone Minerals LP,US
+CXT,"Crane NXT, Co.",US
+PACS,PACS Group,US
+PTON,Peloton Interactive Class A,US
+PLTK,Playtika Holding Corp.,US
+CVBF,CVB Financial Corp.,US
+CRGY,Crescent Energy Company Class A,US
+KYMR,Kymera Therapeutics,US
+EWTX,Edgewise Therapeutics,US
+BXMT,Blackstone Mortgage Trust Class A,US
+PYCR,Paycor HCM,US
+ICFI,ICF International,US
+KGS,Kodiak Gasrvices,US
+PRK,Park National ,US
+GNW,Genworth Financial,US
+VERA,Vera Therapeutics Class A,US
+MP,MP Materials Corp Class A,US
+HTGC,Hercules Capital,US
+PK,Park Hotels & Resorts,US
+NEP,NextEra Energy Partners LP,US
+TMDX,TransMedics Group,US
+SFNC,Simmons First National Class A,US
+FA,First Advantage Corp.,US
+GRBK,Green Brick Partners,US
+BE,Bloom Energy Class A,US
+OUT,OUTFRONT Media ,US
+FOLD,Amicus Therapeutics,US
+FORM,FormFactor,US
+AMR,Alpha Metallurgical Resources,US
+INDB,Independent Bank Corp.,US
+BOH,Bank of Hawaii Corp,US
+APGE,Apogee Therapeutics,US
+HUBG,Hub Group Class A,US
+VCYT,Veracyte,US
+KWR,Quaker Houghton,US
+BHF,Brighthouse Financial,US
+UE,Urban Edge Properties,US
+IOSP,Innospec ,US
+FIVN,Five9,US
+NMIH,NMI Holdings,US
+VRNA,Verona Pharma Sponsored ADR,US
+ECG,Everus Construction Group,US
+WAFD,WaFd,US
+ALRM,Alarm.com Holdings,US
+BKU,BankUnited,US
+TGNA,TEGNA,US
+ZIM,ZIM Integrated Shippingrvices.,US
+AKR,Acadia Realty Trust,US
+AVPT,AvePoint Class A,US
+CWT,California Waterrvice Group,US
+MAN,ManpowerGroup ,US
+UEC,Uranium Energy Corp.,US
+ARCH,Arch Resources Class A,US
+SYNA,Synaptics ,US
+NARI,Inari Medical,US
+AVA,Avista ,US
+PATK,Patrick Industries,US
+AMED,Amedisys,US
+APPN,Appian Class A,US
+MANU,Manchester United Class A,US
+KLC,KinderCare Learning Companies,US
+ACAD,ACADIA Pharmaceuticals ,US
+LCII,LCI Industries,US
+PRGS,Progress Software ,US
+IIPR,Innovative Industrial Properties,US
+LIVN,LivaNova ,US
+NSP,Insperity,US
+ABR,Arbor Realty Trust,US
+CPK,Chepeake Utilities ,US
+STNG,Scorpio Tankers ,US
+LBRT,Liberty Energy Class A,US
+CC,Chemours Co.,US
+GPOR,Gulfport Energy Corp,US
+HTLF,Heartland Financial U,US
+TDC,Teradata ,US
+EE,Excelerate Energy Class A,US
+WULF,TeraWulf ,US
+VSCO,Victoria'scret & Company,US
+OKLO,Oklo Class A,US
+OII,Oceaneering International,US
+BFH,Bread Financial Holdings,US
+AMRX,Amneal Pharmaceuticals Class A,US
+LAUR,Laureate Education,US
+HBI,Hanesbrands ,US
+PFS,Provident Financialrvices,US
+FFBC,First Financial Bancorp.,US
+TDW,Tidewater,US
+NPWR,NET Power Class A,US
+BANC,Banc of California,US
+LFST,Lifestance Health Group,US
+DRVN,Driven Brands Holdings,US
+PSMT,PriceSmart,US
+IOVA,Iovance Biotherapeutics,US
+VCEL,Vericel ,US
+SDRL,Seadrill Limited,US
+JANX,Janux Therapeutics,US
+IRTC,iRhythm Technologies,US
+TBBK,Bancorp,US
+CPRX,Catalyst Pharmaceuticals,US
+PPBI,Pacific Premier Bancorp,US
+GT,Goodyear Tire & Rubber Company,US
+FCPT,Four Corners Property Trust,US
+PAR,PAR Technology ,US
+EA,Enova International,US
+UC,U Compression Partners LP,US
+QDEL,QuidelOrtho ,US
+FLYW,Flywire Corp.,US
+ARWR,Arrowhead Pharmaceuticals,US
+CCS,Century Communities,US
+NMRK,Newmark Group Class A,US
+DFH,Dream Finders Homes Class A,US
+PLMR,Palomar Holdings,US
+PAGS,PagSeguro Digital. Class A,US
+IBTX,Independent Bank Group,US
+NOMD,Nomad Foods.,US
+MPW,Medical Properties Trust,US
+ARCB,ArcBest ,US
+TOWN,TowneBank,US
+FBK,FB Financial ,US
+IDYA,IDEAYA Biosciences,US
+CNXC,Concentrix ,US
+RPD,Rapid7 ,US
+SPB,Spectrum Brands Holdings,US
+CON,Concentra Group Holdings Parent,US
+PGRE,Paramount Group,US
+PRVA,Privia Health Group,US
+DIOD,Diodes ,US
+MTX,Minerals Technologies ,US
+ENOV,Enovis ,US
+RSI,Rush Street Interactive Class A,US
+VC,Visteon ,US
+ACLS,Axcelis Technologies,US
+PSNY,Polestar Automotive Holding UK Sponsored ADR Class A,US
+SWTX,Springworks Therapeutics,US
+MLCO,Melco Resorts & Entertainment. Sponsored ADR,US
+MRCY,Mercury Systems,US
+VSTO,Vista Outdoor,US
+VICR,Vicor ,US
+DLO,DLocal Limited Class A,US
+MCW,Mister Car Wash,US
+AIN,Albany International Corp. Class A,US
+AY,Atlantica Sustainable Infrastructure ,US
+KLIC,Kulicke & Soffa Industries,US
+SRRK,Scholar Rock Holding Corp.,US
+FRME,First Merchants ,US
+KROS,Keros Therapeutics,US
+OSIS,OSI Systems,US
+SBCF,Seacoast Banking of Florida,US
+PTGX,Protagonist Therapeutics,US
+WRBY,Warby Parker Class A,US
+BLTE,Belite Bio ADR,US
+ODD,ODDITY Tech. Class A,US
+BANR,Banner ,US
+BATRK,Atlanta Braves Holdings Class C,US
+CURB,Curbline Properties Corp.,US
+WERN,Werner Enterprises,US
+AZZ,AZZ ,US
+GRND,Grindr ,US
+QS,QuantumScape Class A,US
+TWST,Twist Bioscience Corp.,US
+MTRN,Materion ,US
+BKE,Buckle,US
+VSEC,VSE ,US
+TTMI,TTM Technologies,US
+ZD,Ziff Davis,US
+CAKE,Cheesecake Factory ,US
+SXI,Standex International ,US
+INTR,Inter & Co. Class A,US
+AIR,AAR CORP.,US
+ALHC,Alignment Healthcare,US
+CSR,Centerspace,US
+LGIH,LGI Homes,US
+AAP,Advance Auto Parts,US
+YELP,Yelp ,US
+CDE,Coeur Mining,US
+ARDT,Ardent Health Partners,US
+STRA,Strategic Education,US
+UFPT,UFP Technologies,US
+JBLU,JetBlue Airways ,US
+AMBA,Ambarella,US
+TFIN,Triumph Financial,US
+SLNO,Soleno Therapeutics,US
+WSBC,WesBanco,US
+ENR,Energizer Holdings,US
+MYRG,MYR Group ,US
+RUM,Rumble Class A,US
+WVE,Wave Life Sciences.,US
+SBLK,Star Bulk Carriers Corp.,US
+CGON,CG Oncology,US
+B,Barnes Group ,US
+NBTB,NBT Bancorp ,US
+CXW,CoreCivic,US
+TRMK,Trustmark ,US
+WNS,WNS (Holdings) Limited,US
+MGNI,Magnite,US
+RVLV,Revolve Group Class A,US
+CWH,Camping World Holdings Class A,US
+ALG,Alamo Group ,US
+RNST,Renant ,US
+IVT,IenTrust Properties Corp,US
+GOGL,Golden Ocean Group,US
+GERN,Geron ,US
+CNMD,CONMED ,US
+UTZ,UTZ Brands Class A,US
+LBPH,Longboard Pharmaceuticals,US
+DBRG,DigitalBridge Group Class A,US
+FIHL,Fidelis Insurance Holdings.,US
+SWI,SolarWinds Corp.,US
+AESI,Atlas Energy Solutions ,US
+ROIC,Retail Opportunity Iestments Corp.,US
+CPRI,Capri Holdings Limited,US
+CABO,Cable One,US
+FL,Foot Locker,US
+LGND,Ligand Pharmaceuticals ,US
+LMAT,LeMaitre Vascular,US
+RUN,Sunrun ,US
+CIFR,Cipher Mining,US
+IBTA,Ibotta Class A,US
+LMND,Lemonade,US
+KMT,Kennametal ,US
+BEAM,Beam Therapeutics,US
+NAMS,NewAmsterdam Pharma Company ,US
+VIAV,Viavi Solutions,US
+NFE,New Fortress Energy Class A,US
+VZIO,VIZIO Holding Corp. Class A,US
+SOUN,SoundHound AI Class A,US
+HURN,Huron Consulting Group ,US
+H,Sonic Automotive Class A,US
+GENI,Genius Sports Limited,US
+AGM,Federalricultural Mortgage Class C,US
+ADUS,Addus HomeCare ,US
+EVTC,EVERTEC,US
+TRUP,Trupanion,US
+PINC,Premier Class A,US
+VSH,Vishay Intertechnology,US
+OMCL,Omnicell,US
+WS,Worthington Steel,US
+SYBT,Stock Yards Bancorp,US
+AMBP,Ardagh Metal Packaging S.A,US
+EFSC,Enterprise Financialrvices Corp,US
+AVDX,AvidXchange Holdings,US
+NATL,NCR Atleos ,US
+PWP,Perella Weinberg Partners Class A,US
+EXTR,Extreme Networks,US
+PHIN,PHINIA ,US
+ROCK,Gibraltar Industries,US
+LOB,Live Oak Bancshares,US
+AMPH,Amphastar Pharmaceuticals,US
+AZTA,Azenta,US
+HEES,H&E Equipmentrvices,US
+HLMN,Hillman Solutions Corp.,US
+AKRO,Akero Therapeutics,US
+WGS,GeneDx Holdings Corp. Class A,US
+PLUS,ePlus ,US
+SEZL,Sezzle ,US
+EXPI,eXp World Holdings,US
+KAR,OPENLANE,US
+VYX,NCR Voyix ,US
+TALO,Talos Energy,US
+HI,Hillenbrand,US
+HTH,Hilltop Holdings ,US
+NEO,NeoGenomics,US
+MIRM,Mirum Pharmaceuticals,US
+UPWK,Upwork,US
+RXRX,Recursion Pharmaceuticals Class A,US
+SHO,Sunstone Hotel Iestors,US
+INSW,Internationalaways,US
+SUPN,Supernus Pharmaceuticals,US
+GPCR,Structure Therapeutics Sponsored ADR,US
+GBX,Greenbrier Companies,US
+IREN,Iris Energy.,US
+ASTH,Astrana Health ,US
+WOR,Worthington Enterprises,US
+IQ,iQIYI Sponsored ADR Class A,US
+RLX,RLX Technology Sponsored ADR Class A,US
+NABL,N-able,US
+CNTA,Centes Pharmaceuticals ADR,US
+OFG,OFG Bancorp,US
+CMPR,Cimpress ,US
+CXM,Sprinklr Class A,US
+YY,JOYY Sponsored ADR Class A,US
+CALX,Calix,US
+SEMR,SEMrush Holdings Class A,US
+CRTO,Criteo Sponsored ADR Repr 1 Sh,US
+CASH,Pathward Financial,US
+AGX,Argan,US
+PRG,PROG Holdings,US
+STC,Stewart Informationrvices ,US
+KSS,Kohl's ,US
+OSW,OneSpaWorld Holdings.,US
+TRIP,TripAdvisor,US
+MRX,Marex Group ,US
+SKWD,Skyward Specialty Insurance Group,US
+OI,O-I Glass,US
+MQ,Marqeta Class A,US
+JAMF,Jamf Holding Corp,US
+TNDM,Tandem Diabetes Care,US
+PCT,PureCycle Technologies,US
+CHCO,City Holding Company,US
+CR,NovoCure.,US
+CRI,Carter's ,US
+ROG,Rogers ,US
+COCO,Vita Coco Company,US
+HRMY,Harmony Biosciences Holdings,US
+DRH,DiamondRock Hospitality Company,US
+FBNC,First Bancorp,US
+NRIX,Nurix Therapeutics,US
+CENX,Century Aluminum Company,US
+MNKD,MannKind ,US
+FCF,First Commonwealth Financial ,US
+VVX,V2X,US
+FTRE,Fortrea Holdings ,US
+TSLX,Sixth Street Specialty Lending,US
+LKFN,Lakeland Financial ,US
+CVI,CVR Energy,US
+VSTS,Vestis ,US
+NWBI,Northwest Bancshares,US
+RAMP,LiveRamp Holdings,US
+IRON,Disc Medicine,US
+PAX,Patria Iestments. Class A,US
+PD,PagerDuty,US
+MBIN,Merchants Bancorp,US
+SOC,ble Offshore Corp.,US
+APOG,Apogee Enterprises,US
+GO,Grocery Outlet Holding Corp.,US
+HG,Hamilton Insurance Group Class B,US
+ADNT,Adient ,US
+DNUT,Krispy Kreme,US
+NEXT,NextDecade Corp.,US
+NBHC,National Bank Holdings Class A,US
+ACHR,Archer Aviation Class A,US
+HROW,Harrow,US
+KOS,Kosmos Energy.,US
+ARCO,Arcos Dorados Holdings Class A,US
+SJW,SJW Group,US
+UPBD,Upbound Group,US
+LZB,La-Z-Boy ,US
+TXG,10x Genomics Class A,US
+RXST,RxSight,US
+IART,Integra LifeSciences Holdings ,US
+KRP,Kimbell Royalty Partners LP,US
+DFIN,Donnelley Financial Solutions,US
+PLUG,Plug Power ,US
+CTRI,Centuri Holdings,US
+NTB,Bank of N.T. Butterfield & Son Limited (The),US
+MSGE,Madison Square Garden Entertainment Corp.,US
+VRDN,Viridian Therapeutics,US
+CLDX,Celldex Therapeutics,US
+DVAX,Dynavax Technologies ,US
+GDRX,GoodRx Holdings Class A,US
+TWFG,TWFG Class A,US
+PRM,Perimeter Solutions ,US
+WGO,Winnebago Industries,US
+TARS,Tarsus Pharmaceuticals,US
+CUBI,Customers Bancorp,US
+ESRT,Empire State Realty Trust Class A,US
+ATRC,AtriCure,US
+PDCO,Patterson Companies ,US
+MLNK,MeridianLink,US
+SIMO,Silicon Motion Technology Sponsored ADR,US
+IAS,Integral Ad Science Holding Corp,US
+LC,LendingClub Corp,US
+LTC,LTC Properties,US
+GTY,Getty Realty Corp.,US
+BHE,Benchmark Electronics,US
+ARVN,Arvinas,US
+NMRA,Neumora Therapeutics,US
+DAVA,Endava Sponsored ADR Class A,US
+SR,ndy Spring Bancorp,US
+DHT,DHT Holdings,US
+BV,BrightView Holdings,US
+VRE,Veris Residential,US
+GNL,Global Net Lease,US
+CERT,Certara,US
+BKV,BKV ,US
+TROX,Tronox Holdings ,US
+WWW,Wolverine World Wide,US
+SCL,Stepan Co,US
+CSTM,Constellium Class A,US
+AMC,AMC Entertainment Holdings Class A,US
+NN,NextNav ,US
+EPC,Edgewell Personal Care Co.,US
+CLMT,Calumet,US
+IMCR,Immunocore Holdings Shs Sponsored American Depositary Shares Repr 1 Sh,US
+CMRE,Costamare ,US
+SONO,Sonos,US
+HLIO,Helios Technologies,US
+LGF.A,Lions Gate Entertainment Corp Class A,US
+SYRE,Spyre Therapeutics ,US
+GTX,Garrett Motion,US
+BOWL,Bowlero Corp. Class A,US
+VRTS,Virtus Iestment Partners,US
+HE,Hawaiian Electric Industries,US
+AAT,American Assets Trust,US
+DAC,Danaos ,US
+HMN,Horace Mann Educators ,US
+TNC,Tennant Company,US
+GLP,Global Partners LP,US
+SPT,Sprout Social Class A,US
+MLKN,MillerKnoll,US
+CHEF,Chefs' Warehouse,US
+PZZA,Papa John's International,US
+NGVT,Ingevity ,US
+NWN,Northwest Natural Holding Co.,US
+WT,WisdomTree,US
+OCUL,Ocular Therapeutix,US
+XNCR,Xencor,US
+HOPE,Hope Bancorp,US
+EX,Enovix ,US
+TDOC,Teladoc Health,US
+NTLA,Intellia Therapeutics,US
+NAVI,Navient Corp,US
+INMD,InMode.,US
+WTTR,Select Water Solutions Class A,US
+LEG,Leggett & Platt orporated,US
+KN,"Kinik Pharmaceuticals International, Class A",US
+STBA,S&T Bancorp,US
+NTCT,NetScout Systems,US
+VBTX,Veritex Holdings,US
+KN,Knowles Corp.,US
+NAPA,Duckhorn Portfolio,US
+WKC,World Kinect ,US
+THS,TreeHouse Foods,US
+FDP,Fresh Del Monte Produce ,US
+CSGS,CSG Systems International,US
+SDGR,Schrodinger,US
+BCYC,Bicycle Therapeutics Sponsored ADR,US
+PLAY,Dave & Buster's Entertainment,US
+HLX,Helix Energy Solutions Group,US
+TVTX,Travere Therapeutics,US
+VRNT,Verint Systems ,US
+STEL,Stellar Bancorp,US
+OPRA,Opera Limited Sponsored ADR,US
+CLOV,Clover Health Iestments Corp. Class A,US
+BCRX,BioCryst Pharmaceuticals,US
+XPRO,Expro Group Holdings ,US
+REVG,REV Group,US
+TCBK,TriCo Bancshares,US
+EVGO,EVgo Class A,US
+MODG,Topgolf Callaway Brands Corp.,US
+DNOW,DNOW ,US
+INFN,Infinera ,US
+UCTT,Ultra Clean Holdings,US
+SVV,vers Value Village ,US
+UMH,UMH Properties,US
+VECO,Veeco Instruments ,US
+APLD,Applied Digital ,US
+XHR,Xenia Hotels & Resorts,US
+RLJ,RLJ Lodging Trust,US
+AMWD,American Woodmark ,US
+JBGS,JBG SMITH Properties,US
+QCRH,QCR Holdings,US
+XMTR,Xometry Class A,US
+MCRI,Monarch Casino & Resort,US
+BUSE,First Busey ,US
+WABC,Westamerica Ban,US
+SCS,Steelcase Class A,US
+PRAX,Praxis Precision Medicines,US
+ZUO,Zuora Class A,US
+EE,5 Global,US
+KRNT,Kornit Digital.,US
+PEB,Pebblebrook Hotel Trust,US
+LUNR,Intuitive Machines Class A,US
+TNK,Teekay Tankers Class A,US
+NMM,Navios Maritime Partners LP,US
+GSBD,Goldman chs BDC ,US
+RCUS,Arcus Biosciences,US
+KLG,WK Kellogg Co.,US
+SFL,SFL Limited,US
+DAWN,Day One Biopharmaceuticals,US
+FOR,Forestar Group ,US
+ELME,Elme Communities,US
+SPHR,Sphere Entertainment Co. Class A,US
+TILE,Interface,US
+DBD,Diebold Nixdorf,US
+LADR,Ladder Capital Corp. Class A,US
+EVH,Evolent Health Class A,US
+BTDR,Bitdeer Technologies Group Class A,US
+TPC,Tutor Perini ,US
+ULCC,Frontier Group Holdings,US
+HELE,Helen of Troy Limited,US
+FE,fehold ,US
+ATSG,Air Transportrvices Group,US
+NX,Quanex Building Products ,US
+AMSC,American Superconductor ,US
+MRTN,Marten Transport,US
+MYGN,Myriad Genetics,US
+HLIT,Harmonic ,US
+RCKT,Rocket Pharmaceuticals,US
+ARIS,Aris Water Solutions Class A,US
+AHCO,AdaptHealth Corp.,US
+BR,bre ,US
+DOLE,Dole ,US
+MRVI,Maravai Lifesciences Holdings Class A,US
+SNDX,Syndax Pharmaceuticals,US
+LZ,LegalZoom.com,US
+TGI,Triumph Group,US
+FOXF,Fox Factory Holding Corp.,US
+ALEX,Alexander & Baldwin,US
+STAA,STAAR Surgical Company,US
+GDYN,Grid Dynamics Holdings Class A,US
+UPB,Upstream Bio,US
+USPH,U.S. Physical Therapy,US
+DEA,Easterly Government Properties,US
+FLNG,FLEX LNG,US
+KURA,Kura Oncology,US
+AMRC,Ameresco Class A,US
+ALGT,Allegiant Travel Company,US
+UNIT,Uniti Group ,US
+SPRY,ARS Pharmaceuticals,US
+DQ,Daqo New Energy Corp Sponsored ADR,US
+ARHS,Arhaus Class A,US
+NSSC,NAPCOcurity Technologies,US
+THRM,Gentherm ,US
+GIII,G-III Apparel Group,US
+CDRE,Cadre Holdings,US
+CRAI,CRA International,US
+WBTN,WEBTOON Entertainment ,US
+LNN,Lindy ,US
+BLBD,Blue Bird ,US
+SILA,Sila Realty Trust,US
+LEU,Centrus Energy Corp. Class A,US
+BHLB,Berkshire Hills Bancorp,US
+PX,P10 Class A,US
+DCOM,Dime Community Bancshares,US
+CNNE,Cannae Holdings,US
+EIG,Employers Holdings,US
+KALU,Kaiser Aluminum ,US
+OCSL,Oaktree Specialty Lending ,US
+AMPL,Amplitude Class A,US
+MD,Pediatrix Medical Group,US
+TLRY,Tilray Brands,US
+ATEC,Alphatec Holdings,US
+OPEN,Opendoor Technologies,US
+PHR,Phreesia,US
+LILAK,Liberty Latin America. Class C,US
+SBH,lly Beauty Holdings,US
+NTST,NETSTREIT Corp.,US
+IMAX,IMAX ,US
+ASPN,Aspen Aerogels,US
+RES,RPC,US
+PFBC,Preferred Bank,US
+ARI,Apollo Commercial Real Estate Finance,US
+XPEL,XPEL,US
+ADEA,Adeia ,US
+IA,Innoviva,US
+ANIP,ANI Pharmaceuticals,US
+MXL,MaxLinear,US
+GRDN,Guardian Pharmacyrvices Class A,US
+VITL,Vital Farms,US
+AX,Novavax,US
+UNFI,United Natural Foods,US
+DAN,Dana ,US
+VIR,Vir Biotechnology,US
+PDFS,PDF Solutions,US
+ATUS,Altice U Class A,US
+LB,LandBridge Company LLC Class A,US
+UDMY,Udemy,US
+AAOI,Applied Optoelectronics,US
+OXM,Oxford Industries,US
+ARQT,Arcutis Biotherapeutics,US
+CARS,Cars.com,US
+CDNA,CareDx,US
+ATEN,A10 Networks,US
+ELVN,Enliven Therapeutics,US
+AIV,Apartment Iestment & Management Co Class A,US
+QNST,QuinStreet,US
+VA,Casva Sciences,US
+OCFC,OceanFirst Financial Corp.,US
+CMPO,CompoSecure Class A,US
+PDM,Piedmont Office Realty Trust Class A,US
+COHU,Cohu,US
+IE,Ivanhoe Electric ,US
+TWO,Two Harbors Iestment Corp.,US
+SPH,"Suburban Propane Partners, L.P.",US
+CIM,Chimera Iestment ,US
+RC,Ready Capital ,US
+DK,Delek US Holdings,US
+BCAX,Bicara Therapeutics ,US
+ZYME,Zymeworks ,US
+AUPH,Aurinia Pharmaceuticals ,US
+MSEX,Middlesex Water Company,US
+HCI,HCI Group,US
+PGNY,Progyny,US
+MOMO,Hello Group Sponsored ADR,US
+PLYA,Playa Hotels & Resorts ,US
+FWRG,First Watch Restaurant Group,US
+SCSC,ScanSource,US
+NXRT,NexPoint Residential Trust,US
+LPG,Dorian LPG.,US
+AGRO,Adecoagro ,US
+ACMR,ACM Research Class A,US
+DGII,Digi International ,US
+HTZ,Hertz Global Holdings,US
+COUR,Coursera,US
+VTLE,Vital Energy,US
+ECPG,Encore Capital Group,US
+AVDL,Avadel Pharmaceuticals ,US
+KFRC,Kforce ,US
+MRC,MRC Global ,US
+WOOF,Petco Health & Wellness Company Class A,US
+EVRI,Everi Holdings,US
+PSFE,Payfe,US
+DAVE,Dave Class A,US
+ARLO,Arlo Technologies,US
+BLMN,Bloomin' Brands,US
+COGT,Cogent Biosciences,US
+FBMS,First Bancshares,US
+ROOT,Root Class A,US
+AORT,Artivion,US
+INOD,Innodata ,US
+PMT,PennyMac Mortgage Iestment Trust,US
+BRKL,Brookline Bancorp,US
+ESTA,Establishment Labs Holdings,US
+MFA,MFA Financial,US
+AMSF,AMERIFE,US
+PNTG,Pennant Group,US
+NRDS,NerdWallet Class A,US
+AMAL,Amalgamated Financial Corp,US
+ACDC,ProFrac Holding Corp. Class A,US
+BLFS,BioLife Solutions,US
+CAL,Caleres,US
+AHH,Armada Hoffler Properties,US
+BLND,Blend Labs Class A,US
+JKS,JinkoSolar Holding Co. Sponsored ADR,US
+ERII,Energy Recovery,US
+MGPI,MGP Ingredients,US
+EFC,Ellington Financial ,US
+BSIG,BrightSphere Iestment Group,US
+BBSI,Barrett Businessrvices,US
+EH,EHang Holdings. Sponsored ADR Class A,US
+PRO,PROS Holdings,US
+VMEO,Vimeo,US
+CSWC,Capital Southwest ,US
+ETWO,E2open Parent Holdings Class A,US
+MDXG,MiMedx Group,US
+UTI,Univerl Technical Institute,US
+OPK,OPKO Health,US
+OLO,Olo Class A,US
+RDFN,Redfin ,US
+SSTK,Shutterstock,US
+BKD,Brookdalenior Living ,US
+BOW,Bowhead Specialty Holdings ,US
+SEI,Solaris Energy Infrastructure Class A,US
+CMCO,Columbus McKinnon ,US
+TRS,TriMas ,US
+ICHR,Ichor Holdings,US
+GATO,Gatos Silver,US
+AVBP,ArriVent BioPharma,US
+DLX,Deluxe ,US
+CNOB,ConnectOne Bancorp,US
+ARDX,Ardelyx,US
+SBGI,Sinclair Class A,US
+ARR,ARMOUR Residential REIT,US
+SXC,SunCoke Energy,US
+KRUS,Kura Sushi U Class A,US
+FVRR,Fiverr International.,US
+APLT,Applied Therapeutics,US
+BXC,BlueLinx Holdings ,US
+JBI,Janus International Group,US
+FWRD,Forward Air ,US
+WOLF,Wolfspeed,US
+LMB,Limbach Holdings,US
+XRX,Xerox Holdings ,US
+SCVL,Shoe Carnival,US
+YEXT,Yext,US
+FSLY,Fastly Class A,US
+ARRY,Array Technologies,US
+VT,Viat,US
+THR,Thermon Group Holdings,US
+CBRL,Cracker Barrel Old Country Store,US
+DCO,Ducommun ,US
+BASE,Couchbase,US
+WEAV,Weave Communications,US
+GOGO,Gogo ,US
+RDWR,Radware.,US
+CBLL,Ceribell,US
+BELFB,Bel Fuse Class B,US
+BZH,Beazer Homes U,US
+OEC,Orion ,US
+TRNS,Transcat,US
+ZIP,ZipRecruiter Class A,US
+FIP,FTAI Infrastructure In,US
+DX,Dynex Capital,US
+TPB,Turning Point Brands,US
+COLL,Collegium Pharmaceutical,US
+DESP,"Despegar.com, Corp.",US
+RLAY,Relay Therapeutics,US
+TH,Target Hospitality Corp.,US
+PARR,Par Pacific Holdings,US
+COMM,CommScope Holding Co.,US
+HSII,Heidrick & Struggles International,US
+PRLB,Proto Labs,US
+INDI,indiemiconductor Class A,US
+ECVT,Ecovyst,US
+OMI,Owens & Minor,US
+ETNB,89bio,US
+CLB,Core Laboratories ,US
+AMN,AMN Healthcarervices,US
+ML,MoneyLion Class A,US
+RWT,Redwood Trust,US
+PRTA,Prothena Corp. ,US
+GDEN,Golden Entertainment,US
+CGEM,Cullinan Therapeutics,US
+PRAA,PRA Group,US
+CFFN,Capitol Federal Financial,US
+PENG,Penguin Solutions,US
+BDN,Brandywine Realty Trust,US
+CECO,CECO Eironmental Corp.,US
+VNET,VNET Group Sponsored ADR,US
+PTLO,Portillo's Class A,US
+TIGR,UP Fintech Holding. Sponsored ADR Class A,US
+HCSG,Healthcarervices Group,US
+GES,Guess?,US
+MNRO,Monro,US
+BMBL,Bumble Class A,US
+CSTL,Castle Biosciences,US
+EMBC,Embecta ,US
+GCT,GigaCloud Technology Class A,US
+EGBN,Eagle Bancorp,US
+STKL,SunOpta ,US
+PL,Planet Labs PBC Class A,US
+EYE,National Vision Holdings,US
+JELD,JELD-WEN Holding,US
+IIIV,i3 Verticals Class A,US
+ADPT,Adaptive Biotechnologies Corp.,US
+FNA,Paragon 28,US
+JACK,Jack in the Box ,US
+GSL,Global Ship Lease Class A,US
+FIGS,FIGS Class A,US
+ASTE,Astec Industries,US
+LQDA,Liquidia ,US
+BJRI,BJ's Restaurants,US
+MAX,MediaAlpha Class A,US
+CPF,Central Pacific Financial Corp.,US
+PLRX,Pliant Therapeutics,US
+TRIN,Trinity Capital,US
+WNC,Wabash National ,US
+HLF,Herbalife.,US
+SHLS,Shoals Technologies Group Class A,US
+PFLT,PennantPark Floating Rate Capital.,US
+MBUU,Malibu Boats Class A,US
+RPAY,Repay Holdings Corp. Class A,US
+SNCY,Sun Country Airlines Holdings,US
+GLDD,Great Lakes Dredge & Dock ,US
+PUMP,ProPetro Holding Corp.,US
+PUBM,PubMatic Class A,US
+VTS,Vitesse Energy,US
+KREF,KKR Real Estate Finance Trust,US
+REPL,Replimune Group,US
+AOSL,Alpha and Omegamiconductor Limited,US
+RYI,Ryerson Holding ,US
+CSIQ,Canadian Solar ,US
+SEAT,Vividats Class A,US
+CDMO,Avid Bioservices,US
+HAYN,Haynes International,US
+EOLS,Evolus,US
+AGL,agilon health,US
+CAPR,Capricor Therapeutics,US
+KOP,Koppers Holdings ,US
+GCI,Gannett Co.,US
+AXL,American Axle & Manufacturing Holdings,US
+HAFC,Hanmi Financial ,US
+NNE,Nano Nuclear Energy ,US
+PCRX,Pacira Biosciences,US
+GSM,Ferroglobe ,US
+MEG,Montrose Eironmental Group,US
+AVXL,Anavex Life Sciences Corp.,US
+GNK,Genco Shipping & Trading,US
+ODP,ODP ,US
+XPOF,Xponential Fitness Class A,US
+ETD,Ethan Allen Interiors ,US
+PGY,Pagaya Technologies Class A,US
+STOK,Stoke Therapeutics,US
+EYPT,EyePoint Pharmaceuticals,US
+MCB,Metropolitan Bank Holding Corp.,US
+NBR,Nabors Industries.,US
+BIOA,BioAge Labs,US
+BALY,Bally's ,US
+TRTX,TPG RE Finance Trust,US
+OFIX,Orthofix Medical,US
+SSYS,Stratasys.,US
+AMRK,A-Mark Precious Metals,US
+SEDG,SolarEdge Technologies,US
+GPRE,Green Plains ,US
+IMNM,Immunome,US
+ANNX,Annexon,US
+FDUS,Fidus Iestment ,US
+HUYA,HUYA Sponsored ADR Class A,US
+IRWD,Ironwood Pharmaceuticals Class A,US
+CRMD,CorMedix ,US
+HZO,MarineMax,US
+EVER,EverQuote Class A,US
+BTBT,Bit Digital,US
+GOTU,Gaotu Techedu Sponsored ADR Class A,US
+NTGR,NETGEAR,US
+ALT,Altimmune,US
+MCS,Marcus ,US
+TRML,Tourmaline Bio,US
+HUMA,Humacyte,US
+IMXI,International Money Express,US
+CATX,Perspective Therapeutics,US
+OSPN,OneSpan ,US
+PHAT,Phathom Pharmaceuticals,US
+TREE,LendingTree,US
+OLMA,Olema Pharmaceuticals,US
+EZPW,EZCORP Class A,US
+NAT,Nordic American Tankers Limited,US
+ADTN,ADTRAN Holdings,US
+METC,Ramaco Resources Class A,US
+ANAB,AnaptysBio,US
+TEN,Tkos Energy Navigation Limited,US
+MNMD,Mind Medicine (MindMed),US
+AMBC,Ambac Financial Group,US
+ORC,Orchid Island Capital,US
+GDOT,Green Dot Class A,US
+HPP,Hudson Pacific Properties,US
+HNST,Honest Company,US
+ATXS,Astria Therapeutics,US
+HAIN,Hain Celestial Group,US
+SLRN,ACELYRIN,US
+NA,na Biotechnology,US
+ASPI,ASP Isotopes,US
+PLOW,Douglas Dynamics,US
+SWBI,Smith & Wesson Brands,US
+TERN,Terns Pharmaceuticals,US
+ALLO,Allogene Therapeutics,US
+VREX,Varex Imaging ,US
+CYH,Community Health Systems,US
+EAF,GrafTech International.,US
+AXGN,Axogen,US
+EGY,VAALCO Energy,US
+FNKO,Funko Class A,US
+SRDX,SurModics,US
+PACB,Pacific Biosciences of California,US
+EBS,Emergent BioSolutions ,US
+CHCT,Community Healthcare Trust ,US
+LAZR,Luminar Technologies Class A,US
+DIN,Dine Brands Global,US
+LESL,Leslie's,US
+BAND,Bandwidth Class A,US
+GLUE,Monte Ro Therapeutics,US
+RGNX,REGENXBIO,US
+SNDL,SNDL ,US
+ARCT,Arcturus Therapeutics Holdings,US
+FUBO,fuboTV ,US
+URGN,UroGen Pharma.,US
+SGMO,ngamo Therapeutics,US
+CMP,Compass Minerals International,US
+EOSE,Eos Energy Enterprises Class A,US
+ASC,Ardmore Shipping Corp.,US
+TTI,TETRA Technologies,US
+IVR,Iesco Mortgage Capital ,US
+BGS,B&G Foods,US
+CVGW,Calavo Growers,US
+DNA,Ginkgo Bioworks Holdings Class A,US
+BBW,BuildABear Workshop,US
+TMCI,Treace Medical Concepts,US
+VERV,Verve Therapeutics,US
+CCSI,Consensus Cloud Solutions,US
+SFIX,Stitch Fix Class A,US
+LOVE,Lovec Company,US
+CHPT,ChargePoint Holdings Class A,US
+XERS,Xeris Biopharma Holdings,US
+DDD,3D Systems ,US
+REAL,RealReal,US
+OUST,Ouster,US
+TSHA,Taysha Gene Therapies,US
+HOUS,Anywhere Real Estate ,US
+RVNC,Revance Therapeutics,US
+CAN,Canaan Sponsored ADR Class A,US
+GTN,Gray Television,US
+AQST,Aquestive Therapeutics,US
+ESPR,Esperion Therapeutics,US
+CLFD,Clearfield,US
+ZUMZ,Zumiez ,US
+BBAI,BigBear.ai Holdings,US
+BYRN,Byrna Technologies ,US
+MUX,McEwen Mining ,US
+NOVA,Sunnova Energy International,US
+AMCX,AMC Networks Class A,US
+PERI,Perion Network,US
+AKBA,Akebia Therapeutics,US
+FDMT,4D Molecular Therapeutics,US
+AMLX,Amylyx Pharmaceuticals,US
+NUS,Nu Skin Enterprises Class A,US
+SERV,Serve Robotics,US
+HRTG,Heritage Insurance Holdings,US
+NNOX,NANO-X IMAGING,US
+CCCC,C4 Therapeutics,US
+QBTS,D-Wave Quantum ,US
+GE,GE Therapeutics,US
+EB,Eventbrite Class A,US
+AEHR,Aehr Test Systems,US
+SPIR,Spire Global Class A,US
+BYND,Beyond Meat,US
+GEVO,Gevo,US
+CCRN,Cross Country Healthcare,US
+QURE,uniQure ,US
+OIS,Oil States International,US
+GRPN,Groupon,US
+RGTI,Rigetti Computing,US
+VNDA,Vanda Pharmaceuticals ,US
+SNBR,Sleep Number ,US
+FVR,FrontView REIT,US
+DBI,Designer Brands Class A,US
+BYON,Beyond,US
+ZNTL,Zentalis Pharmaceuticals,US
+OCGN,Ocugen,US
+IMMR,Immersion ,US
+PLL,Piedmont Lithium,US
+BMEA,Biomea Fusion,US
+EDIT,Editas Medicine,US
+MGNX,MacroGenics,US
+CRBP,Corbus Pharmaceuticals Holdings,US
+MED,Medifast,US
+MAXN,Maxeon Solar Technologies,US
+SPCE,Virgin Galactic Holdings,US
+IRBT,iRobot ,US
+NKLA,Nikola ,US
+SGMT,gimet Biosciences Class A,US
+E,Children's Place,US
+BLNK,Blink Charging Co,US
+CHGG,Chegg,US
+VE,Spirit Airlines,US
+FCEL,FuelCell Energy,US
+MNPR,Monopar Therapeutics,US
+CBA.AX,Commonwealth Bank of Australia,AUS
+BHP.AX,BHP Group,AUS
+CSL.AX,CSL Limited,AUS
+NAB.AX,National Australia Bank Limited,AUS
+WBC.AX,Westpac Banking ,AUS
+ANZ.AX,ANZ Group Holdings Limited,AUS
+MQG.AX,Macquarie Group,AUS
+WES.AX,Wesfarmers Limited,AUS
+GMG.AX,Goodman Group,AUS
+FMG.AX,Fortescue,AUS
+WDS.AX,Woodside Energy Group,AUS
+TLS.AX,Telstra Group Limited,AUS
+WTC.AX,Wisetech Global.,AUS
+RIO.AX,Rio Tinto Limited,AUS
+ALL.AX,Aristocrat Leisure Limited,AUS
+TCL.AX,Transurban Group.,AUS
+WOW.AX,Woolworths Group,AUS
+REA.AX,REA Group,AUS
+QBE.AX,QBE Insurance Group Limited,AUS
+BXB.AX,Brambles Limited,AUS
+XRO.AX,Xero Limited,AUS
+SUN.AX,Suncorp Group Limited,AUS
+COL.AX,Coles Group.,AUS
+JHX.AX,James Hardie Industries Chess Units of Foreigncurities,AUS
+STO.AX,ntos Limited,AUS
+PME.AX,Pro Medicus,AUS
+COH.AX,Cochlear Limited,AUS
+NST.AX,Northern Star Resources,AUS
+IAG.AX,Insurance Australia Group,AUS
+SVW.AX,Seven Group Holdings Limited,AUS
+SCG.AX,Scentre Group,AUS
+ORG.AX,Origin Energy Limited,AUS
+CPU.AX,Computershare Limited,AUS
+S32.AX,South32.,AUS
+REH.AX,Reece Limited,AUS
+CAR.AX,CAR Group Limited,AUS
+QAN.AX,Qantas Airways Limited,AUS
+ASX.AX,ASX Limited,AUS
+SHL.AX,Sonic Healthcare Limited,AUS
+SOL.AX,Washington H. Soul Pattinson and Co..,AUS
+SGP.AX,Stockland,AUS
+TLC.AX,Lottery Limited,AUS
+NXT.AX,Nextdc Limited,AUS
+MPL.AX,Medibank Private.,AUS
+VCX.AX,Vicinity Centres,AUS
+JBH.AX,JB Hi-Fi Limited,AUS
+PLS.AX,Pilbara Minerals Limited,AUS
+BSL.AX,Bluescope Steel Limited,AUS
+EVN.AX,Evolution Mining Limited,AUS
+SEK.AX,Seek Limited,AUS
+GPT.AX,GPT Group,AUS
+TWE.AX,Treasury Wine Estates Limited,AUS
+RHC.AX,Ramy Health Care Limited,AUS
+TNE.AX,Technology One Limited,AUS
+APA.AX,APA Group,AUS
+ORI.AX,Orica Limited,AUS
+MGR.AX,Mirvac Group,AUS
+YAL.AX,Yancoal Australia.,AUS
+GQG.AX,GQG Partners Shs Chess Depository Interests Repr 1 Sh,AUS
+WOR.AX,Worley Limited,AUS
+TLX.AX,Telix Pharmaceuticals Limited,AUS
+EDV.AX,Endeavour Group,AUS
+DXS.AX,Dexus,AUS
+CHC.AX,Charter Hall Group,AUS
+NWL.AX,Netwealth Group.,AUS
+BEN.AX,Bendigo & Adelaide Bank.,AUS
+ALQ.AX,ALS.,AUS
+LYC.AX,Lynas Rare Earths Limited,AUS
+AGL.AX,AGL Energy Limited,AUS
+ALX.AX,Atlas Arteria,AUS
+MIN.AX,Mineral Resources Limited,AUS
+ALD.AX,Ampol Limited,AUS
+QUB.AX,Qube Holdings.,AUS
+AZJ.AX,Aurizon Holdings.,AUS
+SDF.AX,Steadfast Group Limited,AUS
+CWY.AX,Cleanaway Waste Management.,AUS
+HUB.AX,HUB24 Limited,AUS
+IPL.AX,Incitec Pivot Limited,AUS
+HVN.AX,Harvey Norman Holdings,AUS
+WHC.AX,Whitehaven Coal Limited,AUS
+PMV.AX,Premier Iestments Limited,AUS
+ANN.AX,Ansell Limited,AUS
+SFR.AX,ndfire Resources,AUS
+LLC.AX,Lendlease Group,AUS
+HMC.AX,HMC Capital Limited,AUS
+ZIP.AX,Zip Co.,AUS
+BOQ.AX,Bank of Queensland Limited,AUS
+PNI.AX,Pinnacle Iestment Management Group Limited,AUS
+CGF.AX,Challenger Limited,AUS
+VEA.AX,Viva Energy Group.,AUS
+SIG.AX,Sigma Healthcare,AUS
+RWC.AX,Reliance Worldwide Corp..,AUS
+NHC.AX,New Hope Limited,AUS
+VNT.AX,Ventiarvices Group Limited,AUS
+IGO.AX,IGO Limited,AUS
+AMP.AX,AMP Limited,AUS
+GYG.AX,Guzman y Gomez.,AUS
+IEL.AX,IDP Education.,AUS
+FLT.AX,Flight Centre Travel Group Limited,AUS
+AUB.AX,AUB Group Limited,AUS
+PRU.AX,Perseus Mining Limited,AUS
+NSR.AX,National Storage REIT,AUS
+LOV.AX,Lovi Holdings.,AUS
+MTS.AX,Metcash Limited,AUS
+ORA.AX,Orora Limited,AUS
+SUL.AX,Super Retail Group Limited,AUS
+DEG.AX,De Grey Mining,AUS
+CIA.AX,Champion Iron.,AUS
+BPT.AX,Beach Energy Limited,AUS
+DMP.AX,Domino's Pizza Enterprises Limited,AUS
+WGX.AX,Westgold Resources,AUS
+GMD.AX,Genesis Minerals Limited,AUS
+EMR.AX,Emerald Resources NL,AUS
+ILU.AX,Iluka Resources Limited,AUS
+CU6.AX,Clarity Pharmaceuticals.,AUS
+VAU.AX,Vault Minerals Limited,AUS
+PDN.AX,Paladin Energy,AUS
+NEU.AX,Neuren Pharmaceuticals Limited,AUS
+LTR.AX,Liontown Resources Limited,AUS
+CTD.AX,Corporate Travel Management Limited,AUS
+GOR.AX,Gold Road Resources,AUS
+RRL.AX,Regis Resources Limited,AUS
+MSB.AX,Mesoblast Limited,AUS
+BGL.AX,Bellevue Gold Limited,AUS
+BOE.AX,Boss Energy Limited,AUS
+DRO.AX,DroneShield Limited,AUS
+APX.AX,Appen.,AUS
+ABI.BR,Anheuser-Busch InBev /,BE
+UCB.BR,UCB ,BE
+ARGX.BR,argenx,BE
+KBC.BR,KBC Group ,BE
+DIE.BR,D'Ieteren Group /,BE
+LOTB.BR,Lotus Bakeries ,BE
+AGS.BR,ageas /,BE
+GBLB.BR,Groupe Bruxelles Lambert ,BE
+SYENS.BR,Syensqo /,BE
+ACKB.BR,Ackermans & van Haaren ,BE
+ELI.BR,Elia Group /,BE
+WDP.BR,Warehouses De Pauw ,BE
+SOLB.BR,Solvay ,BE
+UMI.BR,Umicore ,BE
+RYA.IR,Ryanair Holdings ,IE
+KRZ.IR,Kerry Group Class A,IE
+KRX.IR,Kingspan Group ,IE
+A5G.IR,AIB Group ,IE
+BIRG.IR,Bank of Ireland Group ,IE
+GL9.IR,Glanbia ,IE
+EDP.LS,EDP-Energias de Portugal ,PT
+JMT.LS,"Jeronimo Martins, SGPS ",PT
+GALP.LS,"Galp Energia, SGPS Class B",PT
+EDPR.LS,EDP Renovaveis ,PT
+BCP.LS,Banco Comercial Portugues ,PT
+RMS.PA,Hermes International SCA,FR
+OR.PA,L'Oreal ,FR
+SU.PA,Schneider Electric,FR
+TTE.PA,TotalEnergies,FR
+N.PA,nofi,FR
+AIR.PA,Airbus,FR
+EL.PA,EssilorLuxottica ,FR
+F.PA,fran ,FR
+AI.PA,Air Liquide ,FR
+CS.PA,AXA ,FR
+BNP.PA,BNP Paribas Class A,FR
+DG.PA,VINCI ,FR
+SGO.PA,Compagnie de int-Gobain ,FR
+BN.PA,Danone ,FR
+DSY.PA,Dasult Systemes,FR
+ACA.PA,Creditricole ,FR
+ENGI.PA,ENGIE,FR
+HO.PA,Thales ,FR
+RI.PA,Pernod Ricard ,FR
+CAP.PA,Capgemini,FR
+KER.PA,Kering ,FR
+PUB.PA,Publicis Groupe ,FR
+ORA.PA,Orange ,FR
+LR.PA,Legrand ,FR
+STMPA.PA,STMicroelectronics ,FR
+ML.PA,Cie Generale des Etablissements Michelin ,FR
+VIE.PA,Veolia Eironnement ,FR
+GLE.PA,Societe Generale Class A,FR
+ATO.PA,Atos,FR
+DIM.PA,rtorius Stedim Biotech ,FR
+BOL.PA,Bollore,FR
+AM.PA,Dasult Aviation ,FR
+AMUN.PA,Amundi ,FR
+BVI.PA,Bureau Veritas ,FR
+SW.PA,Sodexo ,FR
+BIM.PA,bioMerieux ,FR
+RNO.PA,Renault ,FR
+EN.PA,Bouygues ,FR
+AC.PA,Accor ,FR
+ENX.PA,Euronext ,FR
+ADP.PA,Aeroports de Paris ADP,FR
+URW.PA,Unibail-Rodamco-Westfield Stapledcs Cons of 1 Sh Unibail Rodamco + 1 Sh WFD Unib Rod,FR
+CA.PA,Carrefour ,FR
+VIV.PA,Vivendi,FR
+IPN.PA,Ipsen ,FR
+ALO.PA,Alstom ,FR
+ERF.PA,Eurofins Scientific,FR
+GET.PA,Getlink,FR
+LI.PA,Klepierre ,FR
+FGR.PA,Eiffage ,FR
+RXL.PA,Rexel ,FR
+FDJ.PA,La Francaise des Jeux ,FR
+GFC.PA,Gecina ,FR
+EDEN.PA,Edenred ,FR
+NEOEN.PA,Neoen ,FR
+AKE.PA,Arkema ,FR
+COV.PA,Covivio ,FR
+TEP.PA,Teleperformance,FR
+SPIE.PA,SPIE ,FR
+NEX.PA,Nexans ,FR
+RF.PA,Eurazeo,FR
+SK.PA,SEB ,FR
+GTT.PA,Gaztransport & Technigaz ,FR
+ELIS.PA,Elis ,FR
+TE.PA,Technip Energies ,FR
+MF.PA,Wendel,FR
+SOP.PA,Sopra Steria Group ,FR
+SCR.PA,SCOR,FR
+VK.PA,Vallourec ,FR
+PLX.PA,PLUXEE ,FR
+RCO.PA,Remy Cointreau ,FR
+SOI.PA,Soitec ,FR
+RUI.PA,Rubis SCA,FR
+FR.PA,Valeo,FR
+AF.PA,Air France-KLM ,FR
+WLN.PA,Worldline ,FR
+UBI.PA,Ubisoft Entertainment ,FR
+FRVIA.PA,Forvia,FR
+GARAN.IS,Turkiye Garanti Bankasi Anonim Sirketi,TR
+KCHOL.IS,Koc Holding A.S.,TR
+THYAO.IS,Turk Hava Yollari A.O.,TR
+FROTO.IS,Ford Otomotiv nayi A.S.,TR
+ISCTR.IS,Turkiye Is Bankasi Anonim Sirketi Class C,TR
+ENKAI.IS,Enka Inat ve nayi A.S.,TR
+ASELS.IS,Aseln Elektronik nayi ve Ticaret A.S. Class B,TR
+BIMAS.IS,BIM Birlesik Magazalar A.S.,TR
+TUPRS.IS,Turkiye Petrol Rafinerileri A.S.,TR
+AKBNK.IS,Akbank T.A.S.,TR
+VAKBN.IS,Turkiye Vakiflar Bankasi Turk Anonim Ortakligi,TR
+YKBNK.IS,Yapi ve Kredi Bankasi A.S.,TR
+TCELL.IS,Turkcell Iletisim Hizmetleri A.S.,TR
+HOL.IS,Haci Omer banci Holding A.S.,TR
+EREGL.IS,Eregli Demir Ve Celik Fabrikalari T.A.S.,TR
+TTKOM.IS,Turk Telekomunikasyon A.S.,TR
+CCOLA.IS,Coca-Cola Icecek A.S.,TR
+AEFES.IS,Anadolu Efes Biracilik ve Malt nayii A.S.,TR
+SISE.IS,Turkiye Sise ve Cam Fabrikalari A.S.,TR
+PGSUS.IS,Pegasus Hava Tasimaciligi Anonim Sirketi,TR
+HALKB.IS,Turkiye Halk Bankasi Anonim Sirketi,TR
+TOASO.IS,Tofas Turk Otomobil Fabrikasi A.S.,TR
+ARCLK.IS,Arcelik A.S.,TR
+TAVHL.IS,TAV Havalimanlari Holding A.S.,TR
+MGROS.IS,Migros Ticaret A.S.,TR
+AGHOL.IS,AG Anadolu Grubu Holding Anonim Sirketi,TR
+TTRAK.IS,Turk Traktor ve Ziraat Makineleri A.S.,TR
+MPARK.IS,MLP glik Hizmetleri AS Class B,TR
+ENJ.IS,ENERJI ENERJI A.S,TR
+TURSG.IS,Turkiye Sigorta A.S.,TR
+KOZAL.IS,Koza Altin Isletmeleri A.S.,TR
+PETKM.IS,Petkim Petrokimya Holding Anonim Sirketi,TR
+DOAS.IS,Dogus Otomotivrvis ve Ticaret Anonim Sirketi,TR
+EKGYO.IS,Emlak Konut Gayrimenkul Yatirim Ortakligi A.g.,TR
+ANSGR.IS,Anadolu Anonim Turk Sigorta Sirketi A.S.,TR
+AKSEN.IS,Ak Enerji Uretim A.S.,TR
+ALARK.IS,Alarko Holding A.S.,TR
+ULKER.IS,Ulker Biskuvi nayi A.S.,TR
+CIM.IS,Cim Cimento nayi ve Ticaret A.S.,TR
+TSKB.IS,Turkiye Sinai Kalkinma Bankasi A.S.,TR
+MAVI.IS,Mavi Giyim nayi ve Ticaret A.S.,TR
+KRDMD.IS,Kardemir Karabiik Demir celik nayi ve Ticaret A.S. Class D,TR
+SOKM.IS,Sok Marketler Ticaret AS,TR
+ISGYO.IS,Is Gayrimenkul Yatirim Ortakligi A.S.,TR
+AZN.L,AstraZeneca ,UK
+SHEL.L,Shell ,UK
+HSBA.L,HSBC Holdings ,UK
+ULVR.L,Unilever ,UK
+REL.L,RELX ,UK
+BATS.L,British American Tobacco p.l.c.,UK
+RIO.L,Rio Tinto ,UK
+BP.L,BP p.l.c.,UK
+LSEG.L,London Stock Exchange Group ,UK
+GSK.L,GSK ,UK
+DGE.L,Diageo ,UK
+RR.L,Rolls-Royce Holdings ,UK
+NG.L,National Grid ,UK
+GLEN.L,Glencore ,UK
+CPG.L,Compass Group ,UK
+BA.L,BAE Systems ,UK
+BARC.L,Barclays ,UK
+EXPN.L,Experian ,UK
+LLOY.L,Lloyds Banking Group ,UK
+RKT.L,Reckitt Benckiser Group ,UK
+III.L,3i Group ,UK
+HLN.L,Haleon ,UK
+NWG.L,NatWest Group ,UK
+AAL.L,Anglo American ,UK
+AHT.L,Ashtead Group ,UK
+STAN.L,Standard Chartered ,UK
+TSCO.L,Tesco ,UK
+IMB.L,Imperial Brands ,UK
+SSE.L,SSE ,UK
+VOD.L,Vodafone Group ,UK
+ABF.L,Associated British Foods ,UK
+PRU.L,Prudential ,UK
+ANTO.L,Antofagasta ,UK
+IHG.L,InterContinental Hotels Group ,UK
+BT.A.L,BT Group ,UK
+LGEN.L,Legal & General Group ,UK
+AV.L,Aviva ,UK
+NXT.L,Next ,UK
+WISE.L,Wise Class A,UK
+IAG.L,International Consolidated Airlines Group ,UK
+BNZL.L,Bunzl ,UK
+INF.L,Informa ,UK
+SGE.L,ge Group ,UK
+SGRO.L,SEGRO ,UK
+CCH.L,Coca-Cola HBC,UK
+RTO.L,Rentokil Initial ,UK
+HLMA.L,Halma ,UK
+WPP.L,WPP ,UK
+SN.L,Smith & Nephew ,UK
+PSON.L,Pearson ,UK
+SMDS.L,DS Smith ,UK
+SVT.L,Severn Trent ,UK
+ADM.L,Admiral Group ,UK
+MKS.L,Marks and Spencer Group ,UK
+ITRK.L,Intertek Group ,UK
+UU.L,United Utilities Group ,UK
+AUTO.L,Auto Trader Group ,UK
+MRO.L,Melrose Industries ,UK
+DPLM.L,Diploma ,UK
+CNA.L,Centrica ,UK
+ICG.L,Intermediate Capital Group ,UK
+JD.L,JD Sports Fashion ,UK
+BTRW.L,Barratt Redrow ,UK
+SMIN.L,Smiths Group ,UK
+SBRY.L,J insbury ,UK
+IP.L,Iestec ,UK
+WEIR.L,Weir Group ,UK
+DCC.L,DCC ,UK
+CTEC.L,CoaTec Group ,UK
+KGF.L,Kingfisher ,UK
+HL.L,Hargreaves Lansdown ,UK
+WTB.L,Whitbread ,UK
+MNDI.L,Mondi ,UK
+CRDA.L,Croda International ,UK
+PHNX.L,Phoenix Group Holdings ,UK
+SDR.L,Schroders ,UK
+ENT.L,Entain ,UK
+BEZ.L,Beazley ,UK
+SPX.L,Spirax Group,UK
+FRES.L,Fresnillo ,UK
+RMV.L,Rightmove ,UK
+TW.L,Taylor Wimpey ,UK
+MNG.L,M&G ,UK
+HWDN.L,Howden Joinery Group ,UK
+STJ.L,St. James's Place ,UK
+IMI.L,IMI ,UK
+BKG.L,Berkeley Group Holdings ,UK
+LAND.L,Landcurities Group ,UK
+HBR.L,Harbour Energy ,UK
+UTG.L,UNITE Group ,UK
+PSN.L,Persimmon ,UK
+HIK.L,Hikma Pharmaceuticals ,UK
+EZJ.L,easyJet ,UK
+GAW.L,Games Workshop Group ,UK
+LMP.L,LondonMetric Property ,UK
+BME.L,B&M European Value Retail ,UK
+BLND.L,British Land Company ,UK
+HSX.L,Hiscox,UK
+RS1.L,RS Group ,UK
+BBOX.L,Tritax Big Box REIT ,UK
+JET2.L,Jet2 ,UK
+SCT.L,Softcat ,UK
+IDS.L,International Distributionrvices ,UK
+IGG.L,IG Group Holdings ,UK
+CCL.L,Carnival ,UK
+BVIC.L,Britvic ,UK
+INCH.L,Inchcape ,UK
+BWY.L,Bellway p.l.c.,UK
+TATE.L,Tate & Lyle ,UK
+CWK.L,Cranswick ,UK
+OCDO.L,Ocado Group ,UK
+ROR.L,Rotork ,UK
+GRG.L,Greggs ,UK
+QQ.L,QinetiQ Group ,UK
+BRBY.L,Burberry Group ,UK
+BAB.L,Babcock International Group ,UK
+JMAT.L,Johnson Matthey ,UK
+SHC.L,Shaftesbury Capital ,UK
+DRX.L,Drax Group ,UK
+ABDN.L,Abrdn ,UK
+SXS.L,Spectris ,UK
+EMG.L,Man Group ,UK
+ITV.L,ITV ,UK
+VTY.L,Vistry Group ,UK
+CCC.L,Computacenter ,UK
+DLN.L,Derwent London ,UK
+BYG.L,Big Yellow Group ,UK
+BBY.L,Balfour Beatty ,UK
+ROO.L,Deliveroo Class A,UK
+BGEO.L,Bank of Georgia Group ,UK
+DLG.L,Direct Line Insurance Group ,UK
+TCAP.L,TP ICAP Group ,UK
+GFTU.L,Grafton Group ,UK
+TRN.L,Trainline ,UK
+ENOG.L,Energean ,UK
+PLUS.L,Plus500.,UK
+SMWH.L,WH Smith ,UK
+TPK.L,Travis Perkins ,UK
+CEY.L,Centamin ,UK
+LRE.L,Lancashire Holdings Limited,UK
+SRP.L,Serco Group ,UK
+BREE.L,Breedon Group ,UK
+PNN.L,Pennon Group ,UK
+WIZZ.L,Wizz Air Holdings ,UK
+YCA.L,Yellow Cake ,UK
+TRST.L,Trustpilot Group ,UK
+WOSG.L,Watches of Switzerland Group ,UK
+INDV.L,Indivior ,UK
+SPT.L,Spirent Communications ,UK
+FUTR.L,Future ,UK
+ALPH.L,Alpha Group International ,UK
+WALMEX.MX,Wal-Mart de Mexico B de CV,MX
+AMXB.MX,America Movil B de CV Class B,MX
+GMEXICOB.MX,Grupo Mexico B. de C.V. Class B,MX
+GFNORTEO.MX,Grupo Financiero Banorte B de CV Class O,MX
+FEMUBD.MX,Fomento Economico Mexicano B de CV Units Cons. Of 1 ShsB And 4 ShsD,MX
+AC.MX,Arca Continental B de CV,MX
+BIMBOA.MX,Grupo Bimbo B de CV Class A,MX
+GAPB.MX,Grupo Aeroportuario del Pacifico B de CV Class B,MX
+CEMEXCPO.MX,Cemex B de CV Cert Part Ord Repr 2 Sh & 1 ShsB,MX
+ASURB.MX,Grupo Aeroportuario del Sureste B de CV Class B,MX
+GRUMAB.MX,Gruma B de CV Class B,MX
+FIBRAPL14.MX,"Prologis Property Mexico, de C.V.",MX
+KIMBERA.MX,Kimberly-Clark de Mexico B de CV Class A,MX
+ALFAA.MX,"Alfa, B. de C.V. Class A",MX
+FUNO11.MX,Fibra Uno Administracion de CVries -11-,MX
+OMAB.MX,Grupo Aeroportuario del Centro Norte B de CV Class B,MX
+Q.MX,Qualitas Controladora B. de C.V.,MX
+VESTA.MX,Corporacion Inmobiliaria Vesta B. de C.V.,MX
+LABB.MX,Genomma Lab Internacional B de CV Class B,MX
+RACE.MI,Ferrari ,MI
+ISP.MI,Inte npaolo,MI
+ENEL.MI,Enel SpA,MI
+UCG.MI,UniCredit,MI
+ENI.MI,Eni,MI
+G.MI,Assicurazioni Generali,MI
+STLAM.MI,Stellantis ,MI
+TEN.MI,Tenaris ,MI
+PRY.MI,Prysmian,MI
+PST.MI,Poste Italiane SpA,MI
+TRN.MI,Terna,MI
+LDO.MI,Leonardo SpA,MI
+SRG.MI,Snam,MI
+MONC.MI,Moncler SpA,MI
+MB.MI,Mediobanca - Banca di Credito Finanziario,MI
+REC.MI,Recordati Industria Chimica e Farmaceutica,MI
+CPR.MI,Davide Campari-Milano ,MI
+BAMI.MI,Banco BPM SpA,MI
+FBK.MI,FinecoBank SpA,MI
+INW.MI,Infrastrutture Wireless Italiane,MI
+BMED.MI,Banca Mediolanum SpA,MI
+BPE.MI,BPER Banca,MI
+UNI.MI,Unipol Gruppo,MI
+BZU.MI,Buzzi Spa,MI
+BMPS.MI,Banca Monte dei Paschi di Siena,MI
+NEXI.MI,Nexi,MI
+A2A.MI,A2A,MI
+DIA.MI,DiaSorin,MI
+BC.MI,Brunello Cucinelli,MI
+AMP.MI,Amplifon SpA,MI
+REY.MI,Reply,MI
+HER.MI,Hera,MI
+PIRC.MI,Pirelli & C.,MI
+BGN.MI,Banca Generali,MI
+TIT.MI,Telecom Italia,MI
+IP.MI,Interpump Group,MI
+SPM.MI,ipem,MI
+IG.MI,Italgas SpA,MI
+IVG.MI,Iveco Group ,MI
+AZM.MI,Azimut Holding Spa,MI
+BPSO.MI,Banca Popolare di Sondrio,MI
+ERG.MI,ERG,MI
+WBD.MI,Webuild SpA,MI
+MAIRE.MI,MAIRE,MI
+FCT.MI,Fincantieri,MI
+NOVO.B.CO,Novo Nordisk Class B,DK
+DSV.CO,DSV ,DK
+COLO.B.CO,Coloplast Class B,DK
+NSIS.B.CO,Novonesis Class B,DK
+DANSKE.CO,Danske Bank ,DK
+MAERSK.B.CO,A.P. Moller - Maersk Class B,DK
+ORSTED.CO,Orsted,DK
+GMAB.CO,Genmab ,DK
+CARL.B.CO,Carlsberg AS Class B,DK
+VWS.CO,Vestas Wind Systems ,DK
+TRYG.CO,Tryg ,DK
+PNDORA.CO,Pandora ,DK
+ROCK.B.CO,ROCKWOOL Class B,DK
+ZEAL.CO,Zealand Pharma ,DK
+DEMANT.CO,Demant ,DK
+ALK.B.CO,ALK-abello Class B,DK
+NKT.CO,NKT ,DK
+AMBU.B.CO,Ambu Class B,DK
+JYSK.CO,Jyske Bank ,DK
+RBREW.CO,Royal Unibrew ,DK
+ISS.CO,ISS ,DK
+FLS.CO,FLSmidth & Co. ,DK
+GN.CO,GN Store Nord ,DK
+SYDB.CO,Sydbank ,DK
+NETC.CO,Netcompany Group ,DK
+TRMD.A.CO,TORM Class A,DK
+BAVA.CO,Bavarian Nordic ,DK
+NDA.FI.HE,Nordea Bank Abp,FI
+KNEBV.HE,Kone Oyj Class B,FI
+NOKIA.HE,Nokia Oyj,FI
+MPO.HE,mpo Oyj,FI
+UPM.HE,UPM-Kymmene Oyj,FI
+FORTUM.HE,Fortum Oyj,FI
+WRT1V.HE,Wartsila Oyj Abp,FI
+NESTE.HE,Neste ,FI
+KESKOB.HE,Kesko Oyj Class B,FI
+STERV.HE,Stora Enso Oyj Class R,FI
+ELI.HE,Eli Oyj Class A,FI
+METSO.HE,Metso ,FI
+ORNBV.HE,Orion Oyj Class B,FI
+KCR.HE,Konecranes Oyj,FI
+VALMT.HE,Valmet Corp,FI
+HUH1V.HE,Huhtamaki Oyj,FI
+MANTA.HE,Mandatum Oyj,FI
+OUT1V.HE,Outokumpu Oyj,FI
+EQNR.OL,Equinor A,NO
+DNB.OL,DNB Bank A,NO
+KOG.OL,Kongsberg Gruppen A,NO
+TEL.OL,Telenor A,NO
+AKRBP.OL,Aker BP A,NO
+NHY.OL,Norsk Hydro A,NO
+MOWI.OL,Mowi A,NO
+ORK.OL,Orkla A,NO
+SCHA.OL,Schibsted A Class A,NO
+VAR.OL,Var Energi A,NO
+YAR.OL,Yara International A,NO
+LM.OL,lMar A,NO
+SUBC.OL,Subsea 7 ,NO
+STB.OL,Storebrand A,NO
+TOM.OL,TOMRA Systems A,NO
+HAFNI.OL,Hafnia Limited,NO
+HAUTO.OL,Hoegh Autoliners A,NO
+DOFG.OL,DOF Group A,NO
+BWLPG.OL,BW LPG Limited,NO
+TGS.OL,TGS A,NO
+NOD.OL,Nordicmiconductor A,NO
+NAS.OL,Norwegian Air Shuttle A,NO
+MPCC.OL,MPC Container Ships A,NO
+CEZ.PR,CEZ as,CZ
+ROG.SW,Roche Holding Dividend Right Cert.,SW
+NESN.SW,Nestle ,SW
+NOVN.SW,Novartis,SW
+UBSG.SW,UBS Group,SW
+ABBN.SW,ABB.,SW
+ZURN.SW,Zurich Insurance Group,SW
+CFR.SW,Compagnie Financiere Richemont ,SW
+HOLN.SW,Holcim,SW
+LONN.SW,Lonza Group,SW
+ALC.SW,Alcon,SW
+SREN.SW,Swiss Re,SW
+SIKA.SW,Sika,SW
+GIVN.SW,Givaudan ,SW
+PGHN.SW,Partners Group Holding,SW
+SCHP.SW,Schindler Holding. Pref,SW
+SCMN.SW,Swisscom,SW
+KNIN.SW,Kuehne & Nagel International,SW
+LISN.SW,Chocoladefabriken Lindt & Spruengli,SW
+SLHN.SW,Swiss Life Holding,SW
+GALD.SW,Galderma Group,SW
+SOON.SW,Sonova Holding,SW
+GEBN.SW,Geberit,SW
+SDZ.SW,ndoz Group,SW
+STMN.SW,Straumann Holding,SW
+SGSN.SW,SGS ,SW
+EMSN.SW,EMS.SWEMIE HOLDING,SW
+LOGN.SW,Logitech International ,SW
+BAER.SW,Julius Baer Gruppe,SW
+VACN.SW,VAT Group,SW
+UHR.SW,Swatch Group. Bearer,SW
+HELN.SW,Helvetia Holding,SW
+BKW.SW,BKW,SW
+BCVN.SW,Banque Cantonale Vaudoise,SW
+BALN.SW,Baloise-Holding,SW
+BARN.SW,Barry Callebaut,SW
+SPSN.SW,Swiss Prime Site,SW
+BEAN.SW,BELIMO Holding,SW
+SIGN.SW,SIG Group,SW
+FHZN.SW,Flughafen Zurich,SW
+PSPN.SW,PSP Swiss Property,SW
+BANB.SW,Bachem Holding Class B,SW
+YPSN.SW,Ypsomed Holding,SW
+SQN.SW,Swissquote Group Holding.,SW
+SFZN.SW,Siegfried Holding,SW
+GF.SW,Georg Fischer,SW
+AVOL.SW,Avolta,SW
+ACLN.SW,Accelleron Industries,SW
+TEMN.SW,Temenos,SW
+SUN.SW,Sulzer,SW
+ADEN.SW,Adecco Group,SW
+GALE.SW,Galenica,SW
+CLN.SW,Clariant,SW
+TECN.SW,Tecan Group,SW
+COTN.SW,COMET Holding,SW
+ITX.MC,"Industria de Diseno Textil, ",ES
+IBE.MC,Iberdrola ,ES
+N.MC,"Banco ntander, ",ES
+BBVA.MC,"Banco Bilbao Vizcaya Argentaria, ",ES
+CABK.MC,CaixaBank ,ES
+AMS.MC,Amadeus IT Group Class A,ES
+AENA.MC,Aena SME ,ES
+FER.MC,Ferrovial,ES
+TEF.MC,Telefonica ,ES
+CLNX.MC,Cellnex Telecom ,ES
+NTGY.MC,"Naturgy Energy Group, ",ES
+ELE.MC,Ende ,ES
+REP.MC,Repsol ,ES
+ACS.MC,"ACS, Actividades de Construccion yrvicios ",ES
+PUIG.MC,"Puig Brands, ",ES
+B.MC,Banco de badell ,ES
+RED.MC,Redeia Corporacion ,ES
+MAP.MC,Mapfre ,ES
+GRF.MC,"Grifols, Class A",ES
+BKT.MC,Bankinter ,ES
+ANA.MC,Acciona ,ES
+ANE.MC,Corporacion Acciona Energias Renovables ,ES
+MRL.MC,"MERLIN Properties SOCIMI, ",ES
+FDR.MC,"Fluidra, ",ES
+LOG.MC,"Logista Integral, ",ES
+ROVI.MC,"Laboratorios Farmaceuticos Rovi, ",ES
+COL.MC,Inmobiliaria Colonial SOCIMI ,ES
+ENG.MC,Enagas ,ES
+UNI.MC,Unicaja Banco ,ES
+IDR.MC,"Indra Sistemas, Class A",ES
+SCYR.MC,cyr ,ES
+ACX.MC,Acerinox ,ES
+SLR.MC,"Solaria Energia y Medio Ambiente, ",ES
+7203.T,Toyota Motor Corp.,JP
+8306.T,Mitsubishi UFJ Financial Group,JP
+6758.T,Sony Group ,JP
+6501.T,"Hitachi,Ltd.",JP
+6098.T,Recruit Holdings Co.,JP
+6861.T,Keyence ,JP
+9983.T,FAST RETAILING CO.,JP
+8316.T,Sumitomo Mitsui Financial Group,JP
+9432.T,Nippon Telegraph and Telephone ,JP
+9984.T,SoftBank Group Corp.,JP
+8001.T,Itochu ,JP
+4519.T,Chugai Pharmaceutical Co.,JP
+8766.T,Tokio Marine Holdings,JP
+4063.T,Shin-Etsu Chemical Co,JP
+9433.T,KDDI ,JP
+8035.T,Tokyo Electron.,JP
+8058.T,Mitsubishi ,JP
+7974.T,Nintendo Co.,JP
+8031.T,Mitsui & Co,JP
+9434.T,SoftBank Corp.,JP
+4568.T,"Daiichi nkyo Company, Limited",JP
+8411.T,Mizuho Financial Group,JP
+2914.T,Japan Tobacco ,JP
+7011.T,Mitsubishi Heavy Industries,JP
+6857.T,Advantest Corp.,JP
+6902.T,DENSO ,JP
+7741.T,HOYA ,JP
+7267.T,Honda Motor Co.,JP
+4661.T,Oriental Land Co.,JP
+4502.T,Takeda Pharmaceutical Co..,JP
+7751.T,Canon ,JP
+3382.T,Seven & I Holdings Co.,JP
+8725.T,MS&AD Insurance Group Holdings,JP
+6503.T,Mitsubishi Electric Corp.,JP
+6702.T,Fujitsu Limited,JP
+6367.T,DAIKIN INDUSTRIES,JP
+7182.T,Japan Post Bank Co.,JP
+6981.T,Murata Manufacturing Co.,JP
+4578.T,Otsuka Holdings Co.,JP
+6178.T,JAPAN POST HOLDINGS Co.,JP
+6146.T,Disco ,JP
+6273.T,SMC ,JP
+4543.T,Terumo ,JP
+4901.T,FUJIFILM Holdings Corp,JP
+8591.T,ORIX ,JP
+8750.T,"Dai-ichi Life Holdings, ",JP
+6954.T,Fanuc ,JP
+8002.T,Marubeni ,JP
+6723.T,Renes Electronics ,JP
+8053.T,Sumitomo ,JP
+6762.T,TDK ,JP
+6301.T,Komatsu.,JP
+5108.T,Bridgestone ,JP
+9613.T,NTT DATA GROUP ,JP
+8801.T,Mitsui Fudon Co.,JP
+6201.T,Toyota Industries Corp.,JP
+6752.T,Panasonic Holdings ,JP
+6701.T,NEC Corp.,JP
+8630.T,"Sompo Holdings, ",JP
+6594.T,Nidec ,JP
+9020.T,East Japan Railway Company,JP
+5401.T,NIPPON STEEL CORP.,JP
+8267.T,AEON Co.,JP
+9022.T,Central Japan Railway Company,JP
+7269.T,Suzuki Motor Corp.,JP
+2802.T,Ajinomoto Co.,JP
+4503.T,Astellas Pharma ,JP
+1925.T,Daiwa House Industry Co.,JP
+7733.T,Olympus Corp.,JP
+4452.T,Kao ,JP
+4689.T,LY ,JP
+8015.T,Toyota Tsusho Corp.,JP
+8604.T,Nomura Holdings,JP
+8308.T,Resona Holdings,JP
+8802.T,"Mitsubishi Estate Company, Limited",JP
+4307.T,"Nomura Research Institute,Ltd.",JP
+2502.T,"Ahi Group Holdings,Ltd.",JP
+8309.T,Sumitomo Mitsui Trust Group. ,JP
+4684.T,OBIC Co.,JP
+1605.T,Inpex ,JP
+4612.T,Nippon Paint Holdings Co.,JP
+8113.T,Unicharm ,JP
+5020.T,ENEOS Holdings,JP
+9735.T,Secom Co.,JP
+1928.T,Sekisui House,JP
+7532.T,Pan Pacific International Holdings ,JP
+6326.T,Kubota ,JP
+9101.T,Nippon Yusen Kabushiki Kaisha,JP
+6971.T,Kyocera ,JP
+9503.T,Kani Electric Power Company orporated,JP
+8830.T,Sumitomo Realty & Development Co.,JP
+7832.T,Bandai Namco Holdings ,JP
+5802.T,Sumitomo Electric Industries,JP
+7936.T,Asics ,JP
+4755.T,Rakuten Group,JP
+9766.T,KONAMI Group ,JP
+4091.T,Nippon nso Holdings ,JP
+9843.T,Nitori Holdings Co.,JP
+6869.T,Sysmex ,JP
+8697.T,Japan Exchange Group,JP
+4716.T,Oracle Japan,JP
+9104.T,"Mitsui O.S.K.Lines,Ltd.",JP
+2503.T,Kirin Holdings Co..,JP
+4507.T,Shionogi & Co.,JP
+7309.T,Shimano ,JP
+9697.T,Capcom Co.,JP
+3659.T,NEXON Co.,JP
+6988.T,Nitto Denko Corp.,JP
+6920.T,Lasertec Corp.,JP
+7270.T,Subaru ,JP
+5803.T,Fujikura,JP
+2801.T,Kikkoman ,JP
+8601.T,Daiwacurities Group ,JP
+2587.T,Suntory Beverage & Food.,JP
+3407.T,Ahi Kasei ,JP
+8593.T,Mitsubishi HC Capital ,JP
+7201.T,Nisn Motor Co.,JP
+3092.T,ZOZO,JP
+4523.T,Eii Co.,JP
+3402.T,Toray Industries,JP
+1802.T,Obayashi ,JP
+7911.T,TOPPAN Holdings ,JP
+9531.T,TOKYO GAS Co.,JP
+1812.T,Kajima ,JP
+7912.T,Dai Nippon Printing Co.,JP
+5019.T,Idemitsu Kon Co.,JP
+7202.T,Isuzu Motors Limited,JP
+9107.T,Kawaki Kisen Kaisha,JP
+9435.T,Hikari Tsushin,JP
+8795.T,T&D Holdings,JP
+7013.T,IHI ,JP
+9202.T,ANA Holdings ,JP
+4768.T,Otsuka ,JP
+7272.T,Yamaha Motor Co.,JP
+4151.T,Kyowa Kirin Co.,JP
+9532.T,Oka Gas Co.,JP
+3064.T,MonotaRO Co.,JP
+9021.T,West Japan Railway Company,JP
+6586.T,Makita ,JP
+7701.T,Shimadzu ,JP
+9502.T,"Chubu Electric Power Company,",JP
+7550.T,Zensho Holdings Co.,JP
+6504.T,Fuji Electric Co.,JP
+4324.T,Dentsu Group ,JP
+7259.T,Aisin ,JP
+1801.T,Taisei ,JP
+6383.T,Daifuku Co.,JP
+4188.T,Mitsubishi Chemical Group ,JP
+9005.T,TOKYU ,JP
+2897.T,Nissin Foods Holdings Co.,JP
+8136.T,nrio Company,JP
+1878.T,Daito Trust Construction Co.,JP
+9024.T,Seibu Holdings,JP
+6361.T,Ebara ,JP
+1911.T,Sumitomo Forestry Co.,JP
+4704.T,Trend Micro ,JP
+5411.T,JFE Holdings,JP
+4911.T,"Shiseido Company,Limited",JP
+9602.T,Toho Co.,JP
+6506.T,Yaskawa Electric ,JP
+2875.T,Toyo Suin Kaisha,JP
+5713.T,Sumitomo Metal Mining Co.,JP
+3003.T,Hulic Co.,JP
+6645.T,OMRON ,JP
+8951.T,Nippon Building Fund,JP
+7012.T,Kawaki Heavy Industries.,JP
+9201.T,Japan Airlines Co.,JP
+6479.T,MinebeaMitsumi ,JP
+8473.T,SBI Holdings,JP
+4204.T,Sekisui Chemical Co.,JP
+6724.T,Seiko Epson Corp.,JP
+7181.T,JAPAN POST INSURANCE Co.,JP
+5201.T,AGC ,JP
+9042.T,Hankyu Hanshin Holdings,JP
+5929.T,nwa Holdings ,JP
+3038.T,Kobe Busn Co.,JP
+7186.T,Concordia Financial Group,JP
+2267.T,Yakult Honsha Co.,JP
+8331.T,Chiba Bank,JP
+7752.T,Ricoh Company,JP
+2269.T,Meiji Holdings Co.,JP
+5334.T,Niterra Co.,JP
+7735.T,SCREEN Holdings Co,JP
+9719.T,SCSK ,JP
+6841.T,Yokogawa Electric Corp.,JP
+9143.T,SG Holdings Co.,JP
+2413.T,M3,JP
+9501.T,Tokyo Electric Power Company Holdings orporated,JP
+4528.T,ONO Pharmaceutical Co.,JP
+3626.T,TIS ,JP
+1803.T,Shimizu ,JP
+3099.T,Isetan Mitsukoshi Holdings.,JP
+3088.T,MatsukiyoCocokara & Co.,JP
+6532.T,BayCurrent ,JP
+2702.T,Mcdonalds Holdings Company Japan,JP
+6465.T,HOSHIZAKI Corp.,JP
+8952.T,Japan Real Estate Iestment Corp.,JP
+4527.T,Rohto Pharmaceutical Co.,JP
+7453.T,Ryohin Keikaku Co.,JP
+5831.T,Shizuoka Financial Group,JP
+2327.T,NS Solutions Corp,JP
+9508.T,"Kyushu Electric Power Company,",JP
+2670.T,ABC-MART,JP
+6370.T,Kurita Water Industries.,JP
+4021.T,Nisn Chemical ,JP
+8354.T,Fukuoka Financial Group,JP
+4816.T,Toei Animation Co.,JP
+3405.T,Kuraray Co.,JP
+6967.T,Shinko Electric Industries Co.,JP
+5332.T,TOTO,JP
+4004.T,Resonac Holdings ,JP
+6305.T,Hitachi Construction Machinery Co.,JP
+5844.T,"Kyoto Financial Group, ",JP
+9009.T,Keisei Electric Railway Co.,JP
+4062.T,IBIDEN CO.,JP
+6448.T,Brother Industries,JP
+2768.T,Sojitz Corp.,JP
+9962.T,MISUMI Group ,JP
+3288.T,Open House Group Co.,JP
+3283.T,Nippon Prologis REIT,JP
+6845.T,Azbil ,JP
+3231.T,Nomura Real Estate Holdings,JP
+3289.T,Tokyu Fudon Holdings Corp.,JP
+4183.T,Mitsui Chemicals,JP
+9041.T,Kintetsu Group Holdings Co.,JP
+4732.T,USS Co.,JP
+9506.T,Tohoku Electric Power Company orporated,JP
+9684.T,Square Enix Holdings Co.,JP
+7211.T,Mitsubishi Motors ,JP
+4042.T,Tosoh ,JP
+7167.T,Mebuki Financial Group,JP
+7747.T,Ahi Intecc Co.,JP
+5838.T,Rakuten Bank,JP
+6806.T,HIROSE ELECTRIC CO.,JP
+2212.T,Yamazaki Baking Co.,JP
+7731.T,Nikon Corp.,JP
+3462.T,Nomura Real Estate Master Fund,JP
+6753.T,Sharp ,JP
+3291.T,Iida Group Holdings Co.,JP
+8253.T,Credit ison Co.,JP
+8953.T,Japan Metropolitan Fund Iestment ,JP
+4005.T,Sumitomo Chemical Co.,JP
+5406.T,Kobe Steel,JP
+9147.T,"NIPPON EXPRESS HOLDINGS, ",JP
+9401.T,TBS HOLDINGS ,JP
+6460.T,Sega mmy Holdings ,JP
+3281.T,GLP J-REIT,JP
+1944.T,Kinden ,JP
+5333.T,NGK Insulators,JP
+7261.T,Mazda Motor Corp.,JP
+4536.T,nten Pharmaceutical Co.,JP
+9142.T,Kyushu Railway Company,JP
+5021.T,Cosmo Energy Holdings Co.,JP
+9749.T,Fuji Soft ,JP
+6963.T,Rohm Co.,JP
+4182.T,Mitsubishi Gas Chemical Company,JP
+9007.T,Odakyu Electric Railway Co.,JP
+5344.T,MARUWA CO.,JP
+8972.T,KDX Realty Iestment ,JP
+9404.T,Nippon Television Holdings,JP
+6525.T,Kokui Electric ,JP
+8227.T,SHIMAMURA Co.,JP
+7951.T,Yamaha ,JP
+7276.T,Koito Manufacturing Co.,JP
+3769.T,GMO Payment Gateway,JP
+4403.T,NOF ,JP
+9064.T,Yamato Holdings Co.,JP
+1808.T,Haseko ,JP
+2501.T,pporo Holdings Limited,JP
+3774.T,Internet Initiative Japan ,JP
+3349.T,COSMOS Pharmaceutical ,JP
+2331.T,Sohgocurityrvices Co.,JP
+2181.T,PERSOL HOLDINGS CO..,JP
+6965.T,Hamamatsu Photonics K.K.,JP
+8804.T,Tokyo Tatemono Co.,JP
+2002.T,Nisshinifun Group ,JP
+6417.T,nkyo Co.,JP
+3861.T,Oji Holdings Corp.,JP
+3635.T,Koei Tecmo Holdings Co.,JP
+3197.T,Skylark Holdings Co.,JP
+4733.T,OBIC Business Consultants Co.,JP
+9008.T,Keio ,JP
+7459.T,Medipal Holdings ,JP
+5101.T,Yokohama Rubber Co.,JP
+8984.T,Daiwa House REIT Iestment ,JP
+9001.T,Tobu Railway Co.,JP
+2871.T,Nichirei ,JP
+5444.T,Yamato Kogyo Co.,JP
+6113.T,AMADA Co.,JP
+4751.T,CyberAgent,JP
+2371.T,Kakaku.com,JP
+2282.T,NH Foods Limited,JP
+9706.T,Japan Airport Terminal Co.,JP
+2809.T,Kewpie ,JP
+5938.T,LIXIL ,JP
+7649.T,Sugi Holdings Co.,JP
+8252.T,Marui Group Co.,JP
+4912.T,Lion ,JP
+8963.T,Iincible Iestment Corp.,JP
+9513.T,Electric Power Development Co.,JP
+4186.T,Tokyo Ohka Kogyo Co.,JP
+2433.T,Hakuhodo Dy Holdings ,JP
+3436.T,SUMCO ,JP
+1942.T,Kandenko Co.,JP
+5947.T,Rinnai ,JP
+9076.T,Seino Holdings Co.,JP
+5110.T,Sumitomo Rubber Industries,JP
+8905.T,AEON Mall Co.,JP
+3086.T,J. FRONT RETAILING Co.,JP
+9831.T,Yamada Holding Co.,JP
+5991.T,NHK Spring Co.,JP
+6005.T,Miura Co.,JP
+6526.T,Socionext ,JP
+8056.T,BIPROGY ,JP
+8088.T,Iwatani ,JP
+2784.T,Alfre Holdings ,JP
+4980.T,Dexerials Corp.,JP
+9989.T,Sundrug Co.,JP
+8954.T,ORIX JREIT ,JP
+2579.T,Coca-Cola Bottlers Japan Holdings ,JP
+4088.T,Air Water ,JP
+6923.T,Stanley Electric Co.,JP
+8960.T,United Urban Iestment ,JP
+3269.T,Advance Residence Iestment ,JP
+8334.T,Gunma Bank,JP
+7163.T,SBI Sumishin Net Bank,JP
+3391.T,TSURUHA Holdings,JP
+6368.T,Organo Corp.,JP
+2229.T,CALBEE,JP
+4922.T,Kose ,JP
+5631.T,Japan Steel Works,JP
+1721.T,COMSYS Holdings ,JP
+9468.T,Kadokawa ,JP
+9504.T,Chugoku Electric Power Co.,JP
+4967.T,Kobayashi Pharmaceutical Co.,JP
+5801.T,Furukawa Electric Co.,JP
+5393.T,Nichias ,JP
+6302.T,Sumitomo Heavy Industries,JP
+3141.T,Welcia Holdings Co.,JP
+8410.T,Seven Bank,JP
+4613.T,Kani Paint Co.,JP
+8111.T,Goldwin ,JP
+1969.T,Takago Thermal Engineering Co.,JP
+5233.T,Taiheiyo Cement ,JP
+9533.T,TOHO GAS Co.,JP
+6481.T,THK Co.,JP
+8233.T,"Takashimaya Company, Limited",JP
+9987.T,Suzuken Co.,JP
+7867.T,Tomy Company,JP
+6856.T,Horiba ,JP
+9045.T,Keihan Holdings Co.,JP
+9301.T,Mitsubishi Logistics ,JP
+4676.T,Fuji Media Holdings,JP
+1959.T,Kyudenko ,JP
+6141.T,DMG MORI CO.,JP
+7240.T,NOK ,JP
+4203.T,Sumitomo Bakelite Co.,JP
+4540.T,Tsumura & Co.,JP
+3563.T,FOOD & LIFE COMPANIES.,JP
+8304.T,Aozora Bank,JP
+8418.T,Yamaguchi Financial Group,JP
+7164.T,Zenkoku Hosho Co.,JP
+6849.T,Nihon Kohden ,JP
+4202.T,Daicel ,JP
+3116.T,Toyota Boshoku Corp.,JP
+7988.T,Nifco ,JP
+3923.T,RAKUS Co.,JP
+7518.T,Net One Systems Co.,JP
+6473.T,JTEKT ,JP
+7180.T,Kyushu Financial Group,JP
+4587.T,Peptidream ,JP
+6323.T,Rorze ,JP
+9048.T,Nagoya Railroad Co.,JP
+3397.T,TORIDOLL Holdings ,JP
+8985.T,Japan Hotel Reit Iestment ,JP
+3549.T,KUSURI NO AOKI HOLDINGS CO.,JP
+141A.T,TRIAL Holdings. ,JP
+2593.T,"ITO EN,Ltd.",JP
+1963.T,JGC Holdings ,JP
+4902.T,Konica Minolta,JP
+6770.T,Alps Alpine Co.,JP
+1951.T,EXEO Group,JP
+9006.T,Keikyu ,JP
+5105.T,Toyo Tire ,JP
+8129.T,Toho Holdings Co.,JP
+5214.T,Nippon Electric Glass Co.,JP
+2222.T,Kotobuki Spirits Co.,JP
+6471.T,NSK.,JP
+7729.T,Tokyoimitsu Co,JP
+4205.T,Zeon ,JP
+5076.T,INFRONEER Holdings ,JP
+4194.T,Visional,JP
+7564.T,Workman Co.,JP
+7282.T,Toyoda Gosei Co.,JP
+4666.T,Park24 Co.,JP
+3048.T,BIC Cameras ,JP
+5711.T,Mitsubishi Materials Corp.,JP
+4927.T,Pola Orbis Holdings ,JP
+4631.T,DIC ,JP
+3107.T,Daiwabo Holdings Co.,JP
+6728.T,ULVAC,JP
+4681.T,Resorttrust,JP
+4680.T,ROUND ONE ,JP
+6028.T,TechnoPro Holdings ,JP
+9449.T,GMO Internet Group,JP
+6592.T,Mabuchi Motor Co.,JP
+1332.T,Nissui ,JP
+4385.T,Mercari,JP
+9418.T,U-NEXT HOLDINGS Co.Ltd.,JP
+6268.T,Nabtesco ,JP
+6976.T,Taiyo Yuden Co.,JP
+3697.T,SHIFT,JP
+3249.T,Industrial & Infrastructure Fund Iestment ,JP
+2206.T,Ezaki Glico Co.,JP
+5714.T,Dowa Holdings Co.,JP
+2607.T,Fuji Oil Holdings,JP
+6951.T,JEOL.,JP
+7581.T,izeriya Co.,JP
+4483.T,JMDC ,JP
+1662.T,Japan Petroleum Exploration Co.,JP
+2811.T,Kagome Co.,JP
+4516.T,Nippon Shinyaku Co.,JP
+7189.T,Nishi-Nippon Financial Holdings,JP
+2726.T,PAL GROUP Holdings Co.,JP
+2432.T,DeNA Co.,JP
+2264.T,Morinaga Milk Industry Co.,JP
+5706.T,"Mitsui Mining and Smelting Company, Limited",JP
+9507.T,Shikoku Electric Power Company orporated,JP
+3401.T,Teijin Limited,JP
+8282.T,K'S Holdings ,JP
+4443.T,nn,JP
+3994.T,Money Forward,JP
+6674.T,GS Yua ,JP
+8570.T,AEON Financialrvice Co.,JP
+8876.T,Relo Group,JP
+3765.T,Gungho Online Entertainment,JP
+6952.T,Casio Computer Co.,JP
+8242.T,H2O Retailing ,JP
+4887.T,WAI GROUP HOLDINGS Co.,JP
+4506.T,Sumitomo Pharma Co.Ltd.,JP
+5741.T,UACJ Corp.,JP
+6632.T,JVCKENWOOD ,JP
+3941.T,Rengo Co.,JP
+4208.T,UBE ,JP
+8698.T,Monex Group,JP
+6269.T,Modec,JP
+2201.T,Morinaga & Co.,JP
+6432.T,Takeuchi Mfg.Co.,JP
+9744.T,MEITEC Group Holdings ,JP
+6925.T,Ushio ,JP
+5805.T,SWCC Showa Holdings Co.,JP
+3110.T,Nitto Boseki Co.,JP
+7205.T,"Hino Motors,Ltd.",JP
+7762.T,Citizen Watch Co,JP
+9166.T,GENDA ,JP
+2127.T,Nihon M&A Center Holdings ,JP
+1820.T,Nishimatsu Construction Co.,JP
+6787.T,Meiko Electronics Co.,JP
+5301.T,Tokai Carbon Co.,JP
+1719.T,Hazama Ando Corp.,JP
+6755.T,Fujitsu General Limited,JP
+4046.T,OKA SODA CO.,JP
+2782.T,Seria Co.,JP
+6324.T,Harmonic Drive Systems ,JP
+9505.T,Hokuriku Electric Power Company,JP
+8358.T,Suruga Bank.,JP
+6103.T,Okuma Corp.,JP
+9509.T,"Hokkaido Electric Power Company,",JP
+9616.T,Kyoritsu Maintenance Co.,JP
+7220.T,Mushiimitsu Industry Co.,JP
+6807.T,"Japan Aviation Electronics Industry, Limited",JP
+7740.T,Tamron Co.,JP
+8022.T,Mizuno ,JP
+4043.T,Tokuyama ,JP
+6508.T,Meidensha ,JP
+4061.T,Denka Co.,JP
+6622.T,Daihen ,JP
+2685.T,Adastria Co.,JP
+1893.T,Penta-Ocean Construction Co.,JP
+4478.T,freee K.K.,JP
+6407.T,CKD ,JP
+7956.T,Pigeon ,JP
+4180.T,Appier Group,JP
+2695.T,Kura Sushi,JP
+8524.T,North Pacific Bank,JP
+8848.T,Leopalace21 ,JP
+5423.T,Tokyo Steel Manufacturing Co.,JP
+6754.T,Anritsu ,JP
+1980.T,DAI-DAN Co.,JP
+7004.T,Kanadevia ,JP
+2379.T,dip ,JP
+3046.T,JINS HOLDINGS ,JP
+6966.T,Mitsui High-Tec,JP
+5253.T,COVER ,JP
+6871.T,Micronics Japan Co.,JP
+2160.T,GNI Group.,JP
+9603.T,H.I.S.Co.,JP
+6707.T,nken Electric Co.,JP
+9552.T,M&A Research Institute Holdings ,JP
+3097.T,Monogatari ,JP
+3498.T,Kasumigaseki Capital Co.,JP
+5032.T,ANYCOLOR ,JP
+6590.T,Shibaura Mechatronics Corp.,JP
+6315.T,Towa ,JP
+6472.T,NTN ,JP
+2767.T,TSUBURAYA FIELDS HOLDINGS ,JP
+4480.T,Medley,JP
+3186.T,Nextage Co.,JP
+3993.T,PKSHA Technology,JP
+6036.T,KeePer Technical Laboratory Co.Ltd.,JP
+6890.T,Ferrotec Holdings ,JP
+9722.T,Fujita Kanko ,JP
+4565.T,Nxera Pharma Co.,JP
+5310.T,Toyo Tanso Co.,JP
+2585.T,LIFEDRINK COMPANY ,JP
+215A.T,Timee,JP
+4369.T,Tri Chemical Laboratories ,JP
+6254.T,Nomura Micro Science Co.,JP
+9519.T,RENOVA,JP
+4384.T,RAKSUL ,JP
+4592.T,nBio Co.,JP
+5726.T,OKA Titanium Technologies Co.,JP
+7388.T,FP Partner,JP
+7342.T,WealthNavi,JP
+6961.T,Enplas ,JP
+6266.T,Tazmo Co.,JP
+7095.T,Macbee Planet,JP
+9338.T,Inforich,JP
+VER.VI,VERBUND Class A,AT
+EBS.VI,Erste Group Bank,AT
+OMV.VI,OMV,AT
+RBI.VI,Raiffeisen Bank International,AT
+BG.VI,BAWAG Group,AT
+ANDR.VI,ANDRITZ,AT
+WIE.VI,Wienerberger,AT
+CAI.VI,CA Immobilien Anlagen,AT
+PKO.WA,PKO Bank Polski ,PL
+PKN.WA,ORLEN Spolka Akcyjna,PL
+SPL.WA,ntander Bank Polska ,PL
+PEO.WA,BANK POLSKA KA OPIEKI ,PL
+DNP.WA,Dino Polska ,PL
+ALE.WA,Allegro.eu ,PL
+PZU.WA,Powszechny Zaklad Ubezpieczen Spolka Akcyjna,PL
+KGH.WA,KGHM Polska Miedz ,PL
+LPP.WA,LPP ,PL
+CDR.WA,CD Projekt ,PL
+CCC.WA,CCC ,PL
+ALR.WA,Alior Bank ,PL
+PCO.WA,Pepco Group BV,PL
+P.DE,P,DE
+SIE.DE,Siemens Aktiengesellschaft,DE
+DTE.DE,Deutsche Telekom,DE
+ALV.DE,Allianz,DE
+MRK.DE,Merck KGaA,DE
+MUV2.DE,Munchener Ruckversicherungs-Gesellschaft,DE
+P911.DE,Porsche,DE
+SHL.DE,Siemens Healthineers,DE
+MBG.DE,Mercedes-Benz Group,DE
+VOW3.DE,Volkswagen Pref,DE
+BMW.DE,Bayerische Motoren Werke,DE
+DHL.DE,Deutsche Post,DE
+DB1.DE,Deutsche Boerse,DE
+ADS.DE,adidas,DE
+IFX.DE,Infineon Technologies,DE
+BAS.DE,BASF,DE
+ENR.DE,Siemens Energy,DE
+HEN3.DE,Henkel & Co. KGaA Pref,DE
+DBK.DE,Deutsche Bank Aktiengesellschaft,DE
+EOAN.DE,E.ON,DE
+BEI.DE,Beiersdorf,DE
+HNR1.DE,Hannover Rueck,DE
+DTG.DE,Daimler Truck Holding,DE
+RHM.DE,Rheinmetall,DE
+VNA.DE,Vonovia,DE
+RWE.DE,RWE,DE
+HEI.DE,Heidelberg Materials,DE
+BAYN.DE,Bayer,DE
+TLX.DE,Talanx,DE
+CBK.DE,Commerzbank,DE
+FRE.DE,Fresenius & Co. KGaA,DE
+MTX.DE,MTU Aero Engines,DE
+SRT3.DE,rtorius Pref,DE
+SY1.DE,Symrise,DE
+CON.DE,Continental,DE
+NEM.DE,Nemetschek,DE
+FME.DE,Fresenius Medical Care,DE
+KBX.DE,Knorr-Bremse,DE
+DHER.DE,Delivery Hero,DE
+1COV.DE,Covestro,DE
+PAH3.DE,Porsche Automobil Holding Pref,DE
+RAA.DE,Rational,DE
+HOT.DE,HOCHTIEF Aktiengesellschaft,DE
+EVD.DE,CTS Eventim & Co. KGaA,DE
+BNR.DE,Brenntag,DE
+EVK.DE,Evonik Industries,DE
+G1A.DE,GEA Group Aktiengesellschaft,DE
+LHA.DE,Deutsche Lufthan,DE
+ZAL.DE,Zalando,DE
+PUM.DE,PUMA,DE
+LEG.DE,LEG Immobilien,DE
+G24.DE,Scout24,DE
+AFX.DE,Carl Zeiss Meditec,DE
+KGX.DE,KION GROUP,DE
+FRA.DE,Fraport,DE
+AT1.DE,Aroundtown ,DE
+BC8.DE,Bechtle,DE
+HAG.DE,HENSOLDT,DE
+TUI1.DE,TUI,DE
+WCH.DE,Wacker Chemie,DE
+NDA.DE,Aurubis,DE
+FNTN.DE,freenet,DE
+RDC.DE,Redcare Pharmacy ,DE
+BOSS.DE,HUGO BOSS,DE
+ECV.DE,Encavis,DE
+NDX1.DE,Nordex,DE
+TEG.DE,TAG Immobilien,DE
+GXI.DE,Gerresheimer,DE
+TKA.DE,thyssenkrupp,DE
+HFG.DE,HelloFresh,DE
+R3NK.DE,RENK Group,DE
+TMV.DE,TeamViewer,DE
+LXS.DE,LANXESS,DE
+SDF.DE,K+S,DE
+AIXA.DE,AIXTRON,DE
+EVT.DE,Evotec,DE
+SMHN.DE,SUSS MicroTec,DE
+ABX.TO,Barrick Gold ,CA
+AC.TO,Air Canada,CA
+ACO.X.TO,ATCO. Class I,CA
+AEM.TO,Agnico Eagle Mines Limited,CA
+AGI.TO,Alamos Gold ,CA
+ALA.TO,AltaGas.,CA
+AP-UN.TO,Allied Properties Real Estate Iestment Trust,CA
+AQN.TO,Algonquin Power & Utilities Corp.,CA
+ARE.TO,Aecon Group ,CA
+ARX.TO,ARC Resources.,CA
+ATD.TO,Alimentation Couche-Tard ,CA
+ATH.TO,Athabasca Oil ,CA
+ATRL.TO,Atkinsrealis Group ,CA
+ATS.TO,ATS ,CA
+ATZ.TO,Aritzia,CA
+BAM.TO,Brookfield Asset Management. Class A,CA
+BBD-B.TO,Bombardier Class B,CA
+BCE.TO,BCE ,CA
+BEI-UN.TO,Boardwalk Real Estate Iestment Trust,CA
+BEP-UN.TO,Brookfield Renewable Partners LP,CA
+BITF.TO,Bitfarms.,CA
+BLX.TO,Boralex Class A,CA
+BMO.TO,Bank of Montreal,CA
+BN.TO,Brookfield ,CA
+BNS.TO,Bank of Nova Scotia,CA
+BTE.TO,Baytex Energy Corp.,CA
+BTO.TO,B2Gold Corp.,CA
+BYD.TO,Boyd Grouprvices,CA
+CAE.TO,CAE ,CA
+CAR-UN.TO,Canadian Apartment Properties Real Estate Iestment Trust,CA
+CCL-B.TO,CCL Industries Class B,CA
+CCO.TO,Cameco ,CA
+CIGI.TO,Colliers International Group ,CA
+CIX.TO,CI Financial Corp.,CA
+CJT.TO,Cargojet ,CA
+CLS.TO,Celestica ,CA
+CM.TO,Canadian Imperial Bank of Commerce,CA
+CNQ.TO,Canadian Natural Resources Limited,CA
+CNR.TO,Canadian National Railway Company,CA
+CP.TO,Canadian Pacific Kans City Limited,CA
+CPX.TO,Capital Power ,CA
+CS.TO,Capstone Copper Corp.,CA
+CSU.TO,Constellation Software ,CA
+CTC-A.TO,"Canadian Tire , Limited Class A",CA
+CU.TO,Canadian Utilities Limited Class A,CA
+CVE.TO,Cenovus Energy ,CA
+CWB.TO,Canadian Western Bank,CA
+DOL.TO,Dollarama ,CA
+DOO.TO,BRP,CA
+DSG.TO,Descartes Systems Group ,CA
+EDV.TO,Endeavour Mining ,CA
+EFN.TO,Element Fleet Management ,CA
+ELD.TO,Eldorado Gold ,CA
+EMA.TO,Emera ,CA
+EMP-A.TO,Empire Co.. Class A,CA
+ENB.TO,Enbridge ,CA
+FFH.TO,Fairfax Financial Holdings Limited,CA
+FIL.TO,Filo Corp.,CA
+FM.TO,First Quantum Minerals.,CA
+F.TO,Franco-Nevada ,CA
+FSV.TO,FirstService Corp,CA
+FTS.TO,Fortis ,CA
+FTT.TO,Finning International ,CA
+GEI.TO,Gibson Energy ,CA
+GFL.TO,GFL Eironmental,CA
+GIB-A.TO,CGI Class A,CA
+GIL.TO,Gildan Activewear ,CA
+GLXY.TO,Galaxy Digital Holdings.,CA
+GSY.TO,goeasy.,CA
+GWO.TO,Great-West Lifeco ,CA
+HBM.TO,Hudbay Minerals,CA
+H.TO,Hydro One Limited,CA
+HPS-A.TO,Hammond Power Solutions Class A,CA
+HUT.TO,Hut 8 Corp.,CA
+IAG.TO,iA Financial ,CA
+IFC.TO,Intact Financial ,CA
+IGM.TO,IGM Financial ,CA
+IMG.TO,IAMGOLD ,CA
+IMO.TO,Imperial Oil Limited,CA
+IVN.TO,Ivanhoe Mines. Class A,CA
+K.TO,Kinross Gold ,CA
+KEY.TO,Keyera Corp.,CA
+KXS.TO,Kinaxis,CA
+L.TO,Loblaw Companies Limited,CA
+LSPD.TO,Lightspeed Commerce,CA
+LUG.TO,Lundin Gold ,CA
+LUN.TO,Lundin Mining ,CA
+MEG.TO,MEG Energy Corp.,CA
+MFC.TO,Manulife Financial ,CA
+MG.TO,Magna International ,CA
+MRU.TO,Metro ,CA
+NA.TO,National Bank of Canada,CA
+NPI.TO,Northland Power ,CA
+NTR.TO,Nutrien.,CA
+A.TO,NuVista Energy.,CA
+EI.TO,Nuvei Corp.,CA
+NXE.TO,NexGen Energy.,CA
+ONEX.TO,Onex ,CA
+OR.TO,Osisko Gold Royalties,CA
+OTEX.TO,Open Text ,CA
+PAAS.TO,Pan American Silver Corp.,CA
+PD.TO,Precision Drilling ,CA
+PEY.TO,Peyto Exploration & Development Corp.,CA
+PKI.TO,Parkland ,CA
+POU.TO,Paramount Resources. Class A,CA
+POW.TO,Power of Canada,CA
+PPL.TO,Pembina Pipeline ,CA
+PSK.TO,PrairieSky Royalty,CA
+PXT.TO,Parex Resources ,CA
+QBR-B.TO,Quebecor Class B,CA
+QSR.TO,Restaurant Brands International,CA
+RBA.TO,RB Global,CA
+RCI-B.TO,Rogers Communications Class B,CA
+REI-UN.TO,RioCan Real Estate Iestment Trust,CA
+RUS.TO,Russel Metals ,CA
+RY.TO,Royal Bank of Canada,CA
+P.TO,puto ,CA
+SES.TO,Secure Energyrvices ,CA
+SHOP.TO,Shopify Class A,CA
+SJ.TO,Stella-Jones ,CA
+SLF.TO,Sun Life Financial ,CA
+SOBO.TO,South Bow Corp,CA
+STN.TO,Stantec,CA
+SU.TO,Suncor Energy ,CA
+TA.TO,Tranlta ,CA
+T.TO,TELUS ,CA
+TD.TO,Toronto-Dominion Bank,CA
+TECK-B.TO,Teck Resources Limited Class B,CA
+TFII.TO,TFI International ,CA
+TIH.TO,Toromont Industries.,CA
+TOU.TO,Tourmaline Oil Corp.,CA
+TPZ.TO,Topaz Energy Corp,CA
+TRI.TO,Thomson Reuters ,CA
+TRP.TO,TC Energy ,CA
+TVE.TO,Tamarack Valley Energy.,CA
+TXG.TO,Torex Gold Resources ,CA
+VET.TO,Vermilion Energy ,CA
+VRN.TO,Veren ,CA
+WCN.TO,Waste Connections,CA
+WCP.TO,Whitecap Resources ,CA
+WEED.TO,Canopy Growth ,CA
+WFG.TO,West Fraser Timber Co..,CA
+WN.TO,George Weston Limited,CA
+WPM.TO,Wheaton Precious Metals Corp,CA
+WSP.TO,WSP Global,CA
+X.TO,TMX Group.,CA
+EUROB.AT,Eurobank Ergasiasrvices & Holdings ,GR
+ETE.AT,National Bank of Greece ,GR
+HTO.AT,Hellenic Telecommunications Organization ,GR
+OPAP.AT,Greek Organition of Football Prognostics ,GR
+TPEIR.AT,Piraeus Financial Holdings ,GR
+MYTIL.AT,Metlen Energy & Metals ,GR
+PPC.AT,Public Power ,GR
+ALPHA.AT,Alpharvices & Holdings ,GR
+BELA.AT,Jumbo ,GR
+OTP.BD,OTP Bank Nyrt,HU
+RICHT.BD,Chemical Works of Gedeon Richter ,HU
+ASML.AS,ASML Holding ,NL
+PRX.AS,Prosus Class N,NL
+INGA.AS,ING Groep ,NL
+UMG.AS,Univerl Music Group ,NL
+HEIA.AS,Heineken ,NL
+ADYEN.AS,Adyen ,NL
+WKL.AS,Wolters Kluwer ,NL
+AD.AS,Koninklijke Ahold Delhaize ,NL
+DSFIR.AS,DSM-Firmenich,NL
+ASM.AS,ASM International ,NL
+PHIA.AS,Koninklijke Philips ,NL
+CVC.AS,CVC Capital Partners ,NL
+EXO.AS,EXOR ,NL
+MT.AS,ArcelorMittal ,NL
+HEIO.AS,Heineken Holding ,NL
+KPN.AS,Royal KPN ,NL
+NN.AS,NN Group ,NL
+ABN.AS,ABN AMRO Bank Depositary receipts,NL
+AGN.AS,Aegon.,NL
+AKZA.AS,Akzo Nobel ,NL
+ASRNL.AS,ASR Nederland ,NL
+BESI.AS,BEmiconductor Industries ,NL
+INPST.AS,InPost ,NL
+IMCD.AS,IMCD ,NL
+RAND.AS,Randstad ,NL
+ARCAD.AS,Arcadis ,NL
+VPK.AS,Royal Vopak ,NL
+AALB.AS,Aalberts ,NL
+SBMO.AS,SBM Offshore ,NL
+TKWY.AS,Just Eat Takeaway.com ,NL
+LIGHT.AS,Signify ,NL
+APAM.AS,Aperam ,NL
+FUR.AS,Fugro ,NL

@@ -8,9 +8,11 @@ import yfinance as yf
 import talib
 import numpy as np
 import os
+#import asyncio
 import aiohttp
-import asyncio
 import time
+
+
 
 POLY_API_KEY = os.getenv("POLYGON_API_KEY")
 BASE_URL = "https://eodhd.com/api"
@@ -25,7 +27,7 @@ client = RESTClient(api_key=POLY_API_KEY)
 
 
 # Path to CSV file for storing exchange and stock data
-CSV_FILE_PATH = "market_data.csv"
+CSV_FILE_PATH = "cleaned_data.csv"
 PROGRESS_FILE = "progress.json"
 
 # Function to fetch JSON data with error handling
@@ -161,7 +163,7 @@ def load_market_data():
     if os.path.exists(CSV_FILE_PATH):
         return pd.read_csv(CSV_FILE_PATH)
     else:
-        return pd.DataFrame(columns=["Exchange", "Stock"])
+        return pd.DataFrame(columns=["Symbol", "Name", "Country"])
     
 # Predefined suggestions for technical indicators (Single timeframe mode)
 predefined_suggestions = [

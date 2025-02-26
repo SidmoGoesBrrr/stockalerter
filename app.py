@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import uuid
+from streamlit_tags import st_tags
 from utils import update_market_data, load_market_data, bl_sp, predefined_suggestions, predefined_suggestions_alt
 
 # Load market data
@@ -19,11 +20,11 @@ if "entry_combination" not in st.session_state:
 st.subheader("Add a New Stock Alert")
 
 # Select market exchange
-exchange_list = market_data["Exchange"].unique().tolist()
+exchange_list = market_data["Country"].unique().tolist()
 selected_exchange = st.selectbox("Select Market Exchange:", exchange_list)
 
 # Select stock from the chosen exchange
-filtered_stocks = market_data[market_data["Exchange"] == selected_exchange]["Stock"].tolist()
+filtered_stocks = market_data[market_data["Country"] == selected_exchange]["Name"].tolist()
 selected_stock = st.selectbox("Select Stock:", filtered_stocks)
 
 # Button to add the selected stock alert
@@ -38,11 +39,12 @@ st.divider()
 # Section: Define Entry Conditions
 st.subheader("Entry Conditions")
 
-multiframe = st.selectbox(f"{bl_sp(1)}Need multiple timeframes for strategy?", ["True", "False"], index=1)
+#multiframe = st.selectbox(f"{bl_sp(1)}Need multiple timeframes for strategy?", ["True", "False"], index=1)
 timeframe = st.selectbox(f"{bl_sp(1)}Select lowest required Timeframe", ["1h", "4h", "1d", "1wk", "1mo"], index=2)
 
 # Get indicator suggestions
-suggests = predefined_suggestions_alt if multiframe == "True" else predefined_suggestions
+#suggests = predefined_suggestions_alt if multiframe == "True" else predefined_suggestions
+suggests = predefined_suggestions_alt 
 
 # Display existing conditions
 for n, (i, condition) in enumerate(st.session_state.entry_conditions.items()):
@@ -74,11 +76,13 @@ if len(st.session_state.entry_conditions) > 1:
     st.subheader("Combine Entry Conditions")
     st.write(f"{bl_sp(1)}Use numbers to reference conditions (e.g., '1 and (2 or 3)')")
     
-    combination_input = st.text_input(
-        label="Logical Condition",
-        value=st.session_state.entry_combination,
-        key="entry_combination_input"
+    new_value = st_tags(
+        label = f'',
+        text="Press tab to autocomplete and enter to save",
+        suggestions=suggests,
+        value=st.session_state.entry_conditions[i],
+        key=f"entry_condition_{i}"
     )
-    st.session_state.entry_combination = combination_input
+    #st.session_state.entry_combination = combination_input
 
 st.divider()
