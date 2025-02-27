@@ -44,72 +44,63 @@ def SLOPE_HMA(df, timeperiod):
     df['slope_sma'] = np.gradient(HMA(prices,timeperiod=timeperiod))
     return df
 
+import re
+import numpy as np
+import pandas as pd
+
 def apply_indicators(
     df: pd.DataFrame,
-    indicators_list: list,      # e.g. ["sma(period=14)", "rsi(period=14) > 50"]
+    indicators_list: list,      # e.g. ["sma(period=14)", "slope_ema(period=20) > 0"]
     entry_conditions: list,     # e.g. [{"index": 1, "conditions": [...]}, ...]
     combination_logic: str      # e.g. "1 and (2 or 3)"
 ) -> pd.DataFrame:
     """
-    Example function to parse user indicator strings and add columns to the DataFrame.
-    
-    Args:
-        df (pd.DataFrame): Price data (must have columns like 'Open', 'High', 'Low', 'Close').
-        indicators_list (list of str): Raw strings like ["sma(period=14)", "rsi(period=14) > 50"].
-        entry_conditions (list): Condition structures from your Streamlit app. (Not fully used here, but shown for reference.)
-        combination_logic (str): User-defined text specifying how to combine conditions (e.g. "1 and (2 or 3)").
-    
-    Returns:
-        pd.DataFrame: A copy of the input df with new columns for each indicator.
+    Parses user indicator strings (e.g. "sma(period=14)") and applies your
+    custom indicator functions (SMA, EMA, HMA, SLOPE_SMA, etc.) to the DataFrame.
+    If a trailing condition is included (e.g. "> 50"), a separate boolean column
+    is added that checks whether the indicator meets that threshold.
     """
-    # Define a dictionary of supported indicators and their corresponding TA-Lib functions.
-    # If you want to add more, just put them here with the appropriate function calls.
+
+    # 1) Create a dictionary referencing your existing functions
     supported_indicators = {
         "sma": SMA,
         "ema": EMA,
-        "hma": HMA,   
+        "hma": HMA,
         "slope_sma": SLOPE_SMA,
         "slope_ema": SLOPE_EMA,
         "slope_hma": SLOPE_HMA
     }
-    
-    # Basic parsing helper to extract the indicator name and period from a string
+
+    # 2) Helper function to parse an expression like "sma(period=14) > 50"
     def parse_indicator_expr(expr: str):
         """
-        Returns:
-            (indicator_name, kwargs_dict, condition_part)
-            e.g. "sma(period=14) > 50" -> ("sma", {"period":14}, "> 50")
-            e.g. "rsi(period=14)" -> ("rsi", {"period":14}, "")
+        Returns (indicator_name, kwargs_dict, condition_part):
+          e.g. "sma(period=14) > 50" -> ("sma", {"period": 14}, "> 50")
         """
-        # Separate any trailing condition, e.g. "> 50" or "<= 45"
         match_paren = re.search(r"\)", expr)
         if not match_paren:
-            # If there's no closing paren at all, we can't parse reliably
+            # No closing parenthesis => can't parse
             return None, {}, ""
 
-        # The position of the first closing parenthesis
+        # Split at the first closing parenthesis
         split_index = match_paren.end()
-        indicator_part = expr[:split_index]   # e.g. "sma(period=14)"
-        condition_part = expr[split_index:].strip()  # e.g. "> 50" (if present)
+        indicator_part = expr[:split_index].strip()  # e.g. "sma(period=14)"
+        condition_part = expr[split_index:].strip()  # e.g. "> 50"
 
-        # 2. Extract the name of the indicator before '('
+        # Extract the name of the indicator before "("
         match_name = re.match(r"([a-zA-Z_]+)\(", indicator_part)
         if not match_name:
             return None, {}, condition_part
-        
-        indicator_name = match_name.group(1).lower()  # e.g. "sma"
+
+        indicator_name = match_name.group(1).lower()
 
         # Extract the inside of parentheses "period=14, arg2=val2..."
         inside_paren = re.search(r"\(([^)]*)\)", indicator_part)
-        if inside_paren:
-            params_str = inside_paren.group(1).strip()
-        else:
-            params_str = ""
-        
-        # Parse params_str into a dict. We expect something like "period=14" or "period = 14"
+        params_str = inside_paren.group(1).strip() if inside_paren else ""
+
+        # Convert those parameters into a dictionary, e.g. {"period": 14}
         kwargs = {}
         if params_str:
-            # Split by commas -> ["period=14", "something=val"]
             param_pairs = [x.strip() for x in params_str.split(",") if x.strip()]
             for pair in param_pairs:
                 if "=" in pair:
@@ -117,76 +108,78 @@ def apply_indicators(
                     k = k.strip()
                     v = v.strip()
                     # Attempt to parse numeric
-                    # If it fails, keep as string
                     try:
-                        v = float(v)
-                        # If it’s an integer (like 14.0), convert to int
-                        if v.is_integer():
-                            v = int(v)
-                    except:
-                        pass
-                    kwargs[k] = v
+                        val = float(v)
+                        if val.is_integer():
+                            val = int(val)
+                        kwargs[k] = val
+                    except ValueError:
+                        # If it fails, store as a string
+                        kwargs[k] = v
 
         return indicator_name, kwargs, condition_part
 
-    # iterate over each indicator in the list
+    # Work on a copy so we don’t alter the original DataFrame in place
+    df = df.copy()
+
+    # 3) Parse each user expression and apply the corresponding function
     for expr in indicators_list:
-        # e.g. expr could be: "sma(period=14)", "rsi(period=14) > 50", etc.
         indicator_name, kwargs_dict, trailing_condition = parse_indicator_expr(expr)
         if not indicator_name:
-            # If we can’t parse the name, skip
-            print(f"Could not parse indicator expression: {expr}")
+            print(f"Could not parse expression: '{expr}'")
             continue
-        
-        if indicator_name not in supported_indicators or supported_indicators[indicator_name] is None:
-            print(f"Indicator '{indicator_name}' is not implemented or not supported.")
+
+        if indicator_name not in supported_indicators:
+            print(f"Indicator '{indicator_name}' is not supported.")
             continue
-        
-        # The user might have typed "sma(period=14)", so we see if 'period' is in kwargs_dict
-        period = kwargs_dict.get("period", 14)  # fallback to 14 as default, if needed
-        
-        # Actually compute the indicator using the TA-Lib function
-        close_prices = df["Close"].values 
-        func = supported_indicators[indicator_name]
-        
+
+        # Get the period from the user-supplied arguments, or default to 14
+        timeperiod = kwargs_dict.get("period", 14)
+
+        # Call your custom function with (df, timeperiod)
+        # Example: df = SMA(df, 14)
         try:
-            result = func(close_prices, period)
-            # Construct a column name for the new indicator
-            col_name = f"{indicator_name.upper()}_{period}"
-            df[col_name] = result
+            df = supported_indicators[indicator_name](df, timeperiod)
         except Exception as e:
-            print(f"Error computing {indicator_name} with expression '{expr}': {e}")
+            print(f"Error computing {indicator_name}({timeperiod}) for '{expr}': {e}")
             continue
-        
-        # If there's some trailing condition, e.g. "> 50", you could store it or evaluate it
+
+        # Now, by default, your function might have created df['sma'] or df['ema'] etc.
+        # If you want a unique column name, rename it here:
+        # e.g. "sma" -> "SMA_14", "ema" -> "EMA_14", etc.
+        col_created = indicator_name  # e.g. "sma", "ema", "slope_sma", etc.
+        rename_to = f"{indicator_name.upper()}_{timeperiod}"
+        if col_created in df.columns:
+            df.rename(columns={col_created: rename_to}, inplace=True)
+        else:
+            # If your function named the column differently, adjust as needed
+            pass
+
+        # 4) If there's a trailing condition (e.g. "> 50"), create a boolean column
         if trailing_condition:
-            # e.g. trailing_condition might be "> 50" or ">= 80"
-            condition_col = f"{col_name}_cond"
-            # Evaluate the condition if possible:
+            condition_col = f"{rename_to}_cond"
             match_cond = re.match(r"([><=!]+)\s*(\d+\.?\d*)", trailing_condition)
-            if match_cond:
+            if match_cond and rename_to in df.columns:
                 operator_ = match_cond.group(1)
                 threshold_ = float(match_cond.group(2))
-                # Evaluate
                 if operator_ == ">":
-                    df[condition_col] = df[col_name] > threshold_
+                    df[condition_col] = df[rename_to] > threshold_
                 elif operator_ == "<":
-                    df[condition_col] = df[col_name] < threshold_
+                    df[condition_col] = df[rename_to] < threshold_
                 elif operator_ == ">=":
-                    df[condition_col] = df[col_name] >= threshold_
+                    df[condition_col] = df[rename_to] >= threshold_
                 elif operator_ == "<=":
-                    df[condition_col] = df[col_name] <= threshold_
+                    df[condition_col] = df[rename_to] <= threshold_
                 elif operator_ == "==":
-                    df[condition_col] = df[col_name] == threshold_
+                    df[condition_col] = df[rename_to] == threshold_
                 else:
-                    # Unsupported operator
                     df[condition_col] = False
             else:
-                # If the format is something else, we skip
+                # If the condition format is something else, or column not found
                 df[condition_col] = False
 
-    # evaluate or combine the entry_conditions with combination_logic
+    # 5) Optionally handle entry_conditions / combination_logic
     print(f"Received {len(entry_conditions)} entry conditions.")
     print(f"User combination logic: {combination_logic}")
-    # return dataframe 
+
     return df
