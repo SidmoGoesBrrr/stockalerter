@@ -122,8 +122,7 @@ st.subheader("Apply Indicators on AAPL's Price")
 
 # This button will fetch Apple data from Polygon and apply your indicator logic
 if st.button("Compute Indicators on AAPL"):
-    print(st.session_state['entry_combination'])
-    print(st.session_state.parsed_indicators)
+    print("Parsed entry conditions"+str(st.session_state.entry_conditions))
 
     with st.spinner("Fetching Apple data from Polygon and computing indicators..."):
         # 1) Grab AAPL data
@@ -135,7 +134,7 @@ if st.button("Compute Indicators on AAPL"):
                 "index": idx,
                 "conditions": cond_list
             })
-        
+        print("Parsed entry conditions"+str(entry_conditions_list))
         try:
             df_result = indicators.apply_indicators(
                 df_aapl,
