@@ -5,12 +5,9 @@ import json
 import pandas as pd
 import datetime
 import yfinance as yf
-import talib
 import numpy as np
 import os
-#import asyncio
-import aiohttp
-import time
+
 
 
 
@@ -29,129 +26,6 @@ client = RESTClient(api_key=POLY_API_KEY)
 # Path to CSV file for storing exchange and stock data
 CSV_FILE_PATH = "cleaned_data.csv"
 PROGRESS_FILE = "progress.json"
-
-# Function to fetch JSON data with error handling
-async def fetch_json(session, url):
-    """Fetch JSON response with error handling."""
-    headers = {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)",
-        "Accept": "application/json",
-    }
-    async with session.get(url, headers=headers) as response:
-        if response.status == 403:
-            print(f"🚨 ERROR 403: Access Denied for URL: {url}")
-            return []
-        elif response.status == 401:
-            print("🚨 ERROR 401: Invalid API Key!")
-            return []
-        elif response.status != 200:
-            print(f"⚠️ ERROR {response.status}: {await response.text()}")
-            return []
-
-        return await response.json()
-
-async def get_all_exchanges():
-    """
-    Fetch all supported stock exchanges dynamically using EODHD.
-    Returns:
-        list: A list of exchange codes.
-    """
-    url = f"{BASE_URL}/exchanges-list/?api_token={EODHD_API_KEY}&fmt=json"
-    print("Sending request to:", url)
-    async with aiohttp.ClientSession() as session:
-        data = await fetch_json(session, url)
-    #Return a dict with code as key, also add the country and name
-    return [{"Code": exchange["Code"], "Country": exchange["Country"], "Name": exchange["Name"]} for exchange in data]
-
-async def get_all_stocks(session, exchange):
-    """
-    Fetch all stock symbols available for a given exchange using EODHD.
-
-    Args:
-        session: Shared aiohttp session for async requests.
-        exchange (str): The exchange code (e.g., "NASDAQ", "NYSE", "NSE").
-
-    Returns:
-        list: A list of stock symbols.
-    """
-    url = f"{BASE_URL}/exchange-symbol-list/{exchange}?api_token={EODHD_API_KEY}&fmt=json"
-    data = await fetch_json(session, url)
-    #print the number of exchanges
-    return [
-            {
-                "Exchange": exchange,
-                "Code": stock.get("Code", "N/A"),
-                "Name": stock.get("Name", "N/A"),
-                "Country": stock.get("Country", "N/A"),
-            }
-            for stock in data
-        ]
-# Save progress to a file
-def save_progress(completed_exchanges):
-    with open(PROGRESS_FILE, "w") as f:
-        json.dump(completed_exchanges, f)
-
-# Load progress from file
-def load_progress():
-    if os.path.exists(PROGRESS_FILE):
-        with open(PROGRESS_FILE, "r") as f:
-            return json.load(f)
-    return []
-
-# Main function to fetch market data in batches
-async def async_update_market_data():
-    """
-    Fetch and update market data, handling API limits (20 calls per day).
-    """
-    exchanges = await get_all_exchanges()  # Get list of exchanges
-    completed_exchanges = load_progress()  # Load previously completed exchanges
-    #get exchanges from dict as a list
-    exchanges = [exchange["Code"] for exchange in exchanges]
-    remaining_exchanges = [ex for ex in exchanges if ex not in completed_exchanges]
-
-    if not remaining_exchanges:
-        print("✅ All exchanges have been processed! Restarting from scratch.")
-        # Reset progress
-        save_progress([])
-        remaining_exchanges = exchanges
-
-    async with aiohttp.ClientSession() as session:
-        while remaining_exchanges:
-            batch = remaining_exchanges[:20]  # Take first 20 exchanges
-            print(f"📦 Fetching stocks for batch: {batch}")
-
-            tasks = [get_all_stocks(session, exchange) for exchange in batch]
-            results = await asyncio.gather(*tasks)
-
-            # Flatten results
-            stock_data = []
-            for result in results:
-                print(result)
-                #append the stock data, only the code and exchange
-                result = [{"Exchange": stock["Exchange"], "Stock": stock["Code"]} for stock in result]
-                print(result)
-                stock_data.extend(result)
-
-            # Save to CSV (append to avoid overwriting)
-            df = pd.DataFrame(stock_data)
-            df.to_csv(CSV_FILE_PATH, mode='a', index=False, header=not os.path.exists(CSV_FILE_PATH))
-
-            # Update progress
-            completed_exchanges.extend(batch)
-            save_progress(completed_exchanges)
-
-            print(f"✅ Completed {len(completed_exchanges)} of {len(exchanges)} exchanges.")
-
-            # Wait 24 hours before the next batch
-            print("⏳ Waiting 24 hours before the next batch...")
-            time.sleep(86400)  # Sleep for 1 day
-
-
-def update_market_data():
-    """
-    Synchronous wrapper to call async_update_market_data().
-    """
-    asyncio.run(async_update_market_data())  # Run the async function inside a synchronous call
 
 def load_market_data():
     """

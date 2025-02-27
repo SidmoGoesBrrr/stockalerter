@@ -11,7 +11,7 @@ from utils import (
     predefined_suggestions_alt,
     grab_new_data_polygon
 )
-
+st.set_page_config(layout="wide")
 # Hypothetical indicators module (adjust import, function name, etc.)
 import indicators_lib as indicators
 
@@ -56,12 +56,12 @@ selected_exchange = st.selectbox("Select Market Exchange:", exchange_list)
 filtered_stocks = market_data[market_data["Country"] == selected_exchange]["Name"].tolist()
 selected_stock = st.selectbox("Select Stock:", filtered_stocks)
 
-# Button to add the selected stock alert
-if st.button("Add Stock Alert"):
-    alert_id = str(uuid.uuid4())
-    st.session_state.entry_conditions[alert_id] = [selected_exchange, selected_stock]
-    st.success(f"Added alert for {selected_stock} on {selected_exchange}")
-    st.experimental_rerun()
+# # Button to add the selected stock alert
+# if st.button("Add Stock Alert"):
+#     alert_id = str(uuid.uuid4())
+#     st.session_state.entry_conditions[alert_id] = [selected_exchange, selected_stock]
+#     st.success(f"Added alert for {selected_stock} on {selected_exchange}")
+#     st.rerun()
 
 
 # Section: Define Entry Conditions
@@ -74,35 +74,34 @@ timeframe = st.selectbox(
 )
 
 # For demonstration, always use multiple-timeframe suggestions
-suggests = predefined_suggestions_alt
-
-# Display existing conditions
+suggests = predefined_suggestions
 for n, (i, condition) in enumerate(st.session_state.entry_conditions.items()):
-    left, middle, right = st.columns([0.8, 30, 6])
-    
+    left,middle,right = st.columns([0.8,30,6])
     with left:
-        st.markdown(f'<div class="bottom-align2"><p>{n+1}</p></div>', unsafe_allow_html=True)
-    
+        st.markdown(f'<div class="bottom-align2"><p>{n+1}.</p></div>', unsafe_allow_html=True)
     with middle:
-        new_value = st.text_area(
-            f"Condition {n+1}",
-            value=", ".join(condition),
+        new_value = st_tags(
+            label = '',
+            text="Press tab to autocomplete and enter to save",
+            suggestions=suggests,
+            value=st.session_state.entry_conditions[i],
             key=f"entry_condition_{i}"
         )
-        if new_value.split(", ") != condition:
-            st.session_state.entry_conditions[i] = new_value.split(", ")
-            st.experimental_rerun()
-    
+        if new_value!=condition:
+            st.session_state.entry_conditions[i] = new_value
+            st.rerun()
     with right:
+        st.markdown('<div class="bottom-align">', unsafe_allow_html=True)
         if st.button(f"╳", key=f'button_{i}'):
             del st.session_state.entry_conditions[i]
-            st.experimental_rerun()
+            st.rerun()
+        st.markdown('</div>',unsafe_allow_html=True)
 
 # Button to add a new condition row
 if st.button("Add New Condition"):
     new_uuid = str(uuid.uuid4())
     st.session_state.entry_conditions[new_uuid] = []
-    st.experimental_rerun()
+    st.rerun()
 
 # Combine Entry Conditions (if multiple exist)
 if len(st.session_state.entry_conditions) > 1:
@@ -119,28 +118,16 @@ if len(st.session_state.entry_conditions) > 1:
 
 st.divider()
 
-# Section: Gather Indicators (New Text Bar)
-st.subheader("Enter Indicators to Apply (comma-separated)")
-
-# Text input for the user to type custom indicators
-input_text = st.text_input(
-    "Examples: sma(period=14), ema(period=14), etc...",
-    value=st.session_state.indicator_text
-)
-
-if st.button("Set Indicators"):
-    st.session_state.indicator_text = input_text
-    st.session_state.parsed_indicators = parse_indicator_text(input_text)
-    st.success(f"Indicators saved: {st.session_state.parsed_indicators}")
-
-st.subheader("Apply Indicators on AAPL’s Price")
+st.subheader("Apply Indicators on AAPL's Price")
 
 # This button will fetch Apple data from Polygon and apply your indicator logic
 if st.button("Compute Indicators on AAPL"):
+    print(st.session_state['entry_combination'])
+    print(st.session_state.parsed_indicators)
+
     with st.spinner("Fetching Apple data from Polygon and computing indicators..."):
         # 1) Grab AAPL data
         df_aapl = grab_new_data_polygon("AAPL", timespan="day", multiplier=1)
-        
         # 2) Convert session state conditions into a list/dict if needed
         entry_conditions_list = []
         for idx, cond_list in enumerate(st.session_state.entry_conditions.values(), start=1):
@@ -152,7 +139,7 @@ if st.button("Compute Indicators on AAPL"):
         try:
             df_result = indicators.apply_indicators(
                 df_aapl,
-                st.session_state.parsed_indicators,    # from text input above
+                st.session_state.parsed_indicators,    
                 entry_conditions_list,
                 st.session_state.entry_combination
             )
