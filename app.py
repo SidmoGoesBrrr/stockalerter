@@ -2,19 +2,49 @@ import streamlit as st
 import pandas as pd
 import uuid
 from streamlit_tags import st_tags
-from utils import update_market_data, load_market_data, bl_sp, predefined_suggestions, predefined_suggestions_alt
+
+# Local imports
+from utils import (
+    update_market_data,
+    load_market_data,
+    bl_sp,
+    predefined_suggestions,
+    predefined_suggestions_alt,
+    grab_new_data_polygon
+)
+
+# Hypothetical indicators module (adjust import, function name, etc.)
+import indicators_lib as indicators
+
+# Helper function: parse the user’s text input into a list or structured data
+def parse_indicator_text(text: str):
+    """
+    Example parse function:
+      - Splits on commas, strips whitespace.
+      - You can expand this to handle more complex syntax if needed.
+    """
+    # e.g., "sma(14), rsi(14) > 50" => ["sma(14)", "rsi(14) > 50"]
+    items = [x.strip() for x in text.split(",")]
+    return [item for item in items if item]  # filter out empty
 
 # Load market data
 market_data = load_market_data()
 
 st.header("Stock Alert System")
-
 # Initialize session state
 if "entry_conditions" not in st.session_state:
     st.session_state.entry_conditions = {}
 
 if "entry_combination" not in st.session_state:
     st.session_state.entry_combination = ""
+
+# We'll store any typed-in indicator text here
+if "indicator_text" not in st.session_state:
+    st.session_state.indicator_text = ""
+
+# We’ll also keep a parsed representation of the user’s indicators
+if "parsed_indicators" not in st.session_state:
+    st.session_state.parsed_indicators = []
 
 # Section: Add New Stock Alert
 st.subheader("Add a New Stock Alert")
@@ -32,19 +62,20 @@ if st.button("Add Stock Alert"):
     alert_id = str(uuid.uuid4())
     st.session_state.entry_conditions[alert_id] = [selected_exchange, selected_stock]
     st.success(f"Added alert for {selected_stock} on {selected_exchange}")
-    st.rerun()
+    st.experimental_rerun()
 
-st.divider()
 
 # Section: Define Entry Conditions
 st.subheader("Entry Conditions")
 
-#multiframe = st.selectbox(f"{bl_sp(1)}Need multiple timeframes for strategy?", ["True", "False"], index=1)
-timeframe = st.selectbox(f"{bl_sp(1)}Select lowest required Timeframe", ["1h", "4h", "1d", "1wk", "1mo"], index=2)
+timeframe = st.selectbox(
+    f"{bl_sp(1)}Select lowest required Timeframe",
+    ["1h", "4h", "1d", "1wk", "1mo"],
+    index=2
+)
 
-# Get indicator suggestions
-#suggests = predefined_suggestions_alt if multiframe == "True" else predefined_suggestions
-suggests = predefined_suggestions_alt 
+# For demonstration, always use multiple-timeframe suggestions
+suggests = predefined_suggestions_alt
 
 # Display existing conditions
 for n, (i, condition) in enumerate(st.session_state.entry_conditions.items()):
@@ -54,35 +85,80 @@ for n, (i, condition) in enumerate(st.session_state.entry_conditions.items()):
         st.markdown(f'<div class="bottom-align2"><p>{n+1}</p></div>', unsafe_allow_html=True)
     
     with middle:
-        new_value = st.text_area(f"Condition {n+1}", value=", ".join(condition), key=f"entry_condition_{i}")
+        new_value = st.text_area(
+            f"Condition {n+1}",
+            value=", ".join(condition),
+            key=f"entry_condition_{i}"
+        )
         if new_value.split(", ") != condition:
             st.session_state.entry_conditions[i] = new_value.split(", ")
-            st.rerun()
+            st.experimental_rerun()
     
     with right:
         if st.button(f"╳", key=f'button_{i}'):
             del st.session_state.entry_conditions[i]
-            st.rerun()
+            st.experimental_rerun()
 
-# Add new entry condition
+# Button to add a new condition row
 if st.button("Add New Condition"):
     new_uuid = str(uuid.uuid4())
     st.session_state.entry_conditions[new_uuid] = []
-    st.rerun()
+    st.experimental_rerun()
 
 # Combine Entry Conditions (if multiple exist)
 if len(st.session_state.entry_conditions) > 1:
     st.divider()
     st.subheader("Combine Entry Conditions")
     st.write(f"{bl_sp(1)}Use numbers to reference conditions (e.g., '1 and (2 or 3)')")
-    
-    new_value = st_tags(
-        label = f'',
-        text="Press tab to autocomplete and enter to save",
-        suggestions=suggests,
-        value=st.session_state.entry_conditions[i],
-        key=f"entry_condition_{i}"
+
+    new_val = st.text_input(
+        "Enter logic to combine conditions (optional)",
+        value=st.session_state.entry_combination
     )
-    #st.session_state.entry_combination = combination_input
+    if new_val != st.session_state.entry_combination:
+        st.session_state.entry_combination = new_val
 
 st.divider()
+
+# Section: Gather Indicators (New Text Bar)
+st.subheader("Enter Indicators to Apply (comma-separated)")
+
+# Text input for the user to type custom indicators
+input_text = st.text_input(
+    "Examples: sma(period=14), rsi(period=14) > 50, macd(...)",
+    value=st.session_state.indicator_text
+)
+
+if st.button("Set Indicators"):
+    st.session_state.indicator_text = input_text
+    st.session_state.parsed_indicators = parse_indicator_text(input_text)
+    st.success(f"Indicators saved: {st.session_state.parsed_indicators}")
+
+st.subheader("Apply Indicators on AAPL’s Price")
+
+# This button will fetch Apple data from Polygon and apply your indicator logic
+if st.button("Compute Indicators on AAPL"):
+    with st.spinner("Fetching Apple data from Polygon and computing indicators..."):
+        # 1) Grab AAPL data
+        df_aapl = grab_new_data_polygon("AAPL", timespan="day", multiplier=1)
+        
+        # 2) Convert session state conditions into a list/dict if needed
+        entry_conditions_list = []
+        for idx, cond_list in enumerate(st.session_state.entry_conditions.values(), start=1):
+            entry_conditions_list.append({
+                "index": idx,
+                "conditions": cond_list
+            })
+        
+        try:
+            df_result = indicators.apply_indicators(
+                df_aapl,
+                st.session_state.parsed_indicators,    # from text input above
+                entry_conditions_list,
+                st.session_state.entry_combination
+            )
+            
+            st.success("Indicators computed successfully!")
+            st.dataframe(df_result.tail(20))  # Display last 20 rows
+        except Exception as e:
+            st.error(f"An error occurred while computing indicators: {e}")
