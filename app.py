@@ -5,7 +5,6 @@ from streamlit_tags import st_tags
 
 # Local imports
 from utils import (
-    update_market_data,
     load_market_data,
     bl_sp,
     predefined_suggestions,
