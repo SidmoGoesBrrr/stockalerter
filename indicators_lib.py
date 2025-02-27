@@ -31,17 +31,20 @@ def HMA(df, timeperiod):
 
 def SLOPE_SMA(df, timeperiod):
     prices = df['Close']
+    df = SMA(df, timeperiod)
     df['slope_sma'] = np.gradient(talib.SMA(prices,timeperiod=timeperiod))
     return df
 
 def SLOPE_EMA(df, timeperiod):
     prices = df['Close']
-    df['slope_sma'] = np.gradient(talib.EMA(prices,timeperiod=timeperiod))
+    df = EMA(df, timeperiod)
+    df['slope_ema'] = np.gradient(talib.EMA(prices,timeperiod=timeperiod))
     return df
 
 def SLOPE_HMA(df, timeperiod):
     prices = df['Close']
-    df['slope_sma'] = np.gradient(HMA(prices,timeperiod=timeperiod))
+    df = HMA(df, timeperiod)
+    df['slope_hma'] = np.gradient(df['hma'])
     return df
 
 import re
