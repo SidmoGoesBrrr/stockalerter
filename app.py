@@ -125,7 +125,7 @@ st.subheader("Enter Indicators to Apply (comma-separated)")
 
 # Text input for the user to type custom indicators
 input_text = st.text_input(
-    "Examples: sma(period=14), rsi(period=14) > 50, macd(...)",
+    "Examples: sma(period=14), ema(period=14), etc...",
     value=st.session_state.indicator_text
 )
 

@@ -65,11 +65,12 @@ def apply_indicators(
     # Define a dictionary of supported indicators and their corresponding TA-Lib functions.
     # If you want to add more, just put them here with the appropriate function calls.
     supported_indicators = {
-        "sma": lambda close_prices, period: talib.SMA(close_prices, timeperiod=period),
-        "ema": lambda close_prices, period: talib.EMA(close_prices, timeperiod=period),
-        "rsi": lambda close_prices, period: talib.RSI(close_prices, timeperiod=period),
-        "hma": None,   # Not natively in TA-Lib; you’d implement your own or remove for now
-        "macd": None, # Not natively in TA-Lib; you’d implement your own or remove for now
+        "sma": SMA,
+        "ema": EMA,
+        "hma": HMA,   
+        "slope_sma": SLOPE_SMA,
+        "slope_ema": SLOPE_EMA,
+        "slope_hma": SLOPE_HMA
     }
     
     # Basic parsing helper to extract the indicator name and period from a string
