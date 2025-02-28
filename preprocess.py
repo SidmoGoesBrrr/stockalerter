@@ -81,7 +81,7 @@ breakout = Group(Keyword("breakout") + Suppress("(") + expression + Suppress(")"
 
 
 # Define a condition: lhs operator rhs
-condition = Group(operand + comparison_operator + operand)
+condition = Group((operand + comparison_operator + operand))
 
 # Define logical operators (only OR now)
 logical_operator = oneOf("or and")
@@ -106,6 +106,8 @@ def parse_condition(condition):
         list: Parsed condition as a tree.
         str: Error message if parsing fails.
     """
+    print(type(condition))
+    print("DEBUG condition_string repr:", (condition))
     condition = condition.lower()
     condition = condition.replace(" ","").replace("or", " or ").replace("and"," and ")
 

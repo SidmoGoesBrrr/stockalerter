@@ -1,4 +1,6 @@
 import streamlit as st
+import populate as indicators
+
 st.set_page_config(
     page_title="Add Alert",
     page_icon="+",
@@ -22,19 +24,6 @@ from utils import (
     grab_new_data_polygon,
     save_alert
 )
-# Hypothetical indicators module (adjust import, function name, etc.)
-import indicators_lib as indicators
-
-# Helper function: parse the user’s text input into a list or structured data
-def parse_indicator_text(text: str):
-    """
-    Example parse function:
-      - Splits on commas, strips whitespace.
-      - You can expand this to handle more complex syntax if needed.
-    """
-    # e.g., "sma(14), rsi(14) > 50" => ["sma(14)", "rsi(14) > 50"]
-    items = [x.strip() for x in text.split(",")]
-    return [item for item in items if item]  # filter out empty
 
 # Load market data
 market_data = load_market_data()
@@ -141,14 +130,23 @@ if st.button("Compute Indicators on AAPL"):
         # 2) Convert session state conditions into a list/dict if needed
         entry_conditions_list = []
         for idx, cond_list in enumerate(st.session_state.entry_conditions.values(), start=1):
-            entry_conditions_list.append({
-                "index": idx,
-                "conditions": cond_list
-            })
+            line_expr = " ".join(cond_list)  # e.g. "sma(period=14)[-1] > sma(period=15)[-1]"
+            print(f"Parsing condition {idx}: {line_expr}")
+            df_aapl = indicators.apply_indicators(df_aapl, line_expr)
+        st.dataframe(df_aapl.tail(20)) 
         print("Parsed entry conditions"+str(entry_conditions_list))
-        # Get the indicators in a format we can add in a dataframe
+         # Display last 20 rows
+        # try:
+        #     df_result = indicators.apply_indicators(
+        #         df_aapl,
+        #         st.session_state.entry_combination # or whatever string you're using
+        #     )
+            
+        #     st.success("Indicators computed successfully!")
+        #     st.dataframe(df_result.tail(20))  # Display last 20 rows
+        # except Exception as e:
+        #     st.error(f"An error occurred while computing indicators: {e}")
+        # # Get the indicators in a format we can add in a dataframe
         
         save_alert(entry_conditions_list, st.session_state.entry_combination, "AAPL",selected_stock,selected_exchange,None)
         st.success("Alert saved successfully!")
-
-        
