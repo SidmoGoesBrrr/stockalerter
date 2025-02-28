@@ -7,7 +7,7 @@ import datetime
 import yfinance as yf
 import numpy as np
 import os
-
+import uuid
 
 
 
@@ -25,8 +25,9 @@ client = RESTClient(api_key=POLY_API_KEY)
 
 # Path to CSV file for storing exchange and stock data
 CSV_FILE_PATH = "cleaned_data.csv"
-PROGRESS_FILE = "progress.json"
 
+# Path to CSV file for storing stock alerts
+ALERTS_FILE_PATH = "metadata.json"
 def load_market_data():
     """
     Load stock exchange and ticker data from a CSV file.
@@ -102,3 +103,34 @@ def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
     df.set_index("Date", inplace=True)
 
     return df
+
+#Save an alert with multiple entry conditions as a JSON object in metadata.csv
+
+def save_alert(entry_conditions_list, combination_logic, ticker, stock_name, last_triggered):
+    alert_id = str(uuid.uuid4())  
+
+    new_alert = {
+        "alert_id": alert_id,
+        "stock_name": stock_name,
+        "ticker": ticker,
+        "conditions": entry_conditions_list,
+        "combination_logic": combination_logic,
+        "last_triggered": last_triggered
+    }
+
+    # Load existing alerts if the JSON file exists
+    try:
+        with open(ALERTS_FILE_PATH, "r") as file:
+            alerts = json.load(file)
+
+    except (FileNotFoundError, json.JSONDecodeError):
+        alerts = []  
+
+    # Append the new alert
+    alerts.append(new_alert)
+
+    # Save back to the file
+    with open(ALERTS_FILE_PATH, "w") as file:
+        json.dump(alerts, file, indent=4)
+
+    print(f"Alert {alert_id} saved successfully.")

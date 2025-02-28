@@ -9,7 +9,8 @@ from utils import (
     bl_sp,
     predefined_suggestions,
     predefined_suggestions_alt,
-    grab_new_data_polygon
+    grab_new_data_polygon,
+    save_alert
 )
 st.set_page_config(layout="wide")
 # Hypothetical indicators module (adjust import, function name, etc.)
@@ -135,6 +136,9 @@ if st.button("Compute Indicators on AAPL"):
                 "conditions": cond_list
             })
         print("Parsed entry conditions"+str(entry_conditions_list))
+        # Get the indicators in a format we can add in a dataframe
+        
+        save_alert(entry_conditions_list, st.session_state.entry_combination, "AAPL","Apple",None)
         try:
             df_result = indicators.apply_indicators(
                 df_aapl,
