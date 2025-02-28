@@ -14,6 +14,7 @@ def extract_indicators(parsed_condition):
     indicators = set()
 
     def recursive_extract(node):
+        print("DEBUG node:", node)
         # Base case: Check if the node represents an indicator
         if isinstance(node, list) and len(node) > 0 and isinstance(node[0], str):
             indicator_name = node[0]
@@ -36,5 +37,5 @@ def extract_indicators(parsed_condition):
 
     # Start recursive traversal
     recursive_extract(work_copy)
-
+    print("debug "+str(indicators))
     return indicators
