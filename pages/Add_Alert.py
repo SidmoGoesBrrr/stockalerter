@@ -148,7 +148,10 @@ if st.button("Compute Indicators on AAPL"):
         print("Parsed entry conditions"+str(entry_conditions_list))
         # Get the indicators in a format we can add in a dataframe
         
-        save_alert(entry_conditions_list, st.session_state.entry_combination, "AAPL",selected_stock,selected_exchange,None)
-        st.success("Alert saved successfully!")
-
+        try:
+            save_alert(entry_conditions_list, st.session_state.entry_combination, "AAPL",selected_stock,selected_exchange,None)
+            st.success("Alert saved successfully!")
+        except ValueError as e:
+            st.error(str(e))
         
+

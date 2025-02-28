@@ -12,8 +12,6 @@ import uuid
 
 
 POLY_API_KEY = os.getenv("POLYGON_API_KEY")
-BASE_URL = "https://eodhd.com/api"
-EODHD_API_KEY = os.getenv("EOD_API_KEY")  # Store securely in an environment variable
 
 # Ensure the API key exists
 if not POLY_API_KEY:
@@ -27,7 +25,7 @@ client = RESTClient(api_key=POLY_API_KEY)
 CSV_FILE_PATH = "cleaned_data.csv"
 
 # Path to CSV file for storing stock alerts
-ALERTS_FILE_PATH = "metadata.json"
+ALERTS_FILE_PATH = "alerts.json"
 def load_market_data():
     """
     Load stock exchange and ticker data from a CSV file.
@@ -108,6 +106,21 @@ def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
 
 def save_alert(entry_conditions_list, combination_logic, ticker, stock_name, exchange,last_triggered):
     alert_id = str(uuid.uuid4())  
+    # Load existing alerts if the JSON file exists
+    try:
+        with open(ALERTS_FILE_PATH, "r") as file:
+            alerts = json.load(file)
+
+    except (FileNotFoundError, json.JSONDecodeError):
+        alerts = []  
+
+    #if conditions are empty, return an error
+    if not entry_conditions_list or ticker == "" or stock_name == "" or entry_conditions_list[0].get("conditions",[]) == []:
+        raise ValueError("Entry conditions cannot be empty.")
+    
+    for alert in alerts:
+        if alert["stock_name"] == stock_name and alert["ticker"] == ticker and alert["conditions"] == entry_conditions_list and alert["combination_logic"] == combination_logic and alert["exchange"] == exchange:
+            raise ValueError("Alert already exists with the same data fields.")
 
     new_alert = {
         "alert_id": alert_id,
@@ -119,13 +132,7 @@ def save_alert(entry_conditions_list, combination_logic, ticker, stock_name, exc
         "exchange": exchange
     }
 
-    # Load existing alerts if the JSON file exists
-    try:
-        with open(ALERTS_FILE_PATH, "r") as file:
-            alerts = json.load(file)
-
-    except (FileNotFoundError, json.JSONDecodeError):
-        alerts = []  
+    
 
     # Append the new alert
     alerts.append(new_alert)
