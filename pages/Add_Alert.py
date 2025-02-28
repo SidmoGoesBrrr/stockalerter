@@ -150,3 +150,5 @@ if st.button("Compute Indicators on AAPL"):
         
         save_alert(entry_conditions_list, st.session_state.entry_combination, "AAPL",selected_stock,selected_exchange,None)
         st.success("Alert saved successfully!")
+
+        
