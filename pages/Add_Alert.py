@@ -1,4 +1,14 @@
 import streamlit as st
+st.set_page_config(
+    page_title="Add Alert",
+    page_icon="+",
+    layout="wide",
+)
+
+import sys
+import os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 import pandas as pd
 import uuid
 from streamlit_tags import st_tags
@@ -12,7 +22,6 @@ from utils import (
     grab_new_data_polygon,
     save_alert
 )
-st.set_page_config(layout="wide")
 # Hypothetical indicators module (adjust import, function name, etc.)
 import indicators_lib as indicators
 
@@ -91,6 +100,7 @@ for n, (i, condition) in enumerate(st.session_state.entry_conditions.items()):
         if new_value!=condition:
             st.session_state.entry_conditions[i] = new_value
             st.rerun()
+
     with right:
         st.markdown('<div class="bottom-align">', unsafe_allow_html=True)
         if st.button(f"╳", key=f'button_{i}'):
@@ -138,16 +148,5 @@ if st.button("Compute Indicators on AAPL"):
         print("Parsed entry conditions"+str(entry_conditions_list))
         # Get the indicators in a format we can add in a dataframe
         
-        save_alert(entry_conditions_list, st.session_state.entry_combination, "AAPL","Apple",None)
-        try:
-            df_result = indicators.apply_indicators(
-                df_aapl,
-                st.session_state.parsed_indicators,    
-                entry_conditions_list,
-                st.session_state.entry_combination
-            )
-            
-            st.success("Indicators computed successfully!")
-            st.dataframe(df_result.tail(20))  # Display last 20 rows
-        except Exception as e:
-            st.error(f"An error occurred while computing indicators: {e}")
+        save_alert(entry_conditions_list, st.session_state.entry_combination, "AAPL",selected_stock,selected_exchange,None)
+        st.success("Alert saved successfully!")

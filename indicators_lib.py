@@ -58,7 +58,7 @@ def SLOPE_HMA(df, timeperiod):
 def RSI(df, timeperiod):
     return talib.RSI(df['Close'], timeperiod=timeperiod)
 
-def BBANDS(df, timeperiod, std_dev, type)
+def BBANDS(df, timeperiod, std_dev, type):
     upper, middle, lower = talib.BBANDS(df['Close'], timeperiod = timeperiod, nbdevdn= std_dev, nbdevup= std_dev, matype=0)
     if type == "upper":
         return upper
