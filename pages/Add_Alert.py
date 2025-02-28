@@ -130,6 +130,10 @@ if st.button("Compute Indicators on AAPL"):
         # 2) Convert session state conditions into a list/dict if needed
         entry_conditions_list = []
         for idx, cond_list in enumerate(st.session_state.entry_conditions.values(), start=1):
+            entry_conditions_list.append({
+                "index": idx,
+                "conditions": cond_list
+            })
             line_expr = " ".join(cond_list)  # e.g. "sma(period=14)[-1] > sma(period=15)[-1]"
             print(f"Parsing condition {idx}: {line_expr}")
             df_aapl = indicators.apply_indicators(df_aapl, line_expr)
@@ -148,5 +152,9 @@ if st.button("Compute Indicators on AAPL"):
         #     st.error(f"An error occurred while computing indicators: {e}")
         # # Get the indicators in a format we can add in a dataframe
         
-        save_alert(entry_conditions_list, st.session_state.entry_combination, "AAPL",selected_stock,selected_exchange,None)
-        st.success("Alert saved successfully!")
+        try:
+            save_alert(entry_conditions_list, st.session_state.entry_combination, "AAPL",selected_stock,selected_exchange,None)
+            st.success("Alert saved successfully!")
+
+        except ValueError as e:
+            st.error(f"Error: {e}")
