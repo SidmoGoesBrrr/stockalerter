@@ -20,7 +20,6 @@ from utils import (
     load_market_data,
     bl_sp,
     predefined_suggestions,
-    predefined_suggestions_alt,
     grab_new_data_polygon,
     save_alert
 )
