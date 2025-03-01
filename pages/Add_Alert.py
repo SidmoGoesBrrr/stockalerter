@@ -119,13 +119,13 @@ st.divider()
 stock_ticker = market_data[market_data["Name"] == selected_stock]["Symbol"].values[0]
 st.subheader(f"Apply Indicators on {stock_ticker}'s Price")
 
-# This button will fetch Apple data from Polygon and apply your indicator logic
+# This button will fetch Stock data from Polygon and apply your indicator logic
 if st.button("Add Alert"):
     print("Parsed entry conditions"+str(st.session_state.entry_conditions))
 
     with st.spinner(f"Fetching {selected_stock} data from Polygon and computing indicators..."):
-        # 1) Grab AAPL data
-        df_aapl = grab_new_data_polygon(stock_ticker, timespan="day", multiplier=1)
+        # 1) Grab stock data
+        df_stock = grab_new_data_polygon(stock_ticker, timespan="day", multiplier=1)
         # 2) Convert session state conditions into a list/dict if needed
         entry_conditions_list = []
         for idx, cond_list in enumerate(st.session_state.entry_conditions.values(), start=1):
@@ -135,15 +135,15 @@ if st.button("Add Alert"):
             })
             line_expr = " ".join(cond_list)  # e.g. "sma(period=14)[-1] > sma(period=15)[-1]"
             print(f"Parsing condition {idx}: {line_expr}")
-            df_aapl = indicators.apply_indicators(df_aapl, line_expr)
-        st.dataframe(df_aapl.tail(20)) 
+            df_stock = indicators.apply_indicators(df_stock, line_expr)
+        st.dataframe(df_stock.tail(20)) 
         print("Parsed entry conditions"+str(entry_conditions_list))
 
         
         try:
             if alert_name == "":
                 alert_name = f"{selected_stock} Alert"
-            save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, "AAPL",selected_stock,selected_exchange,None)
+            save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,selected_exchange,None)
             st.success(f"{alert_name} saved successfully!")
 
         except ValueError as e:
