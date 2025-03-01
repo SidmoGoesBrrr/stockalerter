@@ -36,5 +36,43 @@
         "combination_logic": "",
         "last_triggered": null,
         "exchange": "US"
+    },
+    {
+        "alert_id": "f8b6ebb6-53c2-4b3c-a9c7-3d03e33b4c52",
+        "name": "Test Alert",
+        "stock_name": "Apple ",
+        "ticker": "AAPL",
+        "conditions": [
+            {
+                "index": 1,
+                "conditions": [
+                    "sma(period = 5)[-1]",
+                    ">",
+                    "5"
+                ]
+            }
+        ],
+        "combination_logic": "",
+        "last_triggered": null,
+        "exchange": "US"
+    },
+    {
+        "alert_id": "daf1056b-1e75-4065-b5ee-d6b456e17d4b",
+        "name": "Test Alert 1",
+        "stock_name": "Apple ",
+        "ticker": "AAPL",
+        "conditions": [
+            {
+                "index": 1,
+                "conditions": [
+                    "sma(period = 7)[-1]",
+                    ">",
+                    "7"
+                ]
+            }
+        ],
+        "combination_logic": "",
+        "last_triggered": null,
+        "exchange": "US"
     }
 ]
