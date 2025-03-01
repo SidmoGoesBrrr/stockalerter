@@ -33,12 +33,13 @@ st.write("Here are the active stock alerts that you have set up:")
 
 
 
-search_query = st.text_input("Search alerts by stock name, ticker, condition, or exchange:").strip().lower()
+search_query = st.text_input("Search alerts by alert name, stock name, ticker, condition, or exchange:").strip().lower()
 
 def search_alerts(alert, query):
     return (
         query in alert['stock_name'].lower() or 
         query in alert['ticker'].lower() or 
+        query in alert['name'].lower() or
         query in alert['exchange'].lower() or 
         any(query in " ".join(condition['conditions']).lower() for condition in alert['conditions'])
     )
@@ -59,8 +60,9 @@ if not filtered_alerts:
     st.write("No active alerts matching your search.")
 else:
     for alert in filtered_alerts:
-        with st.expander(f"{alert['stock_name']} ({alert['ticker']}) - {alert['exchange']}"):
-            st.write("### Stock Alert")
+        with st.expander(f"{alert['name']} ({alert['ticker']}) - {alert['exchange']}"):
+            
+            st.write(f"### Alert Name: {alert['name']}")
             st.write(f"**Stock Name:** {alert['stock_name']} ({alert['ticker']})")
             st.write(f"**Exchange:** {alert['exchange']}")
             

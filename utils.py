@@ -104,7 +104,7 @@ def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
 
 #Save an alert with multiple entry conditions as a JSON object in metadata.csv
 
-def save_alert(entry_conditions_list, combination_logic, ticker, stock_name, exchange,last_triggered):
+def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name, exchange,last_triggered):
     alert_id = str(uuid.uuid4())  
     # Load existing alerts if the JSON file exists
     try:
@@ -124,6 +124,7 @@ def save_alert(entry_conditions_list, combination_logic, ticker, stock_name, exc
 
     new_alert = {
         "alert_id": alert_id,
+        "name": name,  # Added name field
         "stock_name": stock_name,
         "ticker": ticker,
         "conditions": entry_conditions_list,
