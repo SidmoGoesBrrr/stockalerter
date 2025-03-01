@@ -74,5 +74,32 @@
         "combination_logic": "",
         "last_triggered": null,
         "exchange": "US"
+    },
+    {
+        "alert_id": "5fd62f50-9ade-46f2-8400-d22fbe2b6add",
+        "name": "Apple  Alert",
+        "stock_name": "Apple ",
+        "ticker": "AAPL",
+        "conditions": [
+            {
+                "index": 1,
+                "conditions": [
+                    "sma(period = 30)[-1]",
+                    ">",
+                    "sma(period = 45)[-1]"
+                ]
+            },
+            {
+                "index": 2,
+                "conditions": [
+                    "rsi(period = 60)[-1]",
+                    ">",
+                    "rsi(period =70 )[-1]"
+                ]
+            }
+        ],
+        "combination_logic": "1 and 2",
+        "last_triggered": null,
+        "exchange": "US"
     }
 ]

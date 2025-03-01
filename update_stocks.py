@@ -43,54 +43,81 @@ def check_database(stock):
 
 def update_stock_database(stock, new_stock_data):
     file_path = f"data/{stock}_daily.csv"
-    
-    # Load existing data (with proper datetime index)
     existing_data = check_database(stock)
-    #convert all the data to UTC
-    existing_data.index = pd.to_datetime(existing_data.index, utc=True)
-    new_stock_data.index = pd.to_datetime(new_stock_data.index, utc=True)
-    
-    print("Existing data:")
-    print(existing_data.tail())
-    print(existing_data.head())
-    print(len(existing_data))
-
-    print("New data:")
-    print(new_stock_data.tail())
-    print(new_stock_data.head())
-    print(len(new_stock_data))
-    #print index
-    print("Index:")
-    print(existing_data.index)
-    
-
-    # print("Combined data:")
-    # print(len(df_combined))
-    # print("Combined data:")
-    # print(len(combined_data))
-    # print(combined_data.head())
-    # #check the difference between the two dataframes
-    # print("Difference between the two dataframes:")
-    # print(combined_data[~combined_data.index.duplicated(keep=False)])
-    # #clear the old file and write the new data
-    
-    # os.remove(file_path)
-    # combined_data.to_csv(file_path, index=True, date_format="%Y-%m-%d")
+    combined_data = new_stock_data[~new_stock_data.index.isin(existing_data.index)]
+    df_combined = pd.concat([existing_data, combined_data]) 
+    df_combined.to_csv(file_path, index=True, date_format="%Y-%m-%d")
     
 
 def calculate_technical_indicators(stock):
     file_path = f"data/{stock}_daily.csv"
     df = pd.read_csv(file_path)
+    original_columns = df.columns.tolist()
 
-    # # Apply technical indicators (Ensure functions exist in indicators_lib)
-    # df["SMA_30"] = simple_moving_average(df, 30)
-    # df["SMA_45"] = simple_moving_average(df, 45)
-    # df["SMA_15"] = simple_moving_average(df, 15)
-    # df["RSI_60"] = relative_strength_index(df, 60)
-    # df["RSI_70"] = relative_strength_index(df, 70)
+    # Identify columns that follow the indicator pattern (e.g. SMA_45)
+    indicator_cols = [
+        col for col in original_columns
+        if '_' in col and col.split('_')[0].upper() in 
+           {'SMA', 'EMA', 'HMA', 'SLOPE_SMA', 'SLOPE_EMA', 'SLOPE_HMA',
+            'RSI', 'ATR', 'CCI', 'BBANDS', 'ROC', 'WILLR', 'MACD', 'SAR'}
+    ]
+    
+    # Process each indicator column
+    for col in indicator_cols:
+        parts = col.split('_')
+        indicator_name = parts[0].upper()
+        try:
+            timeperiod = int(parts[1])
+        except ValueError:
+            # Skip if the timeframe part is not a valid integer
+            continue
 
+        if indicator_name == 'SMA':
+            df[col] = SMA(df, timeperiod)
+        elif indicator_name == 'EMA':
+            df[col] = EMA(df, timeperiod)
+        elif indicator_name == 'HMA':
+            df[col] = HMA(df, timeperiod)
+        elif indicator_name == 'SLOPE_SMA':
+            df[col] = SLOPE_SMA(df, timeperiod)
+        elif indicator_name == 'SLOPE_EMA':
+            df[col] = SLOPE_EMA(df, timeperiod)
+        elif indicator_name == 'SLOPE_HMA':
+            df[col] = SLOPE_HMA(df, timeperiod)
+        elif indicator_name == 'RSI':
+            df[col] = RSI(df, timeperiod)
+        elif indicator_name == 'ATR':
+            df[col] = ATR(df, timeperiod)
+        elif indicator_name == 'CCI':
+            df[col] = CCI(df, timeperiod)
+        elif indicator_name == 'ROC':
+            df[col] = ROC(df, timeperiod)
+        elif indicator_name == 'WILLR':
+            df[col] = WILLR(df, timeperiod)
+        elif indicator_name == 'BBANDS':
+            # Defaults: standard deviation 2, and choosing the 'middle' band.
+            std_dev_val = 2
+            line_type = 'middle'
+            df[col] = BBANDS(df, timeperiod, std_dev_val, line_type)
+        elif indicator_name == 'MACD':
+            # Defaults for MACD: fast=12, slow=26, signal=9, and using 'line' type.
+            fast_period = 12
+            slow_period = 26
+            signal_period = 9
+            line_type = 'line'
+            df[col] = MACD(df, fast_period, slow_period, signal_period, line_type)
+        elif indicator_name == 'SAR':
+            # Defaults for SAR
+            acceleration = 0.02
+            max_acceleration = 0.2
+            df[col] = SAR(df, acceleration, max_acceleration)
+
+    # Reassemble the DataFrame so that all original (non-indicator) columns like Volume are preserved.
+    non_indicator_cols = [col for col in original_columns if col not in indicator_cols]
+    df = df[non_indicator_cols + indicator_cols]
+    
     # Save updated file with indicators
-    df.to_csv(file_path, index=False)
+    df.to_csv(file_path, index=True, date_format="%Y-%m-%d")
 
 # Evaluate alert conditions dynamically
 def evaluate_condition(df, condition):
@@ -141,7 +168,7 @@ def run_daily_stock_check():
         update_stock_database(stock, new_stock_data)
         
         # Calculate indicators
-        #calculate_technical_indicators(stock)
+        calculate_technical_indicators(stock)
 
         # Check for alerts
         #check_alerts(stock, alert_data)
