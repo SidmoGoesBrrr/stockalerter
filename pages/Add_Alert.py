@@ -142,6 +142,36 @@ if st.button("Add Alert"):
         try:
             if alert_name == "":
                 alert_name = f"{selected_stock} Alert"
+
+            safe_ticker_name = stock_ticker.replace(" ", "_")
+            file_name = f"{safe_ticker_name}_daily.csv"
+            save_path = os.path.join("data", file_name)
+
+            if os.path.exists(save_path):
+                df_existing = pd.read_csv(save_path)
+                
+                # Both share 'Date'? Then set it as index once:
+                df_existing = df_existing.set_index("Volume")
+                df_new = df_stock.set_index("Volume")
+                
+                # Identify columns in df_new that are not in df_existing
+                new_cols = [c for c in df_new.columns if c not in df_existing.columns]
+
+                # Concat them side-by-side
+                df_final = pd.concat([df_existing, df_new[new_cols]], axis=1)
+
+                # Reset index -> 'Date' is a column again
+                df_final.reset_index(inplace=True)
+                # If you want to drop 'Date' from final CSV:
+                df_final.drop(columns=["Volume"], inplace=True)
+
+            else:
+                # No existing file, just use df_stock
+                df_final = df_stock
+
+            # Save
+            df_final.to_csv(save_path, index=False)
+
             save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,selected_exchange,None)
             st.success(f"{alert_name} saved successfully!")
 
