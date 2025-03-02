@@ -125,7 +125,6 @@ if st.button("Add Alert"):
     with st.spinner(f"Fetching {selected_stock} data from Polygon and computing indicators..."):
         # 1) Grab stock data
         df_stock = grab_new_data_polygon(stock_ticker, timespan="day", multiplier=1)
-        # 2) Convert session state conditions into a list/dict if needed
         entry_conditions_list = []
         for idx, cond_list in enumerate(st.session_state.entry_conditions.values(), start=1):
             entry_conditions_list.append({
@@ -155,43 +154,33 @@ if st.button("Add Alert"):
                 print(f"New columns: {df_stock.columns}")
                 print(f"Index: {df_existing.index}")
                 print(f"New index: {df_stock.index}")
-
-
                 df_new = df_stock
-                len_new = len(df_new)
-                print(f"Length of df_existing: {len_existing}")
-                print(f"Length of df_new: {len_new}")
+
                 
                 if "Date" not in df_existing.columns:
                     df_stock.reset_index(inplace=True)
                     df_stock.insert(0, "index", range(1, len(df_stock) + 1))
-                    
+
                 df_existing.reset_index(drop=True, inplace=True)
                 df_new = df_stock.copy().reset_index(drop=True)
-                # Identify columns in df_new that are not in df_existing
                 new_cols = [c for c in df_new.columns if c not in df_existing.columns]
                 print(f"New dataframe to be concatenated: {new_cols}")
-                # Concat them side-by-side
                 df_final = pd.concat([df_existing, df_new[new_cols]], axis=1)
-                print(f"NEW columns: {new_cols}")
-                print(f"Length of df_final: {len(df_final)}")
 
-                # # Reset index -> 'Date' is a column again
+
                 
                
 
             else:
-                # No existing file, just use df_stock
                 print("No existing file, using df_stock")
                 if "Date" not in df_stock.columns:
                                 df_stock.reset_index(inplace=True)
 
                 df_final = df_stock.copy()                
 
-            # Save
+            
             df_final.insert(0, "index", range(1, len(df_final) + 1))
 
-            # Save without setting any index
             df_final.to_csv(save_path, index=False, date_format="%Y-%m-%d")
 
 

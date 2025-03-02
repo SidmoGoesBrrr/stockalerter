@@ -4,12 +4,16 @@ import pandas as pd
 import schedule
 import time
 from utils import grab_new_data_polygon
+from webhook_alerts import send_stock_alert
 from indicators_lib import *
+import datetime
 
 # Load alert data from JSON file
 def load_alert_data():
     with open("alerts.json", "r") as file:
         return json.load(file)
+
+
 
 # Get all unique stock tickers from alert data
 def get_all_stocks(alert_data):
@@ -60,15 +64,12 @@ def update_stock_database(stock, new_stock_data):
     # Ensure new_stock_data has the same structure
     new_stock_data.reset_index(inplace=True)  # Convert Date index to column
     new_stock_data = new_stock_data[~new_stock_data["Date"].isin(existing_data["Date"])]
-    #print all the columns in the new_stock_data
-    print(f"Columns in new_stock_data: {new_stock_data.columns}")
-    # Combine old and new data
+
     df_combined = pd.concat([existing_data, new_stock_data])
     df_combined.reset_index(drop=True, inplace=True)
         
     # Regenerate the "index" column to be consistent
     df_combined['index'] = range(1, len(df_combined) + 1)
-    # Ensure the "index" column is the first column
     cols = df_combined.columns.tolist()
     if 'index' in cols:
         cols.insert(0, cols.pop(cols.index('index')))
@@ -153,38 +154,135 @@ def calculate_technical_indicators(stock):
     df.to_csv(file_path, index=False, date_format="%Y-%m-%d")
 
 # Evaluate alert conditions dynamically
-def evaluate_condition(df, condition):
-    pass
+def evaluate_indicator_condition(condition_str, df):
+    """
+    Evaluates an indicator condition string of the format 'sma(period = 30)[-1]'
+    and returns the value from the corresponding column in the dataframe at the specified index.
+    """
+    try:
+        # Remove spaces and make lowercase for uniform processing
+        cs = condition_str.replace(" ", "").lower()
+        # Extract the indicator name (e.g., "sma")
+        func_name = cs.split("(")[0]
+        # Extract the period value from within the parentheses, e.g., "period=30"
+        inside = cs[cs.find("(") + 1: cs.find(")")]
+        period = int(inside.split("=")[1])
+        # Extract the index value from the square brackets, e.g., "[-1]" or "[-2]"
+        index_start = cs.find("[")
+        index_end = cs.find("]")
+        if index_start == -1 or index_end == -1 or index_end < index_start:
+            print(f"[Alert Check] No valid index found in condition '{condition_str}', defaulting to -1.")
+            idx = -1
+        else:
+            idx_str = cs[index_start + 1:index_end]
+            idx = int(idx_str)
+        # Construct the expected column name (e.g., "SMA_30")
+        col_name = f"{func_name.upper()}_{period}"
+        if col_name not in df.columns:
+            print(f"[Alert Check] Column '{col_name}' not found in dataframe.")
+            return None
+        # Return the value from the specified row for that indicator column
+        return df.iloc[idx][col_name]
+    except Exception as e:
+        print(f"[Alert Check] Error evaluating condition '{condition_str}': {e}")
+        return None
+    
+def send_alert(stock, alert, condition_str, df):
+    """
+    Sends a Discord alert via webhook when an alert condition is met.
+    
+    Parameters:
+      - stock: Stock ticker (e.g., 'AAPL')
+      - alert: The alert dict from alerts.json
+      - condition_str: The condition string that triggered the alert (e.g., "sma(period = 30)[-1]")
+      - df: The stock dataframe (used for evaluating the condition and obtaining the current price)
+    """
+    # Ensure the condition_str is actually a string
+    if not isinstance(condition_str, str):
+        print(f"[Alert Check] Provided condition is not a string: {condition_str}")
+        return
 
-# Check if any alert conditions are met
+    # Evaluate the condition to get the triggered value using the index extracted from the condition string
+    triggered_value = evaluate_indicator_condition(condition_str, df)
+    triggered_value = round(triggered_value, 2) if triggered_value is not None else None
+    if triggered_value is None:
+        print(f"[Alert Check] Could not evaluate condition '{condition_str}' for {stock}.")
+        return
+
+    # Use the latest closing price as the current price
+    current_price = df.iloc[-1]['Close']
+    webhook_url = "https://discord.com/api/webhooks/1333550802505175061/gaHiFHU2-nEiK4Niz5kyJY0YcDTCMXxpwsE5gbVeFdwJ8shW8yWMXxjpZtu8Hap0WefE"
+    
+    # Send the alert via Discord
+    send_stock_alert(webhook_url, alert["name"], stock, condition_str, triggered_value,current_price)
+    print(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' evaluated to {triggered_value} at {datetime.datetime.now()}.")
+    #TODO: Update the last_triggered field in alerts.json
+
 def check_alerts(stock, alert_data):
+    
     file_path = f"data/{stock}_daily.csv"
     df = pd.read_csv(file_path)
     
     if df.empty:
-        print(f"⚠️ No data for {stock}, skipping alert check.")
+        print(f"[Alert Check] No data for {stock}, skipping alert check.")
         return
 
-    alerts = get_all_alerts_for_stock(alert_data, stock)
-
+    # Filter alerts for this stock (case-insensitive ticker match)
+    alerts = [alert for alert in alert_data if alert['ticker'].upper() == stock.upper()]
+    
     for alert in alerts:
-        conditions = alert["conditions"]
-        combination_logic = alert["combination_logic"]
-        print("Checking alert:", alert["name"] + " for " + stock + " with conditions: " + str(conditions) + " and logic: " + str(combination_logic))
+        condition_groups = alert.get("conditions", [])
+        combination_logic = alert.get("combination_logic", "").strip().lower()
+        group_results = []
+        
+        for group in condition_groups:
+            cond_list = group.get("conditions", [])
+            if len(cond_list) != 3:
+                print(f"[Alert Check] Invalid condition format in alert '{alert['name']}'. Skipping this group.")
+                group_results.append(False)
+                continue
+            
+            lhs_str, operator, rhs_str = cond_list
+            lhs_value = evaluate_indicator_condition(lhs_str, df)
+            rhs_value = evaluate_indicator_condition(rhs_str, df)
+            
+            if lhs_value is None or rhs_value is None:
+                print(f"[Alert Check] Could not evaluate condition in alert '{alert['name']}'.")
+                group_results.append(False)
+                continue
 
-        results = []
-        for condition_group in conditions:
-            condition_result = evaluate_condition(df, condition_group["conditions"])
-            results.append(condition_result)
+            # Evaluate the condition based on the operator
+            if operator == "==":
+                result = lhs_value == rhs_value
+            elif operator == "!=":
+                result = lhs_value != rhs_value
+            elif operator == ">":
+                result = lhs_value > rhs_value
+            elif operator == "<":
+                result = lhs_value < rhs_value
+            elif operator == ">=":
+                result = lhs_value >= rhs_value
+            elif operator == "<=":
+                result = lhs_value <= rhs_value
+            else:
+                print(f"[Alert Check] Unsupported operator '{operator}' in alert '{alert['name']}'.")
+                result = False
 
-        # Evaluate combination logic if present
-        if combination_logic:
-            logic_result = eval(combination_logic.replace("and", "and").replace("or", "or"))
+            group_results.append(result)
+            print(f"[Alert Check] '{alert['name']}': Evaluated condition '{lhs_str} {operator} {rhs_str}' with values {lhs_value} {operator} {rhs_value} -> {result}")
+
+        # Combine the results based on the combination logic ("or" vs. default "and")
+        if combination_logic == "or":
+            alert_triggered = any(group_results)
         else:
-            logic_result = all(results)  
+            alert_triggered = all(group_results)
 
-        if logic_result:
-            print(f"✅ ALERT TRIGGERED: {alert['name']} for {stock}")
+        if alert_triggered:
+            # For demonstration, use the lhs_value from the last evaluated condition as the triggered value
+            send_alert(stock, alert, lhs_str, df)
+            
+        else:
+            print(f"[Alert Check] '{alert['name']}' not triggered for {stock}.")
 
 # Main function to run daily
 def run_daily_stock_check():
@@ -204,7 +302,7 @@ def run_daily_stock_check():
         calculate_technical_indicators(stock)
 
         # Check for alerts
-        #check_alerts(stock, alert_data)
+        check_alerts(stock, alert_data)
 
     print("✅ Daily stock check completed.")
 
