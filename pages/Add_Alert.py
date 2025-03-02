@@ -135,6 +135,7 @@ if st.button("Add Alert"):
             line_expr = " ".join(cond_list)  # e.g. "sma(period=14)[-1] > sma(period=15)[-1]"
             print(f"Parsing condition {idx}: {line_expr}")
             df_stock = indicators.apply_indicators(df_stock, line_expr)
+
         st.dataframe(df_stock.tail(20)) 
         print("Parsed entry conditions"+str(entry_conditions_list))
 
@@ -148,29 +149,51 @@ if st.button("Add Alert"):
             save_path = os.path.join("data", file_name)
 
             if os.path.exists(save_path):
-                df_existing = pd.read_csv(save_path)
+                df_existing = pd.read_csv(save_path,index_col=0)
+                len_existing = len(df_existing)
+                print(f"COLUMNS: {df_existing.columns}")
+                print(f"New columns: {df_stock.columns}")
+                print(f"Index: {df_existing.index}")
+                print(f"New index: {df_stock.index}")
+
+
+                df_new = df_stock
+                len_new = len(df_new)
+                print(f"Length of df_existing: {len_existing}")
+                print(f"Length of df_new: {len_new}")
                 
-                # Both share 'Date'? Then set it as index once:
-                df_existing = df_existing.set_index("Volume")
-                df_new = df_stock.set_index("Volume")
-                
+                if "Date" not in df_existing.columns:
+                    df_stock.reset_index(inplace=True)
+                    df_stock.insert(0, "index", range(1, len(df_stock) + 1))
+                    
+                df_existing.reset_index(drop=True, inplace=True)
+                df_new = df_stock.copy().reset_index(drop=True)
                 # Identify columns in df_new that are not in df_existing
                 new_cols = [c for c in df_new.columns if c not in df_existing.columns]
-
+                print(f"New dataframe to be concatenated: {new_cols}")
                 # Concat them side-by-side
                 df_final = pd.concat([df_existing, df_new[new_cols]], axis=1)
+                print(f"NEW columns: {new_cols}")
+                print(f"Length of df_final: {len(df_final)}")
 
-                # Reset index -> 'Date' is a column again
-                df_final.reset_index(inplace=True)
-                # If you want to drop 'Date' from final CSV:
-                df_final.drop(columns=["Volume"], inplace=True)
+                # # Reset index -> 'Date' is a column again
+                
+               
 
             else:
                 # No existing file, just use df_stock
-                df_final = df_stock
+                print("No existing file, using df_stock")
+                if "Date" not in df_stock.columns:
+                                df_stock.reset_index(inplace=True)
+
+                df_final = df_stock.copy()                
 
             # Save
-            df_final.to_csv(save_path, index=False)
+            df_final.insert(0, "index", range(1, len(df_final) + 1))
+
+            # Save without setting any index
+            df_final.to_csv(save_path, index=False, date_format="%Y-%m-%d")
+
 
             save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,selected_exchange,None)
             st.success(f"{alert_name} saved successfully!")

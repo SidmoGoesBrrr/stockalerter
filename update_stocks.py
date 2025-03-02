@@ -25,33 +25,66 @@ def get_latest_stock_data(stock):
     return df
 
 
+
 # Load or create the historical database for a stock
 def check_database(stock):
     file_path = f"data/{stock}_daily.csv"
 
     if not os.path.exists(file_path):
+        print(f"📥 No existing data for {stock}, fetching new data...")
         df = get_latest_stock_data(stock)
-        # Save CSV with the date index intact (index=True)
-        df.to_csv(file_path, index=True, date_format="%Y-%m-%d")
+        df.reset_index(inplace=True)  # Move Date index to a column
+        df.insert(0, "index", range(1, len(df) + 1))
+        df.to_csv(file_path, index=False, date_format="%Y-%m-%d")
         return df
+
     else:
-        # Read CSV and set the first column as the datetime index
-        df = pd.read_csv(file_path, index_col=0)
+        df = pd.read_csv(file_path)
+        # Drop any extra unnamed columns that may have been added in previous runs
+        df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+        # Ensure that if an "index" column exists, it is of integer type; if not, create one.
+        if 'index' in df.columns:
+            df['index'] = df['index'].astype(int)
+        else:
+            df.insert(0, "index", range(1, len(df) + 1))
         return df
 
     
 
 def update_stock_database(stock, new_stock_data):
     file_path = f"data/{stock}_daily.csv"
-    existing_data = check_database(stock)
-    combined_data = new_stock_data[~new_stock_data.index.isin(existing_data.index)]
-    df_combined = pd.concat([existing_data, combined_data]) 
-    df_combined.to_csv(file_path, index=True, date_format="%Y-%m-%d")
     
+    # Load existing data
+    existing_data = check_database(stock)
+
+    # Ensure new_stock_data has the same structure
+    new_stock_data.reset_index(inplace=True)  # Convert Date index to column
+    new_stock_data = new_stock_data[~new_stock_data["Date"].isin(existing_data["Date"])]
+    #print all the columns in the new_stock_data
+    print(f"Columns in new_stock_data: {new_stock_data.columns}")
+    # Combine old and new data
+    df_combined = pd.concat([existing_data, new_stock_data])
+    df_combined.reset_index(drop=True, inplace=True)
+        
+    # Regenerate the "index" column to be consistent
+    df_combined['index'] = range(1, len(df_combined) + 1)
+    # Ensure the "index" column is the first column
+    cols = df_combined.columns.tolist()
+    if 'index' in cols:
+        cols.insert(0, cols.pop(cols.index('index')))
+    df_combined = df_combined[cols]
+    
+    # Save the combined data consistently without using pandas' default index
+    df_combined.to_csv(file_path, index=False, date_format="%Y-%m-%d")
+    
+    return df_combined
+
 
 def calculate_technical_indicators(stock):
     file_path = f"data/{stock}_daily.csv"
     df = pd.read_csv(file_path)
+    df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
+
     original_columns = df.columns.tolist()
 
     # Identify columns that follow the indicator pattern (e.g. SMA_45)
@@ -117,7 +150,7 @@ def calculate_technical_indicators(stock):
     df = df[non_indicator_cols + indicator_cols]
     
     # Save updated file with indicators
-    df.to_csv(file_path, index=True, date_format="%Y-%m-%d")
+    df.to_csv(file_path, index=False, date_format="%Y-%m-%d")
 
 # Evaluate alert conditions dynamically
 def evaluate_condition(df, condition):
