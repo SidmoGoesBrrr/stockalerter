@@ -62,6 +62,7 @@ predefined_suggestions_alt = [
     "Open(timeframe = )[-1]", "Low(timeframe = )[-1]", "High(timeframe = )[-1]"
 ]
 
+
 # Function to add blank spaces for UI formatting
 def bl_sp(n):
     """Returns blank spaces for UI spacing in Streamlit."""
@@ -93,17 +94,36 @@ def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
         "l": "Low",
         "v": "Volume",
         "vw": "VWAP",
-        "n": "Trades"
     }, inplace=True)
 
     # Drop original timestamp column
-    df.drop(columns=["t"], inplace=True)
+    df.drop(columns=["t", "n"], inplace=True)
+    # Convert Volume to integer
+    df["Volume"] = df["Volume"].astype(int)
     df.set_index("Date", inplace=True)
 
     return df
 
-#Save an alert with multiple entry conditions as a JSON object in metadata.csv
 
+# Function to fetch stock data using Polygon API, works for international stocks too
+def grab_new_data_yfinance(ticker, timespan = "1d", period = "1y"):
+    df_yfinance = yf.download(ticker, period=period, interval=timespan,auto_adjust=True,multi_level_index=False,progress=False)
+    # Calculate VWAP and store only VWAP in Yahoo Finance DataFrame
+    df_yfinance["Typical Price"] = (df_yfinance["High"] + df_yfinance["Low"] + df_yfinance["Close"]) / 3
+    df_yfinance["TP * Volume"] = df_yfinance["Typical Price"] * df_yfinance["Volume"]
+    df_yfinance["Cumulative TP * Volume"] = df_yfinance["TP * Volume"].cumsum()
+    df_yfinance["Cumulative Volume"] = df_yfinance["Volume"].cumsum()
+    df_yfinance["VWAP"] = df_yfinance["Cumulative TP * Volume"] / df_yfinance["Cumulative Volume"]
+    df_yfinance.index = df_yfinance.index.strftime("%d-%m-%Y 00:00:00 EDT")
+
+    df = df_yfinance[["Volume", "VWAP", "Open", "Close", "High", "Low"]].copy()
+    df[["VWAP", "Open", "Close", "High", "Low"]] = df[["VWAP", "Open", "Close", "High", "Low"]].round(3)
+
+    return df
+
+
+
+#Save an alert with multiple entry conditions as a JSON object in alerts.csv
 def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name, exchange,last_triggered):
     alert_id = str(uuid.uuid4())  
     # Load existing alerts if the JSON file exists
@@ -143,3 +163,5 @@ def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name
         json.dump(alerts, file, indent=4)
 
     print(f"Alert {alert_id} saved successfully.")
+
+
