@@ -26,13 +26,9 @@ CSV_FILE_PATH = "cleaned_data.csv"
 
 # Path to CSV file for storing stock alerts
 ALERTS_FILE_PATH = "alerts.json"
-def load_market_data():
-    """
-    Load stock exchange and ticker data from a CSV file.
 
-    Returns:
-        pd.DataFrame: DataFrame containing exchanges and stock symbols.
-    """
+# Function to load stock exchange and ticker data from a CSV file
+def load_market_data():
     if os.path.exists(CSV_FILE_PATH):
         return pd.read_csv(CSV_FILE_PATH)
     else:

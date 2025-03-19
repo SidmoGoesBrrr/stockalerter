@@ -21,6 +21,7 @@ from utils import (
     bl_sp,
     predefined_suggestions,
     grab_new_data_polygon,
+    grab_new_data_yfinance,
     save_alert
 )
 
@@ -69,7 +70,6 @@ timeframe = st.selectbox(
     index=2
 )
 
-# For demonstration, always use multiple-timeframe suggestions
 suggests = predefined_suggestions
 for n, (i, condition) in enumerate(st.session_state.entry_conditions.items()):
     left,middle,right = st.columns([0.8,30,6])
@@ -116,6 +116,7 @@ if len(st.session_state.entry_conditions) > 1:
 st.divider()
 
 stock_ticker = market_data[market_data["Name"] == selected_stock]["Symbol"].values[0]
+
 st.subheader(f"Apply Indicators on {stock_ticker}'s Price")
 
 # This button will fetch Stock data from Polygon and apply your indicator logic
@@ -123,8 +124,13 @@ if st.button("Add Alert"):
     print("Parsed entry conditions"+str(st.session_state.entry_conditions))
 
     with st.spinner(f"Fetching {selected_stock} data from Polygon and computing indicators..."):
-        # 1) Grab stock data
-        df_stock = grab_new_data_polygon(stock_ticker, timespan="day", multiplier=1)
+        if selected_exchange.upper() == "US":
+            # Use Polygon for US stocks
+            df_stock = grab_new_data_polygon(stock_ticker, timespan="day", multiplier=1)
+        else:
+            # Use yfinance for non-US stocks
+            df_stock = grab_new_data_yfinance(stock_ticker, timespan="1d")
+
         entry_conditions_list = []
         for idx, cond_list in enumerate(st.session_state.entry_conditions.values(), start=1):
             entry_conditions_list.append({
