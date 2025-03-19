@@ -115,7 +115,6 @@ def grab_new_data_yfinance(ticker, timespan = "1d", period = "1y"):
     df_yfinance["Cumulative Volume"] = df_yfinance["Volume"].cumsum()
     df_yfinance["VWAP"] = df_yfinance["Cumulative TP * Volume"] / df_yfinance["Cumulative Volume"]
     df_yfinance.index = df_yfinance.index.strftime("%d-%m-%Y 00:00:00 EDT")
-
     df = df_yfinance[["Volume", "VWAP", "Open", "Close", "High", "Low"]].copy()
     df[["VWAP", "Open", "Close", "High", "Low"]] = df[["VWAP", "Open", "Close", "High", "Low"]].round(3)
 
