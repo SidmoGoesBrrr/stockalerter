@@ -3,7 +3,7 @@ import os
 import pandas as pd
 import schedule
 import time
-from utils import grab_new_data_polygon
+from utils import grab_new_data_polygon,grab_new_data_yfinance
 from webhook_alerts import send_stock_alert
 from indicators_lib import *
 import datetime
@@ -19,13 +19,20 @@ def load_alert_data():
 def get_all_stocks(alert_data):
     return list(set([alert['ticker'] for alert in alert_data]))
 
+#get exchange of a stock
+def get_stock_exchange(alert_data, stock):
+    return [alert['exchange'] for alert in alert_data if alert['ticker'] == stock][0]
+
 # Get all alerts related to a specific stock
 def get_all_alerts_for_stock(alert_data, stock):
     return [alert for alert in alert_data if alert['ticker'] == stock]
 
 # Fetch the latest stock data
-def get_latest_stock_data(stock):
-    df = grab_new_data_polygon(stock, timespan="day", multiplier=1)
+def get_latest_stock_data(stock, exchange):
+    if exchange == "US":
+        df = grab_new_data_polygon(stock, timespan="day", multiplier=1)
+    else:
+        df = grab_new_data_yfinance(stock, timespan="1d", period="1y")
     return df
 
 
@@ -295,7 +302,8 @@ def run_daily_stock_check():
         print(f"🔄 Processing {stock}...")
 
         # Fetch and update stock data
-        new_stock_data = get_latest_stock_data(stock)
+        exchange_for_stock = get_stock_exchange(alert_data, stock)
+        new_stock_data = get_latest_stock_data(stock,exchange_for_stock)
         update_stock_database(stock, new_stock_data)
         
         # Calculate indicators
