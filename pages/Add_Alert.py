@@ -63,12 +63,20 @@ selected_stock = st.selectbox("Select Stock:", filtered_stocks)
 
 # Section: Define Entry Conditions
 st.subheader("Entry Conditions")
+if selected_exchange=="US":
+    timeframe = st.selectbox(
+        f"{bl_sp(1)}Select lowest required Timeframe",
+        ["1h", "4h", "1d", "1wk", "1mo"],
+        index=2
+    )
+else:
+    timeframe = st.selectbox(
+        f"{bl_sp(1)}Select lowest required Timeframe",
+        ["1d", "1wk", "1mo"],
+        index=0
+    )
 
-timeframe = st.selectbox(
-    f"{bl_sp(1)}Select lowest required Timeframe",
-    ["1h", "4h", "1d", "1wk", "1mo"],
-    index=2
-)
+    
 
 suggests = predefined_suggestions
 for n, (i, condition) in enumerate(st.session_state.entry_conditions.items()):
