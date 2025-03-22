@@ -120,7 +120,7 @@ def grab_new_data_yfinance(ticker, timespan = "1d", period = "1y"):
 
 
 #Save an alert with multiple entry conditions as a JSON object in alerts.csv
-def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name, exchange,last_triggered):
+def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name, exchange,timeframe,last_triggered):
     alert_id = str(uuid.uuid4())  
     # Load existing alerts if the JSON file exists
     try:
@@ -146,6 +146,7 @@ def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name
         "conditions": entry_conditions_list,
         "combination_logic": combination_logic,
         "last_triggered": last_triggered,
+        "timeframe": timeframe,
         "exchange": exchange
     }
 
@@ -162,12 +163,10 @@ def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name
 
 
 ## FOR update_stocks.py ONLY
-
 # Load alert data from JSON file
 def load_alert_data():
     with open("alerts.json", "r") as file:
         return json.load(file)
-
 
 
 # Get all unique stock tickers from alert data
@@ -196,7 +195,6 @@ def calculate_technical_indicators(stock):
     df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
     original_columns = df.columns.tolist()
-
     # Identify columns that follow the indicator pattern (e.g. SMA_45)
     indicator_cols = [
         col for col in original_columns
@@ -264,10 +262,6 @@ def calculate_technical_indicators(stock):
 
 # Evaluate alert conditions dynamically
 def evaluate_indicator_condition(condition_str, df):
-    """
-    Evaluates an indicator condition string of the format 'sma(period = 30)[-1]'
-    and returns the value from the corresponding column in the dataframe at the specified index.
-    """
     try:
         # Remove spaces and make lowercase for uniform processing
         cs = condition_str.replace(" ", "").lower()
@@ -349,15 +343,6 @@ def update_stock_database(stock, new_stock_data):
 
     
 def send_alert(stock, alert, condition_str, df):
-    """
-    Sends a Discord alert via webhook when an alert condition is met.
-    
-    Parameters:
-      - stock: Stock ticker (e.g., 'AAPL')
-      - alert: The alert dict from alerts.json
-      - condition_str: The condition string that triggered the alert (e.g., "sma(period = 30)[-1]")
-      - df: The stock dataframe (used for evaluating the condition and obtaining the current price)
-    """
     # Ensure the condition_str is actually a string
     if not isinstance(condition_str, str):
         print(f"[Alert Check] Provided condition is not a string: {condition_str}")

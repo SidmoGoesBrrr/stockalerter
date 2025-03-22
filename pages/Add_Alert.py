@@ -63,18 +63,12 @@ selected_stock = st.selectbox("Select Stock:", filtered_stocks)
 
 # Section: Define Entry Conditions
 st.subheader("Entry Conditions")
-if selected_exchange=="US":
-    timeframe = st.selectbox(
-        f"{bl_sp(1)}Select lowest required Timeframe",
-        ["1h", "4h", "1d", "1wk", "1mo"],
-        index=2
-    )
-else:
-    timeframe = st.selectbox(
-        f"{bl_sp(1)}Select lowest required Timeframe",
-        ["1d", "1wk", "1mo"],
-        index=0
-    )
+
+timeframe = st.selectbox(
+    f"{bl_sp(1)}Select the required Timeframe",
+    ["1d", "1wk"],
+    index=0
+)
 
     
 
@@ -164,10 +158,7 @@ if st.button("Add Alert"):
             if os.path.exists(save_path):
                 df_existing = pd.read_csv(save_path,index_col=0)
                 len_existing = len(df_existing)
-                print(f"COLUMNS: {df_existing.columns}")
-                print(f"New columns: {df_stock.columns}")
-                print(f"Index: {df_existing.index}")
-                print(f"New index: {df_stock.index}")
+            
                 df_new = df_stock
 
                 
@@ -178,12 +169,8 @@ if st.button("Add Alert"):
                 df_existing.reset_index(drop=True, inplace=True)
                 df_new = df_stock.copy().reset_index(drop=True)
                 new_cols = [c for c in df_new.columns if c not in df_existing.columns]
-                print(f"New dataframe to be concatenated: {new_cols}")
                 df_final = pd.concat([df_existing, df_new[new_cols]], axis=1)
 
-
-                
-               
 
             else:
                 print("No existing file, using df_stock")
@@ -198,7 +185,7 @@ if st.button("Add Alert"):
             df_final.to_csv(save_path, index=False, date_format="%Y-%m-%d")
 
 
-            save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,selected_exchange,None)
+            save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,selected_exchange,timeframe,None)
             st.success(f"{alert_name} saved successfully!")
 
         except ValueError as e:
