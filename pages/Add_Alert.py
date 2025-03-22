@@ -59,7 +59,8 @@ selected_exchange = st.selectbox("Select Market Exchange:", exchange_list)
 filtered_stocks = market_data[market_data["Country"] == selected_exchange]["Name"].tolist()
 selected_stock = st.selectbox("Select Stock:", filtered_stocks)
 
-
+# Select whether to buy or sell
+action = st.selectbox("Select Action:", ["Buy", "Sell"])
 
 # Section: Define Entry Conditions
 st.subheader("Entry Conditions")
@@ -185,7 +186,7 @@ if st.button("Add Alert"):
             df_final.to_csv(save_path, index=False, date_format="%Y-%m-%d")
 
 
-            save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,selected_exchange,timeframe,None)
+            save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,selected_exchange,timeframe,None,action)
             st.success(f"{alert_name} saved successfully!")
 
         except ValueError as e:

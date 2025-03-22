@@ -120,7 +120,7 @@ def grab_new_data_yfinance(ticker, timespan = "1d", period = "1y"):
 
 
 #Save an alert with multiple entry conditions as a JSON object in alerts.csv
-def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name, exchange,timeframe,last_triggered):
+def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name, exchange,timeframe,last_triggered, action):
     alert_id = str(uuid.uuid4())  
     # Load existing alerts if the JSON file exists
     try:
@@ -146,6 +146,7 @@ def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name
         "conditions": entry_conditions_list,
         "combination_logic": combination_logic,
         "last_triggered": last_triggered,
+        "action": action,
         "timeframe": timeframe,
         "exchange": exchange
     }
