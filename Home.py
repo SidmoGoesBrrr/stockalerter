@@ -77,6 +77,9 @@ else:
             st.write("### Combination Logic:")
             st.write(alert['combination_logic'])
             
+            st.write("### Action:")
+            st.write(alert['action'], key=alert['alert_id'])
+
             if st.button(f"Delete Alert", key=alert['alert_id']):
                 delete_alert(alert['alert_id'])
 
