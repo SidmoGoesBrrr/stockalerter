@@ -4,7 +4,6 @@ import pandas as pd
 #import schedule
 import time
 from utils import *
-from webhook_alerts import send_stock_alert
 from indicators_lib import *
 import datetime
 

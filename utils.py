@@ -67,10 +67,13 @@ def bl_sp(n):
     """Returns blank spaces for UI spacing in Streamlit."""
     return '\u200e ' * (n + 1)
 
-def send_stock_alert(webhook_url, alert_name, ticker, triggered_condition, triggered_value, current_price):
+def send_stock_alert(webhook_url, timeframe,alert_name, ticker, triggered_condition, triggered_value, current_price, action):
+    # Change the color based on the action
+    color = 0x00ff00 if action == "Buy" else 0xff0000
+    timeframe = "Daily" if timeframe == "1d" else "Weekly"
     embed = {
-        "title": f"📈 Alert Triggered: {alert_name} ({ticker})",
-        "description": f"The condition **{triggered_condition}** was triggered with a value of **{triggered_value}**.",
+        "title": f"📈 {timeframe} Alert Triggered: {alert_name} ({ticker})",
+        "description": f"The condition **{triggered_condition}** was triggered with a value of **{triggered_value}**.\n Action: {action}",
         "fields": [
             {
                 "name": "Current Price",
@@ -78,7 +81,7 @@ def send_stock_alert(webhook_url, alert_name, ticker, triggered_condition, trigg
                 "inline": True
             }
         ],
-        "color": 3066993,  # Default green color.
+        "color": color,  # Default green color.
         "timestamp": datetime.datetime.now(timezone.utc).isoformat()
         }
 
@@ -395,8 +398,11 @@ def send_alert(stock, alert, condition_str, df):
     current_price = df.iloc[-1]['Close']
     webhook_url = os.getenv("WEBHOOK_URL")
     
+    # Add action to the alert
+    action = alert['action']
+    timeframe = alert['timeframe']
     # Send the alert via Discord
-    send_stock_alert(webhook_url, alert["name"], stock, condition_str, triggered_value,current_price)
+    send_stock_alert(webhook_url, timeframe, alert["name"], stock, condition_str, triggered_value,current_price, action)
     print(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' evaluated to {triggered_value} at {datetime.datetime.now()}.")
     #TODO: Update the last_triggered field in alerts.json
 
