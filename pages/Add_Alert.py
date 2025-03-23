@@ -45,7 +45,6 @@ if "parsed_indicators" not in st.session_state:
 
 # Section: Add New Stock Alert
 st.header("Add a New Stock Alert")
-
 st.write(f"{bl_sp(1)}Select a stock exchange and stock to set up an alert.")
 
 #ask for the name of the alert
@@ -129,10 +128,17 @@ if st.button("Add Alert"):
     with st.spinner(f"Fetching {selected_stock} data from Polygon and computing indicators..."):
         if selected_exchange.upper() == "US":
             # Use Polygon for US stocks
-            df_stock = grab_new_data_polygon(stock_ticker, timespan="day", multiplier=1)
+            if timeframe == "1wk":
+                time_poly = "week"
+            else:
+                time_poly = "day"
+            
+            df_stock = grab_new_data_polygon(stock_ticker, timespan=time_poly, multiplier=1)
         else:
             # Use yfinance for non-US stocks
-            df_stock = grab_new_data_yfinance(stock_ticker, timespan="1d")
+            
+                
+            df_stock = grab_new_data_yfinance(stock_ticker, timespan=timeframe)
 
         entry_conditions_list = []
         for idx, cond_list in enumerate(st.session_state.entry_conditions.values(), start=1):
@@ -153,7 +159,9 @@ if st.button("Add Alert"):
                 alert_name = f"{selected_stock} Alert"
 
             safe_ticker_name = stock_ticker.replace(" ", "_")
-            file_name = f"{safe_ticker_name}_daily.csv"
+            timeframe_name = timeframe.replace("1", "").replace("d", "daily").replace("wk", "weekly")
+
+            file_name = f"{safe_ticker_name}_{timeframe_name}.csv"
             save_path = os.path.join("data", file_name)
 
             if os.path.exists(save_path):

@@ -79,7 +79,7 @@ def send_stock_alert(webhook_url, alert_name, ticker, triggered_condition, trigg
             }
         ],
         "color": 3066993,  # Default green color.
-        "timestamp": datetime.now(timezone.utc).isoformat()
+        "timestamp": datetime.datetime.now(timezone.utc).isoformat()
         }
 
     payload = {
@@ -165,7 +165,7 @@ def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name
         raise ValueError("Entry conditions cannot be empty.")
     
     for alert in alerts:
-        if alert["stock_name"] == stock_name and alert["ticker"] == ticker and alert["conditions"] == entry_conditions_list and alert["combination_logic"] == combination_logic and alert["exchange"] == exchange:
+        if alert["stock_name"] == stock_name and alert["ticker"] == ticker and alert["conditions"] == entry_conditions_list and alert["combination_logic"] == combination_logic and alert["exchange"] == exchange and alert["timeframe"] == timeframe:
             raise ValueError("Alert already exists with the same data fields.")
 
     new_alert = {
@@ -201,8 +201,8 @@ def load_alert_data():
 
 
 # Get all unique stock tickers from alert data
-def get_all_stocks(alert_data):
-    return list(set([alert['ticker'] for alert in alert_data]))
+def get_all_stocks(alert_data,timeframe):
+    return list(set([alert['ticker'] for alert in alert_data if alert['timeframe'] == timeframe]))
 
 #get exchange of a stock
 def get_stock_exchange(alert_data, stock):
@@ -213,15 +213,19 @@ def get_all_alerts_for_stock(alert_data, stock):
     return [alert for alert in alert_data if alert['ticker'] == stock]
 
 # Fetch the latest stock data
-def get_latest_stock_data(stock, exchange):
+def get_latest_stock_data(stock, exchange, timespan):
     if exchange == "US":
-        df = grab_new_data_polygon(stock, timespan="day", multiplier=1)
+        df = grab_new_data_polygon(stock, timespan=timespan, multiplier=1)
     else:
-        df = grab_new_data_yfinance(stock, timespan="1d", period="1y")
+        if timespan == "day":
+            timespan_yfinance = "1d"
+        elif timespan == "week":
+            timespan_yfinance = "1wk"
+        df = grab_new_data_yfinance(stock, timespan=timespan_yfinance, period="1y")
     return df
 
-def calculate_technical_indicators(stock):
-    file_path = f"data/{stock}_daily.csv"
+def calculate_technical_indicators(stock, timeframe):
+    file_path = f"data/{stock}_{timeframe}.csv"
     df = pd.read_csv(file_path)
     df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
@@ -322,13 +326,14 @@ def evaluate_indicator_condition(condition_str, df):
         return None
     
 # Load or create the historical database for a stock
-def check_database(stock):
-    file_path = f"data/{stock}_daily.csv"
+def check_database(stock,timeframe):
+    file_path = f"data/{stock}_{timeframe}.csv"
 
     if not os.path.exists(file_path):
         print(f"📥 No existing data for {stock}, fetching new data...")
         exchange = get_stock_exchange(load_alert_data(), stock)
-        df = get_latest_stock_data(stock, exchange)
+        timeframe = "day" if timeframe == "daily" else "week"
+        df = get_latest_stock_data(stock, exchange,timeframe)
         df.reset_index(inplace=True)  # Move Date index to a column
         df.insert(0, "index", range(1, len(df) + 1))
         df.to_csv(file_path, index=False, date_format="%Y-%m-%d")
@@ -347,11 +352,11 @@ def check_database(stock):
 
     
 
-def update_stock_database(stock, new_stock_data):
-    file_path = f"data/{stock}_daily.csv"
+def update_stock_database(stock, new_stock_data,timeframe):
+    file_path = f"data/{stock}_{timeframe}.csv"
     
     # Load existing data
-    existing_data = check_database(stock)
+    existing_data = check_database(stock,timeframe)
 
     # Ensure new_stock_data has the same structure
     new_stock_data.reset_index(inplace=True)  # Convert Date index to column
@@ -395,9 +400,9 @@ def send_alert(stock, alert, condition_str, df):
     print(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' evaluated to {triggered_value} at {datetime.datetime.now()}.")
     #TODO: Update the last_triggered field in alerts.json
 
-def check_alerts(stock, alert_data):
+def check_alerts(stock, alert_data,timeframe):
     
-    file_path = f"data/{stock}_daily.csv"
+    file_path = f"data/{stock}_{timeframe}.csv"
     df = pd.read_csv(file_path)
     
     if df.empty:
@@ -405,7 +410,8 @@ def check_alerts(stock, alert_data):
         return
 
     # Filter alerts for this stock (case-insensitive ticker match)
-    alerts = [alert for alert in alert_data if alert['ticker'].upper() == stock.upper()]
+    alert_timeframe = "1d" if timeframe == "daily" else "1wk"
+    alerts = [alert for alert in alert_data if alert['ticker'].upper() == stock.upper() and alert['timeframe'] == alert_timeframe]
     
     for alert in alerts:
         condition_groups = alert.get("conditions", [])
