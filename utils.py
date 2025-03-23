@@ -406,6 +406,7 @@ def send_alert(stock, alert, condition_str, df):
     print(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' evaluated to {triggered_value} at {datetime.datetime.now()}.")
     #TODO: Update the last_triggered field in alerts.json
 
+
 def check_alerts(stock, alert_data,timeframe):
     
     file_path = f"data/{stock}_{timeframe}.csv"
@@ -469,6 +470,10 @@ def check_alerts(stock, alert_data,timeframe):
         if alert_triggered:
             # For demonstration, use the lhs_value from the last evaluated condition as the triggered value
             send_alert(stock, alert, lhs_str, df)
-            
+            # Update the last_triggered field in alerts.json
+            alert['last_triggered'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            with open("alerts.json", "w") as file:
+                json.dump(alert_data, file, indent=4)
+
         else:
             print(f"[Alert Check] '{alert['name']}' not triggered for {stock}.")
