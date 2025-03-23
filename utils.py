@@ -4,12 +4,13 @@ from urllib3 import HTTPResponse
 import json
 import pandas as pd
 import datetime
+from datetime import timezone
 import yfinance as yf
 import numpy as np
 import os
 import uuid
 from indicators_lib import *
-from webhook_alerts import send_stock_alert
+import requests
 
 
 
@@ -65,6 +66,35 @@ predefined_suggestions_alt = [
 def bl_sp(n):
     """Returns blank spaces for UI spacing in Streamlit."""
     return '\u200e ' * (n + 1)
+
+def send_stock_alert(webhook_url, alert_name, ticker, triggered_condition, triggered_value, current_price):
+    embed = {
+        "title": f"📈 Alert Triggered: {alert_name} ({ticker})",
+        "description": f"The condition **{triggered_condition}** was triggered with a value of **{triggered_value}**.",
+        "fields": [
+            {
+                "name": "Current Price",
+                "value": f"${current_price:.2f}",
+                "inline": True
+            }
+        ],
+        "color": 3066993,  # Default green color.
+        "timestamp": datetime.now(timezone.utc).isoformat()
+        }
+
+    payload = {
+        "embeds": [embed]
+    }
+
+    try:
+        response = requests.post(webhook_url, json=payload)
+        if response.status_code == 204:
+            print("Alert sent successfully!")
+        else:
+            print(f"Failed to send alert. HTTP Status Code: {response.status_code}")
+            print(f"Response: {response.text}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 # Function to fetch stock data using Polygon API
 def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
