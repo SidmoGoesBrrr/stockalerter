@@ -11,10 +11,14 @@ import os
 import uuid
 from indicators_lib import *
 import requests
+import time
 
-
-
+MAX_DISCORD_MESSAGE_LENGTH = 2000
 POLY_API_KEY = os.getenv("POLYGON_API_KEY")
+WEBHOOK_URL = os.getenv("WEBHOOK_URL")
+WEBHOOK_URL_LOGGING = os.getenv("WEBHOOK_URL_LOGGING")
+LOG_BUFFER = []
+
 
 # Ensure the API key exists
 if not POLY_API_KEY:
@@ -98,6 +102,49 @@ def send_stock_alert(webhook_url, timeframe,alert_name, ticker, triggered_condit
             print(f"Response: {response.text}")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+# Function to log messages to Discord
+def log_to_discord(message: str):
+    global LOG_BUFFER
+    LOG_BUFFER.append(message)
+
+# Function to split a long message into multiple code blocks
+def split_message(message, max_length):
+    lines = message.split("\n")
+    chunks = []
+    current_chunk = ""
+    
+    for line in lines:
+        if len(current_chunk) + len(line) + 1 < max_length - 6:  # 6 for code block fences
+            current_chunk += line + "\n"
+        else:
+            chunks.append(f"```{current_chunk.strip()}```")
+            current_chunk = line + "\n"
+    if current_chunk:
+        chunks.append(f"```{current_chunk.strip()}```")
+    
+    return chunks
+
+# Function to flush log buffer to Discord
+def flush_logs_to_discord():
+    global LOG_BUFFER
+    if not LOG_BUFFER:
+        return
+
+    full_message = "\n".join(LOG_BUFFER)
+    messages = split_message(full_message, MAX_DISCORD_MESSAGE_LENGTH)
+
+    for msg in messages:
+        payload = {"content": msg}
+        try:
+            response = requests.post(WEBHOOK_URL_LOGGING, json=payload)
+            response.raise_for_status()
+            time.sleep(5)  # Delay to respect rate limits
+        except requests.exceptions.RequestException as e:
+            print(f"Failed to send Discord message: {e}")
+            break  # Exit on failure to prevent flooding
+
+    LOG_BUFFER.clear()  # Clear buffer after successful sends
 
 # Function to fetch stock data using Polygon API
 def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
@@ -396,15 +443,13 @@ def send_alert(stock, alert, condition_str, df):
 
     # Use the latest closing price as the current price
     current_price = df.iloc[-1]['Close']
-    webhook_url = os.getenv("WEBHOOK_URL")
     
     # Add action to the alert
     action = alert['action']
     timeframe = alert['timeframe']
     # Send the alert via Discord
-    send_stock_alert(webhook_url, timeframe, alert["name"], stock, condition_str, triggered_value,current_price, action)
-    print(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' evaluated to {triggered_value} at {datetime.datetime.now()}.")
-    #TODO: Update the last_triggered field in alerts.json
+    send_stock_alert(WEBHOOK_URL, timeframe, alert["name"], stock, condition_str, triggered_value,current_price, action)
+    log_to_discord(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' evaluated to {triggered_value} at {datetime.datetime.now()}.")
 
 
 def check_alerts(stock, alert_data,timeframe):
@@ -428,7 +473,7 @@ def check_alerts(stock, alert_data,timeframe):
         for group in condition_groups:
             cond_list = group.get("conditions", [])
             if len(cond_list) != 3:
-                print(f"[Alert Check] Invalid condition format in alert '{alert['name']}'. Skipping this group.")
+                log_to_discord(f"[Alert Check] Invalid condition format in alert '{alert['name']}'. Skipping this group.")
                 group_results.append(False)
                 continue
             
@@ -437,7 +482,7 @@ def check_alerts(stock, alert_data,timeframe):
             rhs_value = evaluate_indicator_condition(rhs_str, df)
             
             if lhs_value is None or rhs_value is None:
-                print(f"[Alert Check] Could not evaluate condition in alert '{alert['name']}'.")
+                log_to_discord(f"[Alert Check] Could not evaluate condition in alert '{alert['name']}'.")
                 group_results.append(False)
                 continue
 
@@ -455,11 +500,11 @@ def check_alerts(stock, alert_data,timeframe):
             elif operator == "<=":
                 result = lhs_value <= rhs_value
             else:
-                print(f"[Alert Check] Unsupported operator '{operator}' in alert '{alert['name']}'.")
+                log_to_discord(f"[Alert Check] Unsupported operator '{operator}' in alert '{alert['name']}'.")
                 result = False
 
             group_results.append(result)
-            print(f"[Alert Check] '{alert['name']}': Evaluated condition '{lhs_str} {operator} {rhs_str}' with values {lhs_value} {operator} {rhs_value} -> {result}")
+            log_to_discord(f"[Alert Check] '{alert['name']}': Evaluated condition '{lhs_str} {operator} {rhs_str}' with values {lhs_value} {operator} {rhs_value} -> {result}")
 
         # Combine the results based on the combination logic ("or" vs. default "and")
         if combination_logic == "or":
@@ -476,4 +521,4 @@ def check_alerts(stock, alert_data,timeframe):
                 json.dump(alert_data, file, indent=4)
 
         else:
-            print(f"[Alert Check] '{alert['name']}' not triggered for {stock}.")
+            log_to_discord(f"[Alert Check] '{alert['name']}' not triggered for {stock}.")

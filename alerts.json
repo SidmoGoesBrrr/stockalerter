@@ -1,1 +1,44 @@
-[]
+[
+    {
+        "alert_id": "31899a16-b8de-42c0-8467-33130040e469",
+        "name": "Apple SMA 15 Alert",
+        "stock_name": "Apple ",
+        "ticker": "AAPL",
+        "conditions": [
+            {
+                "index": 1,
+                "conditions": [
+                    "sma(period = 15)[-1]",
+                    ">",
+                    "sma(period = 30)[-1]"
+                ]
+            }
+        ],
+        "combination_logic": "",
+        "last_triggered": null,
+        "action": "Buy",
+        "timeframe": "1d",
+        "exchange": "US"
+    },
+    {
+        "alert_id": "bb5c46c0-accf-428d-8b5a-e0521e75889d",
+        "name": "Apple SMA 15 Reverse Alert",
+        "stock_name": "Apple ",
+        "ticker": "AAPL",
+        "conditions": [
+            {
+                "index": 1,
+                "conditions": [
+                    "sma(period = 15)[-1]",
+                    "<",
+                    "sma(period = 30)[-2]"
+                ]
+            }
+        ],
+        "combination_logic": "",
+        "last_triggered": "2025-03-25 13:45:06",
+        "action": "Sell",
+        "timeframe": "1d",
+        "exchange": "US"
+    }
+]
