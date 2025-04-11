@@ -186,7 +186,15 @@ def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
 def grab_new_data_yfinance(ticker, timespan = "1d", period = "1y"):
     df_yfinance = yf.download(ticker, period=period, interval=timespan,auto_adjust=True,multi_level_index=False,progress=False)
     # Calculate VWAP and store only VWAP in Yahoo Finance DataFrame
-    df_yfinance["Typical Price"] = (df_yfinance["High"] + df_yfinance["Low"] + df_yfinance["Close"]) / 3
+    # Helper function to ensure the column is a Series
+    def get_series(column):
+        series = df_yfinance[column]
+        if isinstance(series, pd.DataFrame):
+            # If the DataFrame has only one column, squeeze it to a Series.
+            series = series.squeeze()
+        return series
+
+    df_yfinance["Typical Price"] = (get_series("High") + get_series("Low") + get_series("Close")) / 3
     df_yfinance["TP * Volume"] = df_yfinance["Typical Price"] * df_yfinance["Volume"]
     df_yfinance["Cumulative TP * Volume"] = df_yfinance["TP * Volume"].cumsum()
     df_yfinance["Cumulative Volume"] = df_yfinance["Volume"].cumsum()

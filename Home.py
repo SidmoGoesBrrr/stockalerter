@@ -42,6 +42,7 @@ def search_alerts(alert, query):
         query in alert['name'].lower() or
         query in alert['exchange'].lower() or 
         query in alert.get('action', '').lower() or
+        query in alert.get('timeframe', '').lower() or
         any(query in " ".join(condition['conditions']).lower() for condition in alert['conditions'])
     )
 
@@ -78,7 +79,10 @@ else:
             st.write(alert['combination_logic'])
             
             st.write("### Action:")
-            st.write(alert['action'], key=alert['alert_id'])
+            st.write(alert['action'])
+
+            st.write("### Timeframe:")
+            st.write(alert['timeframe'])
 
             if st.button(f"Delete Alert", key=alert['alert_id']):
                 delete_alert(alert['alert_id'])

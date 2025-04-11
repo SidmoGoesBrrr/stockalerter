@@ -51,11 +51,31 @@ st.write(f"{bl_sp(1)}Select a stock exchange and stock to set up an alert.")
 alert_name = st.text_input("Enter the name of the alert")
 
 # Select market exchange
-exchange_list = market_data["Country"].unique().tolist()
-selected_exchange = st.selectbox("Select Market Exchange:", exchange_list)
+exchange_info = pd.read_csv("market_data.csv")
 
-# Select stock from the chosen exchange
-filtered_stocks = market_data[market_data["Country"] == selected_exchange]["Name"].tolist()
+# Prepare mapping from exchange country name to country code used in cleaned_data
+country_to_code = {
+    "USA": "US", "Australia": "AUS", "Switzerland": "SW",
+    "Italy": "MI", "United Kingdom": "UK", "UK": "UK",
+    "Canada": "CA", "Japan": "JP", "Germany": "DE",
+    "France": "FR", "Spain": "ES", "Netherlands": "NL",
+    "Belgium": "BE", "Ireland": "IE", "Portugal": "PT",
+    "Denmark": "DK", "Finland": "FI", "Sweden": "SE",
+    "Norway": "NO", "Austria": "AT", "Poland": "PL",
+    "Hungary": "HU", "Greece": "GR", "Turkey": "TR", 
+    "Mexico": "MX", "Czech Republic": "CZ"
+}
+
+# Exchange selection by name
+exchange_names = exchange_info["Exchange Name"].tolist()
+selected_exchange_name = st.selectbox("Select Market Exchange:", exchange_names)
+
+# Map the selected exchange's country to the proper code
+country_name = exchange_info.loc[exchange_info["Exchange Name"] == selected_exchange_name, "Country"].iloc[0]
+country_code = country_to_code.get(country_name, country_name)  # default to name if already a code
+
+# Filter stocks from cleaned_data (market_data) by this country code
+filtered_stocks = market_data[market_data["Country"] == country_code]["Name"].tolist()
 selected_stock = st.selectbox("Select Stock:", filtered_stocks)
 
 # Select whether to buy or sell
@@ -126,7 +146,7 @@ if st.button("Add Alert"):
     print("Parsed entry conditions"+str(st.session_state.entry_conditions))
 
     with st.spinner(f"Fetching {selected_stock} data from Polygon and computing indicators..."):
-        if selected_exchange.upper() == "US":
+        if country_code.upper() == "US":
             # Use Polygon for US stocks
             if timeframe == "1wk":
                 time_poly = "week"
@@ -194,7 +214,7 @@ if st.button("Add Alert"):
             df_final.to_csv(save_path, index=False, date_format="%Y-%m-%d")
 
 
-            save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,selected_exchange,timeframe,None,action)
+            save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,country_code,timeframe,None,action)
             st.success(f"{alert_name} saved successfully!")
 
         except ValueError as e:
