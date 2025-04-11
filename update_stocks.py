@@ -2,6 +2,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 import datetime
 import pytz
 import pandas as pd
+from stockalerter.backend import check_alerts
 from utils import *
 from indicators_lib import *
 import time
@@ -105,7 +106,7 @@ def run_daily_stock_check_for_market(market_code):
             continue
 
         update_stock_database(stock, new_stock_data, timeframe="daily")
-        calculate_technical_indicators(stock, "daily")
+        #calculate_technical_indicators(stock, "daily")
         check_alerts(stock, alert_data, "daily")
 
     log_to_discord(f"✅ Completed daily check for {market_code}.")

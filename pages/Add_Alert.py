@@ -1,5 +1,4 @@
 import streamlit as st
-import populate as indicators
 
 st.set_page_config(
     page_title="Add Alert",
@@ -167,8 +166,9 @@ if st.button("Add Alert"):
                 "conditions": cond_list
             })
             line_expr = " ".join(cond_list)  # e.g. "sma(period=14)[-1] > sma(period=15)[-1]"
+            print("DEBUGGING" + line_expr)
             print(f"Parsing condition {idx}: {line_expr}")
-            df_stock = indicators.apply_indicators(df_stock, line_expr)
+            
 
         st.dataframe(df_stock.tail(20)) 
         print("Parsed entry conditions"+str(entry_conditions_list))
@@ -213,7 +213,7 @@ if st.button("Add Alert"):
 
             df_final.to_csv(save_path, index=False, date_format="%Y-%m-%d")
 
-
+            print(entry_conditions_list)
             save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,country_code,timeframe,None,action)
             st.success(f"{alert_name} saved successfully!")
 

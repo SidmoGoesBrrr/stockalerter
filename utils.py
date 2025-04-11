@@ -12,6 +12,8 @@ import uuid
 from indicators_lib import *
 import requests
 import time
+import operator
+
 
 MAX_DISCORD_MESSAGE_LENGTH = 2000
 POLY_API_KEY = os.getenv("POLYGON_API_KEY")
@@ -65,6 +67,7 @@ predefined_suggestions_alt = [
     "Open(timeframe = )[-1]", "Low(timeframe = )[-1]", "High(timeframe = )[-1]"
 ]
 
+inverse_map = {'>': '<=', '<': '>=', '==': '!=', '!=': '==', '>=': '<', '<=': '>'}
 
 # Function to add blank spaces for UI formatting
 def bl_sp(n):
@@ -148,6 +151,7 @@ def flush_logs_to_discord():
 
 # Function to fetch stock data using Polygon API
 def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
+
     today = datetime.datetime.today().strftime('%Y-%m-%d')
     last_year = (datetime.datetime.now() - datetime.timedelta(days=365)).strftime('%Y-%m-%d')
 
@@ -171,12 +175,11 @@ def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
         "l": "Low",
         "v": "Volume",
         "vw": "VWAP",
+        "n": "Trades"
     }, inplace=True)
 
     # Drop original timestamp column
-    df.drop(columns=["t", "n"], inplace=True)
-    # Convert Volume to integer
-    df["Volume"] = df["Volume"].astype(int)
+    df.drop(columns=["t"], inplace=True)
     df.set_index("Date", inplace=True)
 
     return df
@@ -460,73 +463,40 @@ def send_alert(stock, alert, condition_str, df):
     log_to_discord(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' evaluated to {triggered_value} at {datetime.datetime.now()}.")
 
 
-def check_alerts(stock, alert_data,timeframe):
+
+
+def translate_init_to_clean(ind):
+    name = ind[0]
+    if name in ['sma', 'ema', 'rsi', 'atr', 'cci', 'hma', 'slope_ema', 'slope_hma', 'slope_sma', 'roc', 'willr']:
+        timeperiod = ind[1].split("=")[-1]
+        return f"{name.upper()}_{timeperiod}"
     
-    file_path = f"data/{stock}_{timeframe}.csv"
-    df = pd.read_csv(file_path)
-    
-    if df.empty:
-        print(f"[Alert Check] No data for {stock}, skipping alert check.")
-        return
+ops = {
+    '>': operator.gt,
+    '<': operator.lt,
+    '==': operator.eq,
+    '>=': operator.ge,
+    '<=': operator.le,
+    '!=': operator.ne
+}
 
-    # Filter alerts for this stock (case-insensitive ticker match)
-    alert_timeframe = "1d" if timeframe == "daily" else "1wk"
-    alerts = [alert for alert in alert_data if alert['ticker'].upper() == stock.upper() and alert['timeframe'] == alert_timeframe]
-    
-    for alert in alerts:
-        condition_groups = alert.get("conditions", [])
-        combination_logic = alert.get("combination_logic", "").strip().lower()
-        group_results = []
-        
-        for group in condition_groups:
-            cond_list = group.get("conditions", [])
-            if len(cond_list) != 3:
-                log_to_discord(f"[Alert Check] Invalid condition format in alert '{alert['name']}'. Skipping this group.")
-                group_results.append(False)
-                continue
-            
-            lhs_str, operator, rhs_str = cond_list
-            lhs_value = evaluate_indicator_condition(lhs_str, df)
-            rhs_value = evaluate_indicator_condition(rhs_str, df)
-            
-            if lhs_value is None or rhs_value is None:
-                log_to_discord(f"[Alert Check] Could not evaluate condition in alert '{alert['name']}'.")
-                group_results.append(False)
-                continue
+supported_indicators = {
+    "sma": SMA,
+    "ema": EMA,
+    "hma": HMA,
+    "slope_sma": SLOPE_SMA,
+    "slope_ema": SLOPE_EMA,
+    "slope_hma": SLOPE_HMA,
+    "rsi": RSI,
+    "atr": ATR,
+    "cci": CCI,
+    "bb": BBANDS,
+    "roc": ROC,
+    "williamsr": WILLR,
+    "macd": MACD,
+    "psar": SAR
+}
 
-            # Evaluate the condition based on the operator
-            if operator == "==":
-                result = lhs_value == rhs_value
-            elif operator == "!=":
-                result = lhs_value != rhs_value
-            elif operator == ">":
-                result = lhs_value > rhs_value
-            elif operator == "<":
-                result = lhs_value < rhs_value
-            elif operator == ">=":
-                result = lhs_value >= rhs_value
-            elif operator == "<=":
-                result = lhs_value <= rhs_value
-            else:
-                log_to_discord(f"[Alert Check] Unsupported operator '{operator}' in alert '{alert['name']}'.")
-                result = False
+period_and_input = ['sma','ema','rsi','hma','slope_sma','slope_ema','slope_hma','roc']
 
-            group_results.append(result)
-            log_to_discord(f"[Alert Check] '{alert['name']}': Evaluated condition '{lhs_str} {operator} {rhs_str}' with values {lhs_value} {operator} {rhs_value} -> {result}")
-
-        # Combine the results based on the combination logic ("or" vs. default "and")
-        if combination_logic == "or":
-            alert_triggered = any(group_results)
-        else:
-            alert_triggered = all(group_results)
-
-        if alert_triggered:
-            # For demonstration, use the lhs_value from the last evaluated condition as the triggered value
-            send_alert(stock, alert, lhs_str, df)
-            # Update the last_triggered field in alerts.json
-            alert['last_triggered'] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            with open("alerts.json", "w") as file:
-                json.dump(alert_data, file, indent=4)
-
-        else:
-            log_to_discord(f"[Alert Check] '{alert['name']}' not triggered for {stock}.")
+period_only = ['sma','ema','rsi','hma','slope_sma','slope_ema','slope_hma','roc', 'atr', 'cci', 'willr', 'bbands']
