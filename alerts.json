@@ -1,16 +1,16 @@
 [
     {
-        "alert_id": "31899a16-b8de-42c0-8467-33130040e469",
-        "name": "Apple SMA 15 Alert",
-        "stock_name": "Apple ",
-        "ticker": "AAPL",
+        "alert_id": "3c3b77fd-92a7-4651-9e0d-b0e8ee25f650",
+        "name": "Weeee",
+        "stock_name": "CCC ",
+        "ticker": "CCC.WA",
         "conditions": [
             {
                 "index": 1,
                 "conditions": [
-                    "sma(period = 15)[-1]",
+                    "sma(period=30, input=rsi(period=30, input=sma(period=45, input = slope_sma(period=50, input=Close))))[-1] ",
                     ">",
-                    "sma(period = 30)[-1]"
+                    "sma(period=30, input=rsi(period=30, input=Close))[-1]"
                 ]
             }
         ],
@@ -18,41 +18,20 @@
         "last_triggered": null,
         "action": "Buy",
         "timeframe": "1d",
-        "exchange": "US"
+        "exchange": "PL"
     },
     {
-        "alert_id": "bb5c46c0-accf-428d-8b5a-e0521e75889d",
-        "name": "Apple SMA 15 Reverse Alert",
-        "stock_name": "Apple ",
-        "ticker": "AAPL",
+        "alert_id": "f5bfeb86-3f9f-411d-9004-c3f91455a19d",
+        "name": "Weeee2",
+        "stock_name": "CCC ",
+        "ticker": "CCC.WA",
         "conditions": [
             {
                 "index": 1,
                 "conditions": [
-                    "sma(period = 15)[-1]",
+                    "sma(period=30, input=rsi(period=30, input=sma(period=45, input = slope_sma(period=50, input=Close))))[-1] ",
                     "<",
-                    "sma(period = 30)[-2]"
-                ]
-            }
-        ],
-        "combination_logic": "",
-        "last_triggered": "2025-03-25 13:45:06",
-        "action": "Sell",
-        "timeframe": "1d",
-        "exchange": "US"
-    },
-    {
-        "alert_id": "8032bc67-1efa-4e00-90d4-62afcdc39c8e",
-        "name": "Commonwealth Bank of Australia Alert",
-        "stock_name": "Commonwealth Bank of Australia",
-        "ticker": "CBA.AX",
-        "conditions": [
-            {
-                "index": 1,
-                "conditions": [
-                    "sma(period = 30)[-1]",
-                    ">",
-                    "sma(period = 45)[-1]"
+                    "sma(period=30, input=rsi(period=30, input=Close))[-1]"
                 ]
             }
         ],
@@ -60,27 +39,6 @@
         "last_triggered": null,
         "action": "Buy",
         "timeframe": "1d",
-        "exchange": "AUS"
-    },
-    {
-        "alert_id": "4fba41cb-8ec3-4e36-81d6-f50d7f3c1bf2",
-        "name": "Toyota Motor Corp. Alert",
-        "stock_name": "Toyota Motor Corp.",
-        "ticker": "7203.T",
-        "conditions": [
-            {
-                "index": 1,
-                "conditions": [
-                    "sma(period =15 )[-1]",
-                    "==",
-                    "1"
-                ]
-            }
-        ],
-        "combination_logic": "",
-        "last_triggered": null,
-        "action": "Buy",
-        "timeframe": "1d",
-        "exchange": "JP"
+        "exchange": "PL"
     }
 ]

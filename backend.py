@@ -90,20 +90,25 @@ def simplify_conditions(cond, breakout_flag = False):
     Breakout() Case:
     breakout(rsi(period=80, input=Close)[-1]<rsi(period=50, input=Close)[-1]) to {cond1, cond2, comparison, breakoutflag=True}
     """
-    cond = cond.replace(" ", "")
-    operators = list(inverse_map.keys())
+    cond = cond.replace(" ", "")  # Remove spaces
+    operators = sorted(list(inverse_map.keys()), key=len, reverse=True)  # Sort by length (longest first)
 
-    if cond[0:8] != "breakout":
-        for operator in operators:
-            if len(cond.split(operator))==2:
-                ind1,ind2 = cond.split(operator)[0],cond.split(operator)[1]
-                return {'ind1' : ind_to_dict(ind1), 
-                        'ind2' : ind_to_dict(ind2), 
-                        'comparison' : operator,
-                        'breakout_flag' : breakout_flag}
+    # If the condition starts with "breakout"
+    if cond[0:8] == "breakout":
+        return simplify_conditions(cond[9:-1], True)
+
+    # For multi-character and single-character operators
+    for operator in operators:
+        if operator in cond:
+            # Split the condition by the operator
+            ind1, ind2 = cond.split(operator, 1)  # Split only once
+            return {
+                'ind1': ind_to_dict(ind1),
+                'ind2': ind_to_dict(ind2),
+                'comparison': operator,
+                'breakout_flag': breakout_flag
+            }
     
-    return simplify_conditions(cond[9:-1],True)
-
 def apply_function(df, ind, vals= None, debug_mode = False):
     # If it is a flat number, simply return it
     if 'isNum' in ind and ind['isNum']:
