@@ -1,17 +1,13 @@
 [
     {
-        "alert_id": "3c3b77fd-92a7-4651-9e0d-b0e8ee25f650",
-        "name": "Weeee",
-        "stock_name": "CCC ",
-        "ticker": "CCC.WA",
+        "alert_id": "32da2412-f412-4e6e-bb41-5f6f24a7f7a2",
+        "name": "testing",
+        "stock_name": "Tesla",
+        "ticker": "TSLA",
         "conditions": [
             {
                 "index": 1,
-                "conditions": [
-                    "sma(period=30, input=rsi(period=30, input=sma(period=45, input = slope_sma(period=50, input=Close))))[-1] ",
-                    ">",
-                    "sma(period=30, input=rsi(period=30, input=Close))[-1]"
-                ]
+                "conditions": "sma(period = 30, input = Close)[-1]  < 0"
             }
         ],
         "combination_logic": "",
@@ -21,24 +17,20 @@
         "exchange": "PL"
     },
     {
-        "alert_id": "f5bfeb86-3f9f-411d-9004-c3f91455a19d",
-        "name": "Weeee2",
-        "stock_name": "CCC ",
-        "ticker": "CCC.WA",
+        "alert_id": "2be85fef-4f4e-41d5-9ded-fec74cff02ae",
+        "name": "testing",
+        "stock_name": "Tesla",
+        "ticker": "TSLA",
         "conditions": [
             {
                 "index": 1,
-                "conditions": [
-                    "sma(period=30, input=rsi(period=30, input=sma(period=45, input = slope_sma(period=50, input=Close))))[-1] ",
-                    "<",
-                    "sma(period=30, input=rsi(period=30, input=Close))[-1]"
-                ]
+                "conditions": "sma(period = 30, input = Close)[-1]  > 0"
             }
         ],
         "combination_logic": "",
         "last_triggered": null,
         "action": "Buy",
         "timeframe": "1d",
-        "exchange": "PL"
+        "exchange": "US"
     }
 ]

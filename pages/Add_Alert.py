@@ -160,10 +160,11 @@ if st.button("Add Alert"):
             df_stock = grab_new_data_yfinance(stock_ticker, timespan=timeframe)
 
         entry_conditions_list = []
+        
         for idx, cond_list in enumerate(st.session_state.entry_conditions.values(), start=1):
             entry_conditions_list.append({
                 "index": idx,
-                "conditions": cond_list
+                "conditions": " ".join(cond_list)
             })
             line_expr = " ".join(cond_list)  # e.g. "sma(period=14)[-1] > sma(period=15)[-1]"
             print("DEBUGGING" + line_expr)
