@@ -2,7 +2,7 @@ from apscheduler.schedulers.blocking import BlockingScheduler
 import datetime
 import pytz
 import pandas as pd
-from stockalerter.backend import check_alerts
+from backend import check_alerts
 from utils import *
 from indicators_lib import *
 import time
@@ -96,7 +96,7 @@ def run_daily_stock_check_for_market(market_code):
 
     log_to_discord(f"📊 Processing {len(stocks)} stocks for {market_code}...")
     for stock in stocks:
-        log_to_discord(f"🔄 Updating {stock}...")
+        log_to_discord(f"🔄 Updating {stock}... with new data")
         logger.info("Updating stock: %s", stock)
 
         new_stock_data = get_latest_stock_data(stock, market_code, timespan="day")
@@ -106,7 +106,6 @@ def run_daily_stock_check_for_market(market_code):
             continue
 
         update_stock_database(stock, new_stock_data, timeframe="daily")
-        #calculate_technical_indicators(stock, "daily")
         check_alerts(stock, alert_data, "daily")
 
     log_to_discord(f"✅ Completed daily check for {market_code}.")
@@ -147,7 +146,6 @@ def run_weekly_stock_check():
             continue
 
         update_stock_database(stock, new_stock_data, timeframe="weekly")
-        calculate_technical_indicators(stock, "weekly")
         check_alerts(stock, alert_data, "weekly")
 
     log_to_discord("✅ Weekly stock check completed.")
@@ -168,7 +166,6 @@ daily_alerts = [alert for alert in alert_data if alert.get("timeframe") == "1d"]
 logger.info("Found %d daily alerts.", len(daily_alerts))
 markets = {alert.get("exchange") for alert in daily_alerts}
 logger.debug("Unique markets extracted for daily alerts: %s", markets)
-
 for market_code in markets:
     country_name = code_to_country.get(market_code, market_code)
     
@@ -240,10 +237,7 @@ scheduler.add_job(dynamic_market_scheduler, 'interval', minutes=1)
 logger.info("Scheduled Jobs:")
 scheduler.print_jobs()
 
-# OPTIONAL: Add a simple test job to see activity (prints every 10 seconds)
-def test_job():
-    logger.info("Test job executed at %s", datetime.datetime.now(pytz.timezone("America/New_York")))
-scheduler.add_job(test_job, 'interval', seconds=10)
+
 
 logger.info("Starting scheduler...")
 try:

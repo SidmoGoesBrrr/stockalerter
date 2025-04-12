@@ -1,5 +1,5 @@
 
-from utils import translate_init_to_clean, ops, supported_indicators, inverse_map, period_and_input, period_only, log_to_discord, send_alert
+from utils import ops, supported_indicators, inverse_map, period_and_input, period_only, log_to_discord, send_alert
 from indicators_lib import *
 import re
 import datetime
@@ -253,9 +253,10 @@ def check_alerts(stock, alert_data,timeframe):
             
             print(alert)
             print("Conditions:")
-            condition = alert['conditions'][0]['conditions']
+            condition = [alert['conditions'][0]['conditions']]
             print(condition)
             result = evaluate_expression_list(df = df, exps = condition)
+            
             print(f"Result: {result}")
             log_to_discord(f"Evaluating alert '{alert['name']}' for {stock}: condition '{condition}' evaluated to {result} at {datetime.datetime.now()}.")
             

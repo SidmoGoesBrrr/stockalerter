@@ -45,14 +45,26 @@ def load_market_data():
     
 # Predefined suggestions for technical indicators (Single timeframe mode)
 predefined_suggestions = [
-    "sma(period = )[-1]", "hma(period = )[-1]", "rsi(period = )[-1]",
-    "ema(period = )[-1]", "slope_sma(period = )[-1]", "slope_ema(period = )[-1]",
-    "slope_hma(period = )[-1]", "bb(period = , std_dev = , type = )[-1]",
-    "macd(fast_period = , slow_period = , signal_period = , type = )[-1]", "Breakout",
-    "atr(period = )[-1]", "cci(period = )[-1]", "roc(period = )[-1]", "WilliamSR(period = )[-1]",
-    "psar(acceleration = , max_acceleration = )[-1]", "Close[-1]", "Open[-1]",
-    "Low[-1]", "High[-1]"
+    "sma(period = )[-1]", 
+    "hma(period = )[-1]", 
+    "rsi(period = )[-1]",
+    "ema(period = )[-1]", 
+    "slope_sma(period = )[-1]", 
+    "slope_ema(period = )[-1]",
+    "slope_hma(period = )[-1]", 
+    "bb(period = , std_dev = , type = )[-1]",
+    "macd(fast_period = , slow_period = , signal_period = , type = )[-1]", 
+    "breakout",
+    "atr(period = )[-1]", 
+    "cci(period = )[-1]", 
+    "roc(period = )[-1]", 
+    "williamsr(period = )[-1]",
+    "Close[-1]", 
+    "Open[-1]",
+    "Low[-1]", 
+    "High[-1]"
 ]
+
 
 # Predefined suggestions for multiple timeframes mode
 predefined_suggestions_alt = [
@@ -74,37 +86,7 @@ def bl_sp(n):
     """Returns blank spaces for UI spacing in Streamlit."""
     return '\u200e ' * (n + 1)
 
-def send_stock_alert(webhook_url, timeframe,alert_name, ticker, triggered_condition, triggered_value, current_price, action):
-    # Change the color based on the action
-    color = 0x00ff00 if action == "Buy" else 0xff0000
-    timeframe = "Daily" if timeframe == "1d" else "Weekly"
-    embed = {
-        "title": f"📈 {timeframe} Alert Triggered: {alert_name} ({ticker})",
-        "description": f"The condition **{triggered_condition}** was triggered with a value of **{triggered_value}**.\n Action: {action}",
-        "fields": [
-            {
-                "name": "Current Price",
-                "value": f"${current_price:.2f}",
-                "inline": True
-            }
-        ],
-        "color": color,  # Default green color.
-        "timestamp": datetime.datetime.now(timezone.utc).isoformat()
-        }
 
-    payload = {
-        "embeds": [embed]
-    }
-
-    try:
-        response = requests.post(webhook_url, json=payload)
-        if response.status_code == 204:
-            print("Alert sent successfully!")
-        else:
-            print(f"Failed to send alert. HTTP Status Code: {response.status_code}")
-            print(f"Response: {response.text}")
-    except Exception as e:
-        print(f"An error occurred: {e}")
 
 # Function to log messages to Discord
 def log_to_discord(message: str):
@@ -220,7 +202,7 @@ def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name
 
     except (FileNotFoundError, json.JSONDecodeError):
         alerts = []  
-
+    
     #if conditions are empty, return an error
     if not entry_conditions_list or ticker == "" or stock_name == "" or entry_conditions_list[0].get("conditions",[]) == []:
         raise ValueError("Entry conditions cannot be empty.")
@@ -285,107 +267,7 @@ def get_latest_stock_data(stock, exchange, timespan):
         df = grab_new_data_yfinance(stock, timespan=timespan_yfinance, period="1y")
     return df
 
-def calculate_technical_indicators(stock, timeframe):
-    file_path = f"data/{stock}_{timeframe}.csv"
-    df = pd.read_csv(file_path)
-    df = df.loc[:, ~df.columns.str.contains('^Unnamed')]
 
-    original_columns = df.columns.tolist()
-    # Identify columns that follow the indicator pattern (e.g. SMA_45)
-    indicator_cols = [
-        col for col in original_columns
-        if '_' in col and col.split('_')[0].upper() in 
-           {'SMA', 'EMA', 'HMA', 'SLOPE_SMA', 'SLOPE_EMA', 'SLOPE_HMA',
-            'RSI', 'ATR', 'CCI', 'BBANDS', 'ROC', 'WILLR', 'MACD', 'SAR'}
-    ]
-    
-    # Process each indicator column
-    for col in indicator_cols:
-        parts = col.split('_')
-        indicator_name = parts[0].upper()
-        try:
-            timeperiod = int(parts[1])
-        except ValueError:
-            # Skip if the timeframe part is not a valid integer
-            continue
-
-        if indicator_name == 'SMA':
-            df[col] = SMA(df, timeperiod)
-        elif indicator_name == 'EMA':
-            df[col] = EMA(df, timeperiod)
-        elif indicator_name == 'HMA':
-            df[col] = HMA(df, timeperiod)
-        elif indicator_name == 'SLOPE_SMA':
-            df[col] = SLOPE_SMA(df, timeperiod)
-        elif indicator_name == 'SLOPE_EMA':
-            df[col] = SLOPE_EMA(df, timeperiod)
-        elif indicator_name == 'SLOPE_HMA':
-            df[col] = SLOPE_HMA(df, timeperiod)
-        elif indicator_name == 'RSI':
-            df[col] = RSI(df, timeperiod)
-        elif indicator_name == 'ATR':
-            df[col] = ATR(df, timeperiod)
-        elif indicator_name == 'CCI':
-            df[col] = CCI(df, timeperiod)
-        elif indicator_name == 'ROC':
-            df[col] = ROC(df, timeperiod)
-        elif indicator_name == 'WILLR':
-            df[col] = WILLR(df, timeperiod)
-        elif indicator_name == 'BBANDS':
-            # Defaults: standard deviation 2, and choosing the 'middle' band.
-            std_dev_val = 2
-            line_type = 'middle'
-            df[col] = BBANDS(df, timeperiod, std_dev_val, line_type)
-        elif indicator_name == 'MACD':
-            # Defaults for MACD: fast=12, slow=26, signal=9, and using 'line' type.
-            fast_period = 12
-            slow_period = 26
-            signal_period = 9
-            line_type = 'line'
-            df[col] = MACD(df, fast_period, slow_period, signal_period, line_type)
-        elif indicator_name == 'SAR':
-            # Defaults for SAR
-            acceleration = 0.02
-            max_acceleration = 0.2
-            df[col] = SAR(df, acceleration, max_acceleration)
-
-    # Reassemble the DataFrame so that all original (non-indicator) columns like Volume are preserved.
-    non_indicator_cols = [col for col in original_columns if col not in indicator_cols]
-    df = df[non_indicator_cols + indicator_cols]
-    
-    # Save updated file with indicators
-    df.to_csv(file_path, index=False, date_format="%Y-%m-%d")
-
-# Evaluate alert conditions dynamically
-def evaluate_indicator_condition(condition_str, df):
-    try:
-        # Remove spaces and make lowercase for uniform processing
-        cs = condition_str.replace(" ", "").lower()
-        # Extract the indicator name (e.g., "sma")
-        func_name = cs.split("(")[0]
-        # Extract the period value from within the parentheses, e.g., "period=30"
-        inside = cs[cs.find("(") + 1: cs.find(")")]
-        period = int(inside.split("=")[1])
-        # Extract the index value from the square brackets, e.g., "[-1]" or "[-2]"
-        index_start = cs.find("[")
-        index_end = cs.find("]")
-        if index_start == -1 or index_end == -1 or index_end < index_start:
-            print(f"[Alert Check] No valid index found in condition '{condition_str}', defaulting to -1.")
-            idx = -1
-        else:
-            idx_str = cs[index_start + 1:index_end]
-            idx = int(idx_str)
-        # Construct the expected column name (e.g., "SMA_30")
-        col_name = f"{func_name.upper()}_{period}"
-        if col_name not in df.columns:
-            print(f"[Alert Check] Column '{col_name}' not found in dataframe.")
-            return None
-        # Return the value from the specified row for that indicator column
-        return df.iloc[idx][col_name]
-    except Exception as e:
-        print(f"[Alert Check] Error evaluating condition '{condition_str}': {e}")
-        return None
-    
 # Load or create the historical database for a stock
 def check_database(stock,timeframe):
     file_path = f"data/{stock}_{timeframe}.csv"
@@ -445,32 +327,50 @@ def send_alert(stock, alert, condition_str, df):
         print(f"[Alert Check] Provided condition is not a string: {condition_str}")
         return
 
-    # Evaluate the condition to get the triggered value using the index extracted from the condition string
-    triggered_value = evaluate_indicator_condition(condition_str, df)
-    triggered_value = round(triggered_value, 2) if triggered_value is not None else None
-    if triggered_value is None:
-        print(f"[Alert Check] Could not evaluate condition '{condition_str}' for {stock}.")
-        return
-
-    # Use the latest closing price as the current price
     current_price = df.iloc[-1]['Close']
-    
     # Add action to the alert
     action = alert['action']
     timeframe = alert['timeframe']
     # Send the alert via Discord
-    send_stock_alert(WEBHOOK_URL, timeframe, alert["name"], stock, condition_str, triggered_value,current_price, action)
-    log_to_discord(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' evaluated to {triggered_value} at {datetime.datetime.now()}.")
+    send_stock_alert(WEBHOOK_URL, timeframe, alert["name"], stock, condition_str,current_price, action)
+    log_to_discord(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' at {datetime.datetime.now()}.")
+
+
+def send_stock_alert(webhook_url, timeframe,alert_name, ticker, triggered_condition, current_price, action):
+    # Change the color based on the action
+    color = 0x00ff00 if action == "Buy" else 0xff0000
+    timeframe = "Daily" if timeframe == "1d" else "Weekly"
+    embed = {
+        "title": f"📈 {timeframe} Alert Triggered: {alert_name} ({ticker})",
+        "description": f"The condition **{triggered_condition}** was triggered. \n Action: {action}",
+        "fields": [
+            {
+                "name": "Current Price",
+                "value": f"${current_price:.2f}",
+                "inline": True
+            }
+        ],
+        "color": color,  # Default green color.
+        "timestamp": datetime.datetime.now(timezone.utc).isoformat()
+        }
+
+    payload = {
+        "embeds": [embed]
+    }
+
+    try:
+        response = requests.post(webhook_url, json=payload)
+        if response.status_code == 204:
+            print("Alert sent successfully!")
+        else:
+            print(f"Failed to send alert. HTTP Status Code: {response.status_code}")
+            print(f"Response: {response.text}")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
 
 
 
-def translate_init_to_clean(ind):
-    name = ind[0]
-    if name in ['sma', 'ema', 'rsi', 'atr', 'cci', 'hma', 'slope_ema', 'slope_hma', 'slope_sma', 'roc', 'willr']:
-        timeperiod = ind[1].split("=")[-1]
-        return f"{name.upper()}_{timeperiod}"
-    
 ops = {
     '>': operator.gt,
     '<': operator.lt,
