@@ -18,7 +18,10 @@ import operator
 MAX_DISCORD_MESSAGE_LENGTH = 2000
 POLY_API_KEY = os.getenv("POLYGON_API_KEY")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
+WEBHOOK_URL_2 = os.getenv("WEBHOOK_URL_2")
+
 WEBHOOK_URL_LOGGING = os.getenv("WEBHOOK_URL_LOGGING")
+WEBHOOK_URL_LOGGING_2 = os.getenv("WEBHOOK_URL_LOGGING_2")
 LOG_BUFFER = []
 
 
@@ -124,6 +127,13 @@ def flush_logs_to_discord():
         try:
             response = requests.post(WEBHOOK_URL_LOGGING, json=payload)
             response.raise_for_status()
+            time.sleep(5)  # Delay to respect rate limits
+        except requests.exceptions.RequestException as e:
+            print(f"Failed to send Discord message: {e}")
+            break  # Exit on failure to prevent flooding
+        try:
+            response_2 = requests.post(WEBHOOK_URL_LOGGING_2, json=payload)
+            response_2.raise_for_status()
             time.sleep(5)  # Delay to respect rate limits
         except requests.exceptions.RequestException as e:
             print(f"Failed to send Discord message: {e}")
@@ -333,6 +343,7 @@ def send_alert(stock, alert, condition_str, df):
     timeframe = alert['timeframe']
     # Send the alert via Discord
     send_stock_alert(WEBHOOK_URL, timeframe, alert["name"], stock, condition_str,current_price, action)
+    send_stock_alert(WEBHOOK_URL_2, timeframe, alert["name"], stock, condition_str,current_price, action)
     log_to_discord(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' at {datetime.datetime.now()}.")
 
 

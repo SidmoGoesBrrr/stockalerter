@@ -1,36 +1,327 @@
 [
     {
-        "alert_id": "32da2412-f412-4e6e-bb41-5f6f24a7f7a2",
-        "name": "testing",
-        "stock_name": "Tesla",
-        "ticker": "TSLA",
-        "conditions": [
-            {
-                "index": 1,
-                "conditions": "sma(period = 30, input = Close)[-1]  < 0"
-            }
-        ],
-        "combination_logic": "",
-        "last_triggered": null,
-        "action": "Buy",
-        "timeframe": "1d",
-        "exchange": "PL"
+      "alert_id": "96eb5380-b561-4e34-8881-a56d78cd6e18",
+      "name": "MACD Bullish Crossover",
+      "stock_name": "Apple",
+      "ticker": "AAPL",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "macd(fast_period =12 , slow_period =26 , signal_period = 9, type =line )[-2] < macd(fast_period=12, slow_period=26, signal_period=9, type=signal)[-2]"
+        },
+        {
+          "index": 2,
+          "conditions": "macd(fast_period=12, slow_period=26, signal_period=9, type=line)[-1] > macd(fast_period=12, slow_period=26, signal_period=9, type=signal)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "US"
     },
     {
-        "alert_id": "2be85fef-4f4e-41d5-9ded-fec74cff02ae",
-        "name": "testing",
-        "stock_name": "Tesla",
-        "ticker": "TSLA",
-        "conditions": [
-            {
-                "index": 1,
-                "conditions": "sma(period = 30, input = Close)[-1]  > 0"
-            }
-        ],
-        "combination_logic": "",
-        "last_triggered": null,
-        "action": "Buy",
-        "timeframe": "1d",
-        "exchange": "US"
+      "alert_id": "c0d8b305-5b92-47a2-865f-3054f8e45fce",
+      "name": "MACD Long-Term Crossover",
+      "stock_name": "Apple",
+      "ticker": "AAPL",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "macd(fast_period=20, slow_period=200, signal_period=60, type=line)[-2] < macd(fast_period=20, slow_period=200, signal_period=60, type=signal)[-2]"
+        },
+        {
+          "index": 2,
+          "conditions": "macd(fast_period=20, slow_period=200, signal_period=60, type=line)[-1] > macd(fast_period=20, slow_period=200, signal_period=60, type=signal)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "US"
+    },
+    {
+      "alert_id": "f0a55e11-c991-4c39-8bc3-82b96122851a",
+      "name": "Toyota Motor Corp. Alert",
+      "stock_name": "Toyota Motor Corp.",
+      "ticker": "7203.T",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] > sma(period = 14)[-1]"
+        },
+        {
+          "index": 2,
+          "conditions": "sma(period = 15)[-1] < sma(period = 14)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "JP"
+    },
+    {
+      "alert_id": "20da5c94-824f-4982-8f15-9d559f43caa1",
+      "name": "Qantas Airways Limited Alert",
+      "stock_name": "Qantas Airways Limited",
+      "ticker": "QAN.AX",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] > sma(period = 14)[-1]"
+        },
+        {
+          "index": 2,
+          "conditions": "sma(period = 15)[-1] < sma(period = 14)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "AUS"
+    },
+    {
+      "alert_id": "0d35ceb2-c83a-42f6-a797-659ede75634b",
+      "name": "P Alert",
+      "stock_name": "P",
+      "ticker": "P.DE",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] > sma(period = 14)[-1]"
+        },
+        {
+          "index": 2,
+          "conditions": "sma(period = 15)[-1] < sma(period = 14)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "DE"
+    },
+    {
+      "alert_id": "a0324391-ed61-4ab2-b681-6b8a04ced8a8",
+      "name": "Allianz Alert",
+      "stock_name": "Allianz",
+      "ticker": "ALV.DE",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] > sma(period = 14)[-1]"
+        },
+        {
+          "index": 2,
+          "conditions": "sma(period = 15)[-1] < sma(period = 14)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "DE"
+    },
+    {
+      "alert_id": "8de8bee8-9784-4b84-a294-80313e2c5705",
+      "name": "PKO Bank Polski  Alert",
+      "stock_name": "PKO Bank Polski ",
+      "ticker": "PKO.WA",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] > sma(period = 14)[-1]"
+        },
+        {
+          "index": 2,
+          "conditions": "sma(period = 15)[-1] < sma(period = 14)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "PL"
+    },
+    {
+      "alert_id": "4b0f1cab-6939-4470-81b9-a39c0524edb0",
+      "name": "VERBUND Class A Alert",
+      "stock_name": "VERBUND Class A",
+      "ticker": "VER.VI",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] > sma(period = 14)[-1]"
+        },
+        {
+          "index": 2,
+          "conditions": "sma(period = 15)[-1] < sma(period = 14)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "AT"
+    },
+    {
+      "alert_id": "7f4e0863-e261-4f93-bf95-4a8775e9fcff",
+      "name": "Barrick Gold  Alert",
+      "stock_name": "Barrick Gold ",
+      "ticker": "ABX.TO",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] > sma(period = 14)[-1]"
+        },
+        {
+          "index": 2,
+          "conditions": "sma(period = 15)[-1] < sma(period = 14)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "CA"
+    },
+    {
+      "alert_id": "b947d13e-a57d-4245-bea1-584ff28131bb",
+      "name": "Industria de Diseno Textil,  Alert",
+      "stock_name": "Industria de Diseno Textil, ",
+      "ticker": "ITX.MC",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] > sma(period = 14)[-1]"
+        },
+        {
+          "index": 2,
+          "conditions": "sma(period = 15)[-1] < sma(period = 14)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "ES"
+    },
+    {
+      "alert_id": "ba1e4e57-7b3a-4c29-8087-a92e4971710d",
+      "name": "Roche Holding Dividend Right Cert. Alert",
+      "stock_name": "Roche Holding Dividend Right Cert.",
+      "ticker": "ROG.SW",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] > sma(period = 14)[-1]"
+        },
+        {
+          "index": 2,
+          "conditions": "sma(period = 15)[-1] < sma(period = 14)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "SW"
+    },
+    {
+      "alert_id": "24594023-eb72-4726-9483-c4bff2e42397",
+      "name": "Apple SMA 15 Reverse Alert",
+      "stock_name": "Apple ",
+      "ticker": "AAPL",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] < sma(period = 30)[-2]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": "2025-04-11 20:15:00",
+      "action": "Sell",
+      "timeframe": "1d",
+      "exchange": "US"
+    },
+    {
+      "alert_id": "c7b6a681-105f-49f0-bbfe-0e703e981711",
+      "name": "Golden Cross Alert",
+      "stock_name": "Apple ",
+      "ticker": "AAPL",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "SMA(period = 200)[-1] > SMA(period = 50)[-1]"
+        },
+        {
+          "index": 2,
+          "conditions": "SMA(period = 200)[-2] < SMA(period = 50)[-2]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "US"
+    },
+    {
+      "alert_id": "02eafb01-2680-43e9-b51a-d988fe861fb1",
+      "name": "RSI Mean Reversion",
+      "stock_name": "Apple ",
+      "ticker": "AAPL",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "rsi(period = 14)[-2] > sma(period =14 )[-2]"
+        },
+        {
+          "index": 2,
+          "conditions": "rsi(period=14)[-1] < sma(period=14)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "US"
+    },
+    {
+      "alert_id": "c6c5862a-bf40-4ff0-ae56-45c7a0aff996",
+      "name": "RSI crossover bearish",
+      "stock_name": "Apple ",
+      "ticker": "AAPL",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "rsi(period =14 )[-1]>70"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Sell",
+      "timeframe": "1d",
+      "exchange": "US"
+    },
+    {
+      "alert_id": "e57bc03f-aa3a-440e-89bb-d8bd99676321",
+      "name": "Apple SMA 15 Alert",
+      "stock_name": "Apple ",
+      "ticker": "AAPL",
+      "conditions": [
+        {
+          "index": 1,
+          "conditions": "sma(period = 15)[-1] > sma(period = 30)[-1]"
+        }
+      ],
+      "combination_logic": "",
+      "last_triggered": null,
+      "action": "Buy",
+      "timeframe": "1d",
+      "exchange": "US"
     }
-]
+  ]
+  

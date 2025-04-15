@@ -10,7 +10,12 @@ import logging
 
 # Set up logging configuration
 logger = logging.getLogger()
-logger.setLevel(logging.DEBUG)
+IS_DEBUG = False  # Toggle this
+if IS_DEBUG:
+    logger.setLevel(logging.DEBUG)
+else:
+    logger.setLevel(logging.INFO)
+
 # Clear any existing handlers
 if logger.hasHandlers():
     logger.handlers.clear()
@@ -95,7 +100,14 @@ def run_daily_stock_check_for_market(market_code):
         return
 
     log_to_discord(f"📊 Processing {len(stocks)} stocks for {market_code}...")
+    successes, failures = [], []
+
     for stock in stocks:
+        if new_stock_data.empty:
+            failures.append(stock)
+        else:
+            successes.append(stock)
+
         log_to_discord(f"🔄 Updating {stock}... with new data")
         logger.info("Updating stock: %s", stock)
 
@@ -107,39 +119,43 @@ def run_daily_stock_check_for_market(market_code):
 
         update_stock_database(stock, new_stock_data, timeframe="daily")
         check_alerts(stock, alert_data, "daily")
+    logger.info("📈 Summary for %s — Success: %s, Failed: %s", market_code, successes, failures)
 
     log_to_discord(f"✅ Completed daily check for {market_code}.")
     flush_logs_to_discord()
 
-def run_weekly_stock_check():
-    logger.info("Executing weekly stock check.")
+def run_weekly_stock_check_for_market(market_code):
+    logger.info("Executing weekly check for market '%s'.", market_code)
     today = datetime.datetime.now(pytz.timezone("America/New_York"))
     logger.debug("Today is %s %s", today.strftime("%Y-%m-%d %H:%M:%S"), today.strftime("%A"))
     
+    # Run only on Friday (weekday==4)
     if today.weekday() != 4:
-        logger.info("Weekly check is scheduled only for Fridays. Today is %s.", today.strftime('%A'))
+        logger.info("Today is not Friday. Skipping weekly data fetch for %s.", market_code)
         return
 
     log_to_discord("\n")
-    log_to_discord("📈 Running weekly stock check...")
+    log_to_discord(f"📈 Running weekly check for {market_code}...")
     
     alert_data = load_alert_data()
     logger.debug("Loaded alert data for weekly check: %s", alert_data)
 
-    stocks = get_all_stocks(alert_data, "1wk")
-    logger.debug("Stocks to process for weekly check: %s", stocks)
+    market_weekly_alerts = [alert for alert in alert_data if alert.get("exchange") == market_code and alert.get("timeframe") == "1wk"]
+    logger.info("Found %d weekly alerts for market '%s'.", len(market_weekly_alerts), market_code)
     
+    stocks = {alert.get("ticker") for alert in market_weekly_alerts}
+    logger.debug("Unique stocks to process for weekly market '%s': %s", market_code, stocks)
+
     if not stocks:
-        log_to_discord("⚠️ No weekly alerts to process today.")
+        log_to_discord(f"⚠️ No stocks to process this week for {market_code}.")
         return
 
-    log_to_discord(f"📊 Processing {len(stocks)} weekly stocks...")
+    log_to_discord(f"📊 Processing {len(stocks)} stocks for weekly check in {market_code}...")
     for stock in stocks:
-        exchange_for_stock = get_stock_exchange(alert_data, stock)
-        log_to_discord(f"🔄 Processing weekly data for {stock}...")
-        logger.info("Processing weekly stock: %s on exchange '%s'", stock, exchange_for_stock)
+        log_to_discord(f"🔄 Updating weekly data for {stock}...")
+        logger.info("Updating weekly stock: %s", stock)
 
-        new_stock_data = get_latest_stock_data(stock, exchange_for_stock, timespan="week")
+        new_stock_data = get_latest_stock_data(stock, market_code, timespan="week")
         if new_stock_data.empty:
             log_to_discord(f"❌ No new weekly data for {stock}.")
             logger.warning("No new weekly data returned for stock: %s", stock)
@@ -148,15 +164,16 @@ def run_weekly_stock_check():
         update_stock_database(stock, new_stock_data, timeframe="weekly")
         check_alerts(stock, alert_data, "weekly")
 
-    log_to_discord("✅ Weekly stock check completed.")
+    log_to_discord(f"✅ Completed weekly check for {market_code}.")
     flush_logs_to_discord()
+
 
 # Global variable to keep track of markets that have already been scheduled.
 scheduled_markets = set()
+scheduled_weekly_markets = set()
 
 logger.debug("code_to_country mapping: %s", code_to_country)
-logger.debug("Sample of loaded exchange_info data:")
-logger.debug("\n%s", exchange_info.head().to_string())
+
 
 # Initial scheduling for daily market-specific checks
 alert_data = load_alert_data()
@@ -193,9 +210,37 @@ for market_code in markets:
                       day_of_week='mon-fri', hour=run_hour, minute=run_minute)
     scheduled_markets.add(market_code)
 
-# Schedule weekly check (Friday after US market close)
-logger.info("Scheduling weekly check job for Fridays at 16:15.")
-scheduler.add_job(run_weekly_stock_check, 'cron', day_of_week='fri', hour=16, minute=15)
+# Schedule weekly jobs for each market that has weekly alerts
+weekly_alerts = [alert for alert in alert_data if alert.get("timeframe") == "1wk"]
+logger.info("Found %d weekly alerts.", len(weekly_alerts))
+weekly_markets = {alert.get("exchange") for alert in weekly_alerts}
+for market_code in weekly_markets:
+    country_name = code_to_country.get(market_code, market_code)
+    
+    try:
+        closing_time_str = exchange_info.loc[exchange_info["Country"] == country_name, "Closing Time (EST)"].iloc[0]
+        logger.debug("For weekly market '%s' (Country: %s), closing time string is: %s", market_code, country_name, closing_time_str)
+    except Exception as e:
+        logger.error("Unable to retrieve closing time for weekly market '%s' (Country: %s): %s", market_code, country_name, e)
+        continue
+
+    try:
+        closing_dt = datetime.datetime.strptime(closing_time_str.replace(" EST", ""), "%I:%M %p")
+        logger.debug("Parsed closing_dt for weekly market '%s': %s", market_code, closing_dt)
+    except Exception as e:
+        logger.error("Could not parse closing time for weekly market '%s': %s", market_code, e)
+        continue
+
+    close_hour, close_min = closing_dt.hour, closing_dt.minute
+    offset = 15 if market_code == "US" else 20
+    run_hour = close_hour + ((close_min + offset) // 60)
+    run_minute = (close_min + offset) % 60
+
+    logger.info("Scheduling weekly job for market '%s' at %d:%02d", market_code, run_hour, run_minute)
+    scheduler.add_job(run_weekly_stock_check_for_market, 'cron', args=[market_code],
+                      day_of_week='fri', hour=run_hour, minute=run_minute)
+    scheduled_weekly_markets.add(market_code)
+
 
 # Function to dynamically add daily jobs for markets not already scheduled.
 def dynamic_market_scheduler():
@@ -225,11 +270,40 @@ def dynamic_market_scheduler():
             offset = 15 if market == "US" else 20
             run_hour = close_hour + ((close_min + offset) // 60)
             run_minute = (close_min + offset) % 60
-            logger.info("Dynamically scheduling daily job for market '%s' at %d:%02d", market, run_hour, run_minute)
+            logger.info("✔️ Daily job for %s scheduled at %02d:%02d", market, run_hour, run_minute)
             scheduler.add_job(run_daily_stock_check_for_market, 'cron', args=[market],
                               day_of_week='mon-fri', hour=run_hour, minute=run_minute)
             scheduled_markets.add(market)
-    logger.debug("Dynamic market scheduler complete. Scheduled markets are now: %s", scheduled_markets)
+    
+    new_markets_weekly = {alert.get("exchange") for alert in alert_data if alert.get("timeframe") == "1wk"}
+    for market in new_markets_weekly:
+        if market not in scheduled_weekly_markets:
+            logger.info("Dynamic scheduling: Adding weekly job for new market: %s", market)
+            country_name = code_to_country.get(market, market)
+            try:
+                closing_time_str = exchange_info.loc[exchange_info["Country"] == country_name, "Closing Time (EST)"].iloc[0]
+                logger.debug("For dynamic weekly market '%s' (Country: %s), closing time string is: %s", market, country_name, closing_time_str)
+            except Exception as e:
+                logger.error("Unable to retrieve closing time for dynamic weekly market '%s' (Country: %s): %s", market, country_name, e)
+                continue
+
+            try:
+                closing_dt = datetime.datetime.strptime(closing_time_str.replace(" EST", ""), "%I:%M %p")
+                logger.debug("Parsed closing_dt for dynamic weekly market '%s': %s", market, closing_dt)
+            except Exception as e:
+                logger.error("Could not parse closing time for dynamic weekly market '%s': %s", market, e)
+                continue
+
+            close_hour, close_min = closing_dt.hour, closing_dt.minute
+            offset = 15 if market == "US" else 20
+            run_hour = close_hour + ((close_min + offset) // 60)
+            run_minute = (close_min + offset) % 60
+
+            logger.info("Dynamically scheduling weekly job for market '%s' at %d:%02d", market, run_hour, run_minute)
+            scheduler.add_job(run_weekly_stock_check_for_market, 'cron', args=[market],
+                              day_of_week='fri', hour=run_hour, minute=run_minute)
+            scheduled_weekly_markets.add(market)
+
 
 # Schedule the dynamic market scheduler to run every minute
 scheduler.add_job(dynamic_market_scheduler, 'interval', minutes=1)
@@ -246,4 +320,3 @@ try:
 except (KeyboardInterrupt, SystemExit):
     logger.info("🛑 Scheduler shutting down.")
     scheduler.shutdown()
-3

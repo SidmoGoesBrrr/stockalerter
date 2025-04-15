@@ -52,6 +52,7 @@ def ind_to_dict(ind, debug_mode = False):
                     "specifier" : -1}
         return ind_dict
     
+    
     # CHECKS FOR OHLC
     if len(ind.split("(")) == 1:
         func = ind.split("[")[0]
@@ -68,7 +69,9 @@ def ind_to_dict(ind, debug_mode = False):
     
     params = ind[(ind.find("(") + 1) : ind.rfind(")")]
     ind_dict =  extract_params(params)
-    
+    if "input" not in ind_dict:
+        ind_dict["input"] = "Close"
+
     ind_dict['ind'] = func
     ind_dict['operable'] = True
 
@@ -253,7 +256,7 @@ def check_alerts(stock, alert_data,timeframe):
     
     for alert in alerts:
             
-            print(f"[Alert Check] Checking alert '{alert['name']}' for {stock}...")
+            log_to_discord(f"[Alert Check] Checking alert '{alert['name']}' for {stock}...")
             print(f"[Alert Check] Alert conditions: {alert['conditions']}")
             
             print(alert)
@@ -263,8 +266,8 @@ def check_alerts(stock, alert_data,timeframe):
             result = evaluate_expression_list(df = df, exps = condition)
             
             print(f"Result: {result}")
-            log_to_discord(f"Evaluating alert '{alert['name']}' for {stock}: condition '{condition}' evaluated to {result} at {datetime.datetime.now()}.")
-            
+            log_to_discord(f"Evaluating alert '{alert['name']}' for {stock}: condition '{condition}' evaluated to {result} at {datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')}.")
+
             if result:
                 # Send alert via Discord
                 send_alert(stock, alert, condition[0], df)

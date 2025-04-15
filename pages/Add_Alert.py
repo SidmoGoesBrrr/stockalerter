@@ -104,6 +104,7 @@ for n, (i, condition) in enumerate(st.session_state.entry_conditions.items()):
             value=st.session_state.entry_conditions[i],
             key=f"entry_condition_{i}"
         )
+        
         if new_value!=condition:
             st.session_state.entry_conditions[i] = new_value
             st.rerun()
@@ -171,7 +172,7 @@ if st.button("Add Alert"):
             print(f"Parsing condition {idx}: {line_expr}")
             
 
-        st.dataframe(df_stock.tail(20)) 
+        #st.dataframe(df_stock.tail(20)) 
         print("Parsed entry conditions"+str(entry_conditions_list))
 
         
