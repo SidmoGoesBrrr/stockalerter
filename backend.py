@@ -3,6 +3,7 @@ from utils import ops, supported_indicators, inverse_map, period_and_input, peri
 from indicators_lib import *
 import re
 import datetime
+import pandas as pd
 def extract_params(s):
     """
     extract_params("period=40,input=Close") turns into
@@ -242,6 +243,8 @@ def evaluate_expression_list(df, exps, combination = '1'):
 
 
 def check_alerts(stock, alert_data,timeframe):
+    """
+    """
     
     file_path = f"data/{stock}_{timeframe}.csv"
     df = pd.read_csv(file_path)
@@ -261,9 +264,10 @@ def check_alerts(stock, alert_data,timeframe):
             
             print(alert)
             print("Conditions:")
-            condition = [alert['conditions'][0]['conditions']]
+            condition = [item['conditions'] for item in alert['conditions']]
             print(condition)
-            result = evaluate_expression_list(df = df, exps = condition)
+            comb_logic = alert['combination_logic']
+            result = evaluate_expression_list(df = df, exps = condition, combination='1' if len(comb_logic)==0 else comb_logic)
             
             print(f"Result: {result}")
             log_to_discord(f"Evaluating alert '{alert['name']}' for {stock}: condition '{condition}' evaluated to {result} at {datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')}.")

@@ -1,16 +1,16 @@
 Exchange Name,Country,Opening Time (Local),Closing Time (Local),Closing Time (EST)
-ASX,Australia,10:00 AM,4:00 PM,1:00 AM EST
+ASX,Australia,10:00 AM,4:00 PM,2:00 AM EDT
 Athens,Greece,10:30 AM,5:00 PM,10:00 AM EST
 Budapest,Hungary,9:00 AM,5:00 PM,11:00 AM EST
 Euronext Amsterdam,Netherlands,9:00 AM,5:30 PM,11:30 AM EST
-Euronext Brussels,Belgium,9:00 AM,5:30 PM,11:30 AM EST
+Euronext Brussels,Belgium,9:00 AM,5:30 PM,11:30 AM EDT
 Euronext Lisbon,Portugal,8:00 AM,4:30 PM,11:30 AM EST
 Euronext Dublin,Ireland,8:00 AM,4:30 PM,11:30 AM EST
-Euronext Paris,France,9:00 AM,5:30 PM,11:30 AM EST
+Euronext Paris,France,9:00 AM,5:30 PM,11:30 AM EDT
 Istanbul,Turkey,10:00 AM,6:00 PM,10:00 AM EST
 Mexico,Mexico,8:30 AM,3:00 PM,4:00 PM EST
-London,UK,8:00 AM,4:30 PM,11:30 AM EST
-Milan,Italy,9:00 AM,5:30 PM,11:30 AM EST
+London,UK,8:00 AM,4:30 PM,11:30 PM EDT
+Milan,Italy,9:00 AM,5:30 PM,12:30 AM EDT
 Nasdaq,USA,9:30 AM,4:00 PM,4:00 PM EST
 NYSE,USA,9:30 AM,4:00 PM,4:00 PM EST
 NYSE American,USA,9:30 AM,4:00 PM,4:00 PM EST
@@ -21,8 +21,8 @@ Oslo,Norway,9:00 AM,4:20 PM,10:20 AM EST
 Prague,Czech Republic,9:00 AM,4:10 PM,10:10 AM EST
 SIX Swiss,Switzerland,9:00 AM,5:20 PM,11:20 AM EST
 Spain,Spain,9:00 AM,5:30 PM,11:30 AM EST
-Tokyo,Japan,9:00 AM,3:00 PM,1:00 AM EST
+Tokyo,Japan,9:00 AM,3:00 PM,2:25 AM EST
 Toronto,Canada,9:30 AM,4:00 PM,4:00 PM EST
 Vienna,Austria,9:00 AM,5:30 PM,11:30 AM EST
 Warsaw,Poland,9:00 AM,4:50 PM,10:50 AM EST
-Xetra,Germany,9:00 AM,5:30 PM,11:30 AM EST
+Xetra,Germany,9:00 AM,5:30 PM,11:30 AM EDT

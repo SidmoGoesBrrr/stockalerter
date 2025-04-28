@@ -178,29 +178,59 @@ def grab_new_data_polygon(ticker, timespan = "day", multiplier = 1):
 
 
 # Function to fetch stock data using Polygon API, works for international stocks too
-def grab_new_data_yfinance(ticker, timespan = "1d", period = "1y"):
-    df_yfinance = yf.download(ticker, period=period, interval=timespan,auto_adjust=True,multi_level_index=False,progress=False)
-    # Calculate VWAP and store only VWAP in Yahoo Finance DataFrame
-    # Helper function to ensure the column is a Series
-    def get_series(column):
-        series = df_yfinance[column]
-        if isinstance(series, pd.DataFrame):
-            # If the DataFrame has only one column, squeeze it to a Series.
-            series = series.squeeze()
-        return series
+def grab_new_data_yfinance(ticker, timespan="1d", period="1y"):
+    # download fresh data
+    df = yf.download(ticker,
+                     period=period,
+                     interval=timespan,
+                     auto_adjust=True,
+                     progress=False)
 
-    df_yfinance["Typical Price"] = (get_series("High") + get_series("Low") + get_series("Close")) / 3
-    df_yfinance["TP * Volume"] = df_yfinance["Typical Price"] * df_yfinance["Volume"]
-    df_yfinance["Cumulative TP * Volume"] = df_yfinance["TP * Volume"].cumsum()
-    df_yfinance["Cumulative Volume"] = df_yfinance["Volume"].cumsum()
-    df_yfinance["VWAP"] = df_yfinance["Cumulative TP * Volume"] / df_yfinance["Cumulative Volume"]
-    df_yfinance.index = df_yfinance.index.strftime("%d-%m-%Y 00:00:00 EDT")
-    df = df_yfinance[["Volume", "VWAP", "Open", "Close", "High", "Low"]].copy()
-    df[["VWAP", "Open", "Close", "High", "Low"]] = df[["VWAP", "Open", "Close", "High", "Low"]].round(3)
+    # if you somehow have old helper columns, drop them first:
+    for col in ["Typical Price", "TP * Volume", "Cumulative TP * Volume", 
+                "Cumulative Volume", "VWAP"]:
+        if col in df.columns:
+            df.drop(columns=col, inplace=True)
 
-    return df
+    # compute Typical Price as a pure Series
+    tp = (df["High"] + df["Low"] + df["Close"]) / 3
+    df["Typical Price"] = tp
 
+    # now both tp and df["Volume"] are guaranteed to be Series:
+    df["TP * Volume"] = tp * df["Volume"]
 
+    # cumulative sums
+    df["Cumulative TP * Volume"] = df["TP * Volume"].cumsum()
+    df["Cumulative Volume"]       = df["Volume"].cumsum()
+
+    # VWAP
+    df["VWAP"] = df["Cumulative TP * Volume"] / df["Cumulative Volume"]
+
+    # re-format the index
+    df.index = df.index.strftime("%d-%m-%Y 00:00:00 EDT")
+
+    # pick and round the columns you actually need
+    out = df[["Volume", "VWAP", "Open", "Close", "High", "Low"]].copy()
+    out[["VWAP", "Open", "Close", "High", "Low"]] = (
+        out[["VWAP", "Open", "Close", "High", "Low"]]
+        .round(3)
+    )
+
+    return out
+
+def validate_conditions(entry_conditions_list):
+    print("Validating conditions...")
+    for entry in entry_conditions_list:
+        condition = entry.get("conditions", "")
+        if not condition:
+            print("Empty condition found.")
+            return False
+        #If there is an unclosed [ return false
+        if condition.count("[") != condition.count("]"):
+            print("Unclosed brackets found.")
+            return False
+        
+    return True
 
 #Save an alert with multiple entry conditions as a JSON object in alerts.csv
 def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name, exchange,timeframe,last_triggered, action):
@@ -216,6 +246,9 @@ def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name
     #if conditions are empty, return an error
     if not entry_conditions_list or ticker == "" or stock_name == "" or entry_conditions_list[0].get("conditions",[]) == []:
         raise ValueError("Entry conditions cannot be empty.")
+    
+    if validate_conditions(entry_conditions_list) == False:
+        raise ValueError("Invalid conditions provided.")
     
     for alert in alerts:
         if alert["stock_name"] == stock_name and alert["ticker"] == ticker and alert["conditions"] == entry_conditions_list and alert["combination_logic"] == combination_logic and alert["exchange"] == exchange and alert["timeframe"] == timeframe:

@@ -33,7 +33,7 @@ st.write("Here are the active stock alerts that you have set up:")
 
 
 
-search_query = st.text_input("Search alerts by alert name, stock name, ticker, condition, action, or exchange:").strip().lower()
+search_query = st.text_input("Search alerts by alert name, stock name, ticker, timeframe, condition, action, or exchange:").strip().lower()
 
 def search_alerts(alert, query):
     return (

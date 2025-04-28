@@ -84,7 +84,6 @@ st.markdown(
     "- [-1] is the most recent candle\n"
     "- [-2] is the one before it\n"
     "- [-3] is two before it\n"
-    "- 0 refers to the first candle (rarely used)\n\n"
     "Example:\n"
     "Close[-1] > Close[-2]\n"
     "Close[-2] > Close[-3]\n\n"

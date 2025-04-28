@@ -216,6 +216,7 @@ if st.button("Add Alert"):
             df_final.to_csv(save_path, index=False, date_format="%Y-%m-%d")
 
             print(entry_conditions_list)
+            
             save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,country_code,timeframe,None,action)
             st.success(f"{alert_name} saved successfully!")
 

@@ -1,5 +1,6 @@
 from apscheduler.schedulers.blocking import BlockingScheduler
 import datetime
+
 import pytz
 import pandas as pd
 from backend import check_alerts
@@ -7,36 +8,49 @@ from utils import *
 from indicators_lib import *
 import time
 import logging
+# Toggle debug mode
+IS_DEBUG = True
 
-# Set up logging configuration
-logger = logging.getLogger()
-IS_DEBUG = False  # Toggle this
-if IS_DEBUG:
-    logger.setLevel(logging.DEBUG)
-else:
-    logger.setLevel(logging.INFO)
+# Create timezone-aware formatter for EST
+class ESTFormatter(logging.Formatter):
+    def converter(self, timestamp):
+        dt = datetime.datetime.fromtimestamp(timestamp, pytz.timezone("America/New_York"))
+        return dt
+
+    def formatTime(self, record, datefmt=None):
+        dt = self.converter(record.created)
+        if datefmt:
+            return dt.strftime(datefmt)
+        return dt.isoformat()
+
+# Set up logger
+logger = logging.getLogger("StockUpdater")
+log_level = logging.DEBUG if IS_DEBUG else logging.INFO
+logger.setLevel(log_level)
 
 # Clear any existing handlers
 if logger.hasHandlers():
     logger.handlers.clear()
 
-# File handler: logs all messages (DEBUG and above) to a file.
+# Define formatter with EST
+formatter = ESTFormatter('%(asctime)s - %(levelname)s - %(message)s', datefmt='%Y-%m-%d %H:%M:%S')
+
+# File handler (always logs everything)
 file_handler = logging.FileHandler("update_stocks.log")
 file_handler.setLevel(logging.DEBUG)
-file_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-file_handler.setFormatter(file_formatter)
+file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 
-# Console handler: logs only minimal info (INFO and above) to the console.
+# Console handler (respects debug toggle)
 console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.INFO)
-console_formatter = logging.Formatter('%(levelname)s - %(message)s')
-console_handler.setFormatter(console_formatter)
+console_handler.setLevel(log_level)
+console_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 
-logger.info("Starting update_stocks script.")
+logger.info("Starting update_stocks script...")
 
-# Attempt to load the CSV data
+# Load CSV
+
 try:
     exchange_info = pd.read_csv("market_data.csv")
     logger.debug("CSV 'market_data.csv' loaded successfully.")
@@ -103,19 +117,17 @@ def run_daily_stock_check_for_market(market_code):
     successes, failures = [], []
 
     for stock in stocks:
-        if new_stock_data.empty:
-            failures.append(stock)
-        else:
-            successes.append(stock)
+        
 
         log_to_discord(f"🔄 Updating {stock}... with new data")
         logger.info("Updating stock: %s", stock)
 
         new_stock_data = get_latest_stock_data(stock, market_code, timespan="day")
         if new_stock_data.empty:
-            log_to_discord(f"❌ No new data for {stock}.")
-            logger.warning("No new data returned for stock: %s", stock)
+            failures.append(stock)
             continue
+        else:
+            successes.append(stock)
 
         update_stock_database(stock, new_stock_data, timeframe="daily")
         check_alerts(stock, alert_data, "daily")
