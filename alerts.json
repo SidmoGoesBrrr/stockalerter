@@ -303,23 +303,6 @@
         "exchange": "US"
     },
     {
-        "alert_id": "2749b302-a49c-48ec-9b09-7c3cad0987e9",
-        "name": "Xyz",
-        "stock_name": "Snowflake Class A",
-        "ticker": "SNOW",
-        "conditions": [
-            {
-                "index": 1,
-                "conditions": "sma(period =30 )[-1] > sma(period = 45)[-1]"
-            }
-        ],
-        "combination_logic": "",
-        "last_triggered": null,
-        "action": "Sell",
-        "timeframe": "1d",
-        "exchange": "US"
-    },
-    {
         "alert_id": "869da0ed-8a81-430f-a528-ce7eab8f714d",
         "name": "Weekly Apple Alert",
         "stock_name": "Apple ",
@@ -337,14 +320,14 @@
         "exchange": "US"
     },
     {
-        "alert_id": "e5200974-9dee-4af2-84c8-9292ba39e021",
-        "name": "Commonwealth Bank of Australia Alert",
-        "stock_name": "Commonwealth Bank of Australia",
-        "ticker": "CBA.AX",
+        "alert_id": "63f02372-b09b-4e75-9602-32b97fde16b6",
+        "name": "KShitij",
+        "stock_name": "Rio Tinto Limited",
+        "ticker": "RIO.AX",
         "conditions": [
             {
                 "index": 1,
-                "conditions": "sma(period = 15)[-1] > 0"
+                "conditions": "sma(period = 45)[-1] == 5"
             }
         ],
         "combination_logic": "",

@@ -1,3 +1,4 @@
+import time
 import streamlit as st
 
 st.set_page_config(
@@ -44,7 +45,7 @@ if "parsed_indicators" not in st.session_state:
 
 # Section: Add New Stock Alert
 st.header("Add a New Stock Alert")
-st.write(f"{bl_sp(1)}Select a stock exchange and stock to set up an alert.")
+st.write(f"{bl_sp(1)}Select a stock exchange and one or more stocks to set up alerts.")
 
 #ask for the name of the alert
 alert_name = st.text_input("Enter the name of the alert")
@@ -59,7 +60,7 @@ country_to_code = {
     "Canada": "CA", "Japan": "JP", "Germany": "DE",
     "France": "FR", "Spain": "ES", "Netherlands": "NL",
     "Belgium": "BE", "Ireland": "IE", "Portugal": "PT",
-    "Denmark": "DK", "Finland": "FI", "Sweden": "SE",
+    "Denmark": "DK", "Finland": "FI", "Swesden": "SE",
     "Norway": "NO", "Austria": "AT", "Poland": "PL",
     "Hungary": "HU", "Greece": "GR", "Turkey": "TR", 
     "Mexico": "MX", "Czech Republic": "CZ"
@@ -75,7 +76,7 @@ country_code = country_to_code.get(country_name, country_name)  # default to nam
 
 # Filter stocks from cleaned_data (market_data) by this country code
 filtered_stocks = market_data[market_data["Country"] == country_code]["Name"].tolist()
-selected_stock = st.selectbox("Select Stock:", filtered_stocks)
+selected_stocks = st.multiselect("Select Stock(s):", filtered_stocks)
 
 # Select whether to buy or sell
 action = st.selectbox("Select Action:", ["Buy", "Sell"])
@@ -137,88 +138,89 @@ if len(st.session_state.entry_conditions) > 1:
 
 st.divider()
 
-stock_ticker = market_data[market_data["Name"] == selected_stock]["Symbol"].values[0]
 
-st.subheader(f"Apply Indicators on {stock_ticker}'s Price")
+st.subheader(f"Apply Indicators")
 
-# This button will fetch Stock data from Polygon and apply your indicator logic
 if st.button("Add Alert"):
-    print("Parsed entry conditions"+str(st.session_state.entry_conditions))
-
-    with st.spinner(f"Fetching {selected_stock} data from Polygon and computing indicators..."):
-        if country_code.upper() == "US":
-            # Use Polygon for US stocks
-            if timeframe == "1wk":
-                time_poly = "week"
-            else:
-                time_poly = "day"
-            
-            df_stock = grab_new_data_polygon(stock_ticker, timespan=time_poly, multiplier=1)
-        else:
-            # Use yfinance for non-US stocks
-            
-                
-            df_stock = grab_new_data_yfinance(stock_ticker, timespan=timeframe)
-
-        entry_conditions_list = []
+    if not selected_stocks:
+        st.error("⚠️ Please select at least one stock.")
+    else:
+        successes = []
+        failures = []
+        total = len(selected_stocks)
+        progress_bar = st.progress(0)
+        status_text = st.empty()
         
-        for idx, cond_list in enumerate(st.session_state.entry_conditions.values(), start=1):
-            entry_conditions_list.append({
-                "index": idx,
-                "conditions": " ".join(cond_list)
-            })
-            line_expr = " ".join(cond_list)  # e.g. "sma(period=14)[-1] > sma(period=15)[-1]"
-            print("DEBUGGING" + line_expr)
-            print(f"Parsing condition {idx}: {line_expr}")
-            
+        for idx, stock_name in enumerate(selected_stocks):
+            # 2. Update status text and progress
+            status_text.text(f"Processing {stock_name} ({idx+1}/{total})")
+            progress_bar.progress((idx + 1) / total)
 
-        #st.dataframe(df_stock.tail(20)) 
-        print("Parsed entry conditions"+str(entry_conditions_list))
+            try:
+                # map to ticker
+                ticker = market_data.loc[market_data["Name"] == stock_name, "Symbol"].iat[0]
 
-        
-        try:
-            if alert_name == "":
-                alert_name = f"{selected_stock} Alert"
+                # fetch data with rate-limit handling
+                try:
+                    if country_code.upper() == "US":
+                        timespan = "week" if timeframe == "1wk" else "day"
+                        df_stock = grab_new_data_polygon(ticker, timespan=timespan, multiplier=1)
+                    else:
+                        df_stock = grab_new_data_yfinance(ticker, timespan=timeframe)
+                except Exception as e:
+                    msg = str(e)
+                    if "Rate limited" in msg or "Too Many Requests" in msg:
+                        failures.append(f"{stock_name}: YFinance rate-limited, skipping")
+                        continue
+                    else:
+                        failures.append(f"{stock_name}: {e}")
+                        continue
 
-            safe_ticker_name = stock_ticker.replace(" ", "_")
-            timeframe_name = timeframe.replace("1", "").replace("d", "daily").replace("wk", "weekly")
+                # flatten MultiIndex columns if present
+                if hasattr(df_stock.columns, "nlevels") and df_stock.columns.nlevels > 1:
+                    df_stock.columns = [
+                        "_".join([str(x) for x in col if x]).strip()
+                        for col in df_stock.columns.values
+                    ]
 
-            file_name = f"{safe_ticker_name}_{timeframe_name}.csv"
-            save_path = os.path.join("data", file_name)
-
-            if os.path.exists(save_path):
-                df_existing = pd.read_csv(save_path,index_col=0)
-                len_existing = len(df_existing)
-            
-                df_new = df_stock
-
-                
-                if "Date" not in df_existing.columns:
-                    df_stock.reset_index(inplace=True)
-                    df_stock.insert(0, "index", range(1, len(df_stock) + 1))
-
-                df_existing.reset_index(drop=True, inplace=True)
-                df_new = df_stock.copy().reset_index(drop=True)
-                new_cols = [c for c in df_new.columns if c not in df_existing.columns]
-                df_final = pd.concat([df_existing, df_new[new_cols]], axis=1)
-
-
-            else:
-                print("No existing file, using df_stock")
+                # prepare and save CSV (overwrite with fresh data)
                 if "Date" not in df_stock.columns:
-                                df_stock.reset_index(inplace=True)
+                    df_stock.reset_index(inplace=True)
+                df_stock.insert(0, "index", range(1, len(df_stock) + 1))
+                df_final = df_stock.copy()
 
-                df_final = df_stock.copy()                
+                safe_ticker = ticker.replace(" ", "_")
+                tf_name = timeframe.replace("1", "").replace("d", "daily").replace("wk", "weekly")
+                file_path = os.path.join("data", f"{safe_ticker}_{tf_name}.csv")
+                df_final.to_csv(file_path, index=False, date_format="%Y-%m-%d")
 
-            
-            df_final.insert(0, "index", range(1, len(df_final) + 1))
+                # build conditions payload
+                entry_conditions_list = [
+                    {"index": idx, "conditions": " ".join(conds)}
+                    for idx, conds in enumerate(st.session_state.entry_conditions.values(), start=1)
+                ]
 
-            df_final.to_csv(save_path, index=False, date_format="%Y-%m-%d")
+                # save the alert
+                save_alert(
+                    alert_name or f"{stock_name} Alert",
+                    entry_conditions_list,
+                    st.session_state.entry_combination,
+                    ticker,
+                    stock_name,
+                    country_code,
+                    timeframe,
+                    None,
+                    action
+                )
+                successes.append(stock_name)
 
-            print(entry_conditions_list)
-            
-            save_alert(alert_name,entry_conditions_list, st.session_state.entry_combination, stock_ticker,selected_stock,country_code,timeframe,None,action)
-            st.success(f"{alert_name} saved successfully!")
-
-        except ValueError as e:
-            st.error(f"Error: {e}")
+            except Exception as e:
+                failures.append(f"{stock_name}: {e}")
+        
+        time.sleep(2)  
+        # final report
+        if successes:
+            st.success(f"✅ Alerts saved for: {', '.join(successes)}")
+        if failures:
+            for err in failures:
+                st.error(f"❌ Failed for {err}")
