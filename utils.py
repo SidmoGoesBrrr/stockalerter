@@ -9,7 +9,7 @@ import yfinance as yf
 import numpy as np
 import os
 import uuid
-from indicators_lib import *
+from stockalerter.indicators_lib import *
 import requests
 import time
 import operator
@@ -65,7 +65,9 @@ predefined_suggestions = [
     "Close[-1]", 
     "Open[-1]",
     "Low[-1]", 
-    "High[-1]"
+    "High[-1]",
+    "HARSI_Flip(period = , smoothing = )[-1]",
+    "SROCST(ma_type = EMA, lsma_offset = 0, smoothing_length = 12, kalman_src = Close, sharpness = 25, filter_period = 1, roc_length = 9, k_length = 14, k_smoothing = 1, d_smoothing = 3)"
 ]
 
 
@@ -438,7 +440,9 @@ supported_indicators = {
     "roc": ROC,
     "williamsr": WILLR,
     "macd": MACD,
-    "psar": SAR
+    "psar": SAR,
+    "HARSI_Flip" : HARSI_Flip,
+    "SROCST" : SROCST
 }
 
 period_and_input = ['sma','ema','rsi','hma','slope_sma','slope_ema','slope_hma','roc']

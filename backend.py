@@ -1,9 +1,9 @@
-
-from utils import ops, supported_indicators, inverse_map, period_and_input, period_only, log_to_discord, send_alert
-from indicators_lib import *
+from stockalerter.utils import ops, supported_indicators, inverse_map, period_and_input, period_only, log_to_discord, send_alert
+from stockalerter.indicators_lib import *
 import re
 import datetime
 import pandas as pd
+
 def extract_params(s):
     """
     extract_params("period=40,input=Close") turns into
@@ -35,6 +35,21 @@ def is_number(s):
         return True
     except ValueError:
         return False
+    
+# HELPER FUNCS TO WORK WITH BOOLS
+def is_bool(s):
+    temp = s.lower()
+    if temp =="false" or temp=="true":
+        return True
+    return False
+
+def str_to_bool(s):
+    s = s.strip().lower()
+    if s == "true":
+        return True
+    if s == "false":
+        return False
+    raise ValueError(f"Cannot convert {s!r} to bool")
 
 
 # This function creates a saveable dict of indicators (nested)
@@ -53,6 +68,14 @@ def ind_to_dict(ind, debug_mode = False):
                     "specifier" : -1}
         return ind_dict
     
+    # CHECKS FOR BOOLS
+    if is_bool(ind):
+        ind_dict = {"isBool" : True,
+                    "boolean" : str_to_bool(ind),
+                    "operable" : True,
+                    "specifier" : -1}
+        
+        return ind_dict
     
     # CHECKS FOR OHLC
     if len(ind.split("(")) == 1:
@@ -117,6 +140,9 @@ def apply_function(df, ind, vals= None, debug_mode = False):
     # If it is a flat number, simply return it
     if 'isNum' in ind and ind['isNum']:
         return ind['number']
+    
+    if 'isBool' in ind and ind['isBool']:
+        return ind['boolean']
 
     func = ind['ind']
 
@@ -149,6 +175,12 @@ def apply_function(df, ind, vals= None, debug_mode = False):
         
     elif func == "macd":
         calculated = MACD(df,int(ind['fast_period']),int(ind['slow_period']),int(ind['signal_period']), ind['type'])
+
+    elif func == "HARSI_Flip":
+        calculated = HARSI_Flip(df, timeperiod=int(ind['period']), smoothing=float(ind['smoothing']))
+
+    elif func == "SROCST":
+        calculated = SROCST(df, ind['ma_type'], int(ind['lsma_offset']), int(ind['smoothing_length']), ind['kalman_src'], float(ind['sharpness']), float(ind['filter_period']), int(ind['roc_length']), int(ind['k_length']), int(ind['k_smoothing']), int(ind['d_smoothing']))
 
 
     if 'specifier' in ind:
