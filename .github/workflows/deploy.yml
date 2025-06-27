@@ -1,0 +1,104 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - deploy  # Triggers on push to deploy branch
+  pull_request:
+    branches:
+      - main  # Run checks on PRs to main
+      - deploy  # Run checks on PRs to deploy
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'  # Adjust based on your Python version
+
+      - name: Install UV
+        run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      - name: Install dependencies
+        run: |
+          source $HOME/.cargo/env
+          uv pip install --system ruff mypy
+          uv pip install --system -r requirements.txt
+
+      - name: Lint and format with Ruff
+        run: |
+          # Check formatting
+          ruff format --check --diff .
+          # Run linter
+          ruff check .
+
+      - name: Type check with mypy
+        run: |
+          mypy . --ignore-missing-imports || true  # Allow mypy to pass with warnings
+
+  deploy:
+    needs: lint-and-test  # Only deploy if linting passes
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/deploy' && github.event_name == 'push'  # Only deploy on deploy branch pushes
+    
+    steps:
+      - name: Deploy to VPS
+        uses: appleboy/ssh-action@v0.1.5
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            echo "Starting deployment..."
+            
+            # Navigate to your project directory
+            cd /path/to/your/stockalerter  # Update this path
+            
+            # Pull latest changes
+            echo "Pulling latest changes from GitHub..."
+            git pull origin deploy
+            
+            # Install UV if not already installed
+            if ! command -v uv &> /dev/null; then
+                echo "Installing UV..."
+                curl -LsSf https://astral.sh/uv/install.sh | sh
+                source $HOME/.cargo/env
+            fi
+            
+            # Install/update dependencies
+            echo "Installing dependencies..."
+            uv pip install --system -r requirements.txt
+            
+            # Find and kill existing streamlit processes (backup method)
+            echo "Stopping any existing Streamlit processes..."
+            pkill -f "streamlit run" || true
+            
+            # Check if screen session exists and kill it
+            echo "Checking for existing screen session..."
+            if screen -list | grep -q "stockalerter"; then
+                echo "Killing existing screen session..."
+                screen -S stockalerter -X quit || true
+                sleep 2
+            fi
+            
+            # Start new screen session with Streamlit
+            echo "Starting new Streamlit app in screen session..."
+            screen -dmS stockalerter bash -c "cd /path/to/your/stockalerter && streamlit run Home.py --server.port 8501 --server.address 0.0.0.0"
+            
+            # Wait a moment and check if the session is running
+            sleep 3
+            if screen -list | grep -q "stockalerter"; then
+                echo "✅ Streamlit app successfully started in screen session 'stockalerter'"
+                echo "Screen sessions:"
+                screen -list
+            else
+                echo "❌ Failed to start screen session"
+                exit 1
+            fi
+            
+            echo "Deployment completed successfully!" 

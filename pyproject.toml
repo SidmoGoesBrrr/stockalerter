@@ -1,0 +1,45 @@
+[tool.ruff]
+line-length = 127
+target-version = "py39"
+exclude = [
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".tox",
+    "venv",
+    "env",
+    ".venv",
+    ".env",
+    "work.ipynb",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long, handled by formatter
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true
+exclude = [
+    "work.ipynb",
+] 
