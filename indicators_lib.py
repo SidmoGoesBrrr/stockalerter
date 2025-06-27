@@ -1,6 +1,6 @@
-import talib
 import numpy as np
 import pandas as pd
+import talib
 
 # CLASSIFICATION ON BASIS OF NUMBER OF INPUTS
 
@@ -23,10 +23,10 @@ def HMA(df, timeperiod, input):
 
     half_period = timeperiod // 2
     sqrt_period = int(np.sqrt(timeperiod))
-    
+
     wma_half_period = talib.WMA(prices, timeperiod=half_period)
     wma_full_period = talib.WMA(prices, timeperiod=timeperiod)
-    
+
     wma_delta = 2 * wma_half_period - wma_full_period
     hma_values = talib.WMA(wma_delta, timeperiod=sqrt_period)
 
@@ -126,7 +126,7 @@ def HARSI_Flip(df, timeperiod, smoothing):
         result[(prev == "green") & (colors == "red")] = 1
         result[(prev == "red") & (colors == "green")] = 2
         return result
-    
+
     return color_transitions(har_si_colors(df,timeperiod,smoothing))
 
 def SROCST(df, ma_type='EMA', lsma_off=0, smooth_len=12, kal_src='Close', sharp=25.0, k_period=1.0, roc_len=9, stoch_len=14, stoch_k_smooth=1, stoch_d_smooth=3):
@@ -172,7 +172,7 @@ def SROCST(df, ma_type='EMA', lsma_off=0, smooth_len=12, kal_src='Close', sharp=
         codes[(prev == 'white') & (colors == 'blue')] = 1
         codes[(prev == 'blue') & (colors == 'white')] = 2
         return codes
-    
+
     return color_transition_codes(calc_srocst_colors(calc_srocst_line(df, ma_type, lsma_off, smooth_len, kal_src, sharp, k_period, roc_len, stoch_len, stoch_k_smooth, stoch_d_smooth)))
 
 # MULTI INPUTTED SINGLE OUTPUT
@@ -180,7 +180,7 @@ def SROCST(df, ma_type='EMA', lsma_off=0, smooth_len=12, kal_src='Close', sharp=
 def SAR(df, acceleration, max_acceleration):
     return talib.SAR(df['High'], df['Low'], acceleration= acceleration, maximum=max_acceleration)
 
-# MULTI INPUT AND MULTI OUTPUT 
+# MULTI INPUT AND MULTI OUTPUT
 
 def BBANDS(df, timeperiod, std_dev, type):
     upper, middle, lower = talib.BBANDS(df['Close'], timeperiod = timeperiod, nbdevdn= std_dev, nbdevup= std_dev, matype=0)

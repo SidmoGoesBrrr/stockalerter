@@ -1,13 +1,14 @@
-from apscheduler.schedulers.blocking import BlockingScheduler
 import datetime
-
-import pytz
-import pandas as pd
-from backend import check_alerts
-from utils import *
-from indicators_lib import *
-import time
 import logging
+
+import pandas as pd
+import pytz
+from apscheduler.schedulers.blocking import BlockingScheduler
+
+from backend import check_alerts
+from indicators_lib import *
+from utils import *
+
 # Toggle debug mode
 IS_DEBUG = True
 
@@ -92,20 +93,20 @@ def run_daily_stock_check_for_market(market_code):
     logger.info("Executing daily check for market '%s'.", market_code)
     today = datetime.datetime.now(pytz.timezone("America/New_York"))
     logger.debug("Today is %s %s", today.strftime("%Y-%m-%d %H:%M:%S"), today.strftime("%A"))
-    
+
     if today.weekday() >= 5:
         logger.info("Weekend detected (%s). Skipping data fetch for %s.", today.strftime('%A'), market_code)
         return
 
     log_to_discord("\n")
     log_to_discord(f"📈 Running daily check for {market_code}...")
-    
+
     alert_data = load_alert_data()
     logger.debug("Loaded alert data: %s", alert_data)
 
     market_alerts = [alert for alert in alert_data if alert.get("exchange") == market_code and alert.get("timeframe") == "1d"]
     logger.info("Found %d alerts for market '%s'.", len(market_alerts), market_code)
-    
+
     stocks = {alert.get("ticker") for alert in market_alerts}
     logger.debug("Unique stocks to process for market '%s': %s", market_code, stocks)
 
@@ -117,7 +118,7 @@ def run_daily_stock_check_for_market(market_code):
     successes, failures = [], []
 
     for stock in stocks:
-        
+
 
         log_to_discord(f"🔄 Updating {stock}... with new data")
         logger.info("Updating stock: %s", stock)
@@ -140,7 +141,7 @@ def run_weekly_stock_check_for_market(market_code):
     logger.info("Executing weekly check for market '%s'.", market_code)
     today = datetime.datetime.now(pytz.timezone("America/New_York"))
     logger.debug("Today is %s %s", today.strftime("%Y-%m-%d %H:%M:%S"), today.strftime("%A"))
-    
+
     # Run only on Friday (weekday==4)
     if today.weekday() != 4:
         logger.info("Today is not Friday. Skipping weekly data fetch for %s.", market_code)
@@ -148,13 +149,13 @@ def run_weekly_stock_check_for_market(market_code):
 
     log_to_discord("\n")
     log_to_discord(f"📈 Running weekly check for {market_code}...")
-    
+
     alert_data = load_alert_data()
     logger.debug("Loaded alert data for weekly check: %s", alert_data)
 
     market_weekly_alerts = [alert for alert in alert_data if alert.get("exchange") == market_code and alert.get("timeframe") == "1wk"]
     logger.info("Found %d weekly alerts for market '%s'.", len(market_weekly_alerts), market_code)
-    
+
     stocks = {alert.get("ticker") for alert in market_weekly_alerts}
     logger.debug("Unique stocks to process for weekly market '%s': %s", market_code, stocks)
 
@@ -197,7 +198,7 @@ markets = {alert.get("exchange") for alert in daily_alerts}
 logger.debug("Unique markets extracted for daily alerts: %s", markets)
 for market_code in markets:
     country_name = code_to_country.get(market_code, market_code)
-    
+
     try:
         closing_time_str = exchange_info.loc[exchange_info["Country"] == country_name, "Closing Time (EST)"].iloc[0]
         logger.debug("For market '%s' (Country: %s), closing time string is: %s", market_code, country_name, closing_time_str)
@@ -228,7 +229,7 @@ logger.info("Found %d weekly alerts.", len(weekly_alerts))
 weekly_markets = {alert.get("exchange") for alert in weekly_alerts}
 for market_code in weekly_markets:
     country_name = code_to_country.get(market_code, market_code)
-    
+
     try:
         closing_time_str = exchange_info.loc[exchange_info["Country"] == country_name, "Closing Time (EST)"].iloc[0]
         logger.debug("For weekly market '%s' (Country: %s), closing time string is: %s", market_code, country_name, closing_time_str)
@@ -286,7 +287,7 @@ def dynamic_market_scheduler():
             scheduler.add_job(run_daily_stock_check_for_market, 'cron', args=[market],
                               day_of_week='mon-fri', hour=run_hour, minute=run_minute)
             scheduled_markets.add(market)
-    
+
     new_markets_weekly = {alert.get("exchange") for alert in alert_data if alert.get("timeframe") == "1wk"}
     for market in new_markets_weekly:
         if market not in scheduled_weekly_markets:

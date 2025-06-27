@@ -5,3 +5,5 @@
 \test.py
 \.DS_Store
 \update_stocks.log
+\work.ipynb
+\.ruff_cache

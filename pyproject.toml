@@ -11,6 +11,7 @@ exclude = [
     ".venv",
     ".env",
     "work.ipynb",
+    
 ]
 
 [tool.ruff.lint]
@@ -36,7 +37,7 @@ skip-magic-trailing-comma = false
 line-ending = "auto"
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.11.2"
 warn_return_any = true
 warn_unused_configs = true
 ignore_missing_imports = true

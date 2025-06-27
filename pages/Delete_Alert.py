@@ -1,9 +1,11 @@
-import streamlit as st
 import json
+
+import streamlit as st
+
 
 # Load alert data from JSON file
 def load_alert_data():
-    with open("alerts.json", "r") as file:
+    with open("alerts.json") as file:
         return json.load(file)
 
 # Save updated alert data to JSON file
@@ -46,7 +48,7 @@ else:
                 </div>
                 """, unsafe_allow_html=True)
 
-        
+
 
     # Delete all selected alerts
     if st.button("Delete Alert(s)"):

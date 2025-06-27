@@ -1,5 +1,6 @@
 import copy
 
+
 def extract_indicators(parsed_condition):
     """
     Extracts unique indicators and their parameters from the parsed condition.

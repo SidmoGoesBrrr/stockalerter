@@ -19,7 +19,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'  # Adjust based on your Python version
+          python-version: '3.11.2'  # Adjust based on your Python version
 
       - name: Install UV
         run: curl -LsSf https://astral.sh/uv/install.sh | sh
@@ -54,51 +54,36 @@ jobs:
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
-            echo "Starting deployment..."
-            
-            # Navigate to your project directory
-            cd /path/to/your/stockalerter  # Update this path
-            
-            # Pull latest changes
-            echo "Pulling latest changes from GitHub..."
-            git pull origin deploy
-            
-            # Install UV if not already installed
-            if ! command -v uv &> /dev/null; then
-                echo "Installing UV..."
-                curl -LsSf https://astral.sh/uv/install.sh | sh
-                source $HOME/.cargo/env
-            fi
-            
-            # Install/update dependencies
-            echo "Installing dependencies..."
-            uv pip install --system -r requirements.txt
-            
-            # Find and kill existing streamlit processes (backup method)
-            echo "Stopping any existing Streamlit processes..."
-            pkill -f "streamlit run" || true
-            
-            # Check if screen session exists and kill it
-            echo "Checking for existing screen session..."
-            if screen -list | grep -q "stockalerter"; then
-                echo "Killing existing screen session..."
-                screen -S stockalerter -X quit || true
-                sleep 2
-            fi
-            
-            # Start new screen session with Streamlit
-            echo "Starting new Streamlit app in screen session..."
-            screen -dmS stockalerter bash -c "cd /path/to/your/stockalerter && streamlit run Home.py --server.port 8501 --server.address 0.0.0.0"
-            
-            # Wait a moment and check if the session is running
-            sleep 3
-            if screen -list | grep -q "stockalerter"; then
-                echo "✅ Streamlit app successfully started in screen session 'stockalerter'"
-                echo "Screen sessions:"
-                screen -list
+            echo "🚀 Starting deployment..."
+
+            cd /root/stockalert
+
+            echo "📥 Fetching changes from deploy branch..."
+            git fetch origin deploy
+
+            echo "✅ Checking out only .py files and pages/..."
+            git checkout origin/deploy -- '*.py' pages/
+
+            if pm2 list | grep -q stockalerter; then
+              pm2 restart stockalerter
             else
-                echo "❌ Failed to start screen session"
-                exit 1
+              pm2 start bash --name stockalerter -- -c "cd /root/stockalert && source venv/bin/activate && streamlit run Home.py --server.port 8503 --server.address 0.0.0.0"
+              pm2 save
             fi
-            
-            echo "Deployment completed successfully!" 
+            echo "✅ Deployment completed!"
+
+      - name: Notify success on Discord
+        if: success()
+        run: |
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d '{"content":"✅ Deployment to VPS succeeded! 🚀"}' \
+            https://discord.com/api/webhooks/1352034334306992238/UvKcP8O5I9IzOQ7uE0HDcHa9NJT6gECkg5ZGS2PMRm-MH6ymUCKnFU3xTOy68qA82g4G
+
+      - name: Notify failure on Discord
+        if: failure()
+        run: |
+          curl -H "Content-Type: application/json" \
+            -X POST \
+            -d '{"content":"❌ Deployment to VPS failed! Check the GitHub Actions logs for details."}' \
+            https://discord.com/api/webhooks/1352034334306992238/UvKcP8O5I9IzOQ7uE0HDcHa9NJT6gECkg5ZGS2PMRm-MH6ymUCKnFU3xTOy68qA82g4G

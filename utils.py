@@ -1,19 +1,19 @@
-from polygon import RESTClient
-from typing import cast
-from urllib3 import HTTPResponse
-import json
-import pandas as pd
 import datetime
-from datetime import timezone
-import yfinance as yf
-import numpy as np
-import os
-import uuid
-from stockalerter.indicators_lib import *
-import requests
-import time
+import json
 import operator
+import os
+import time
+import uuid
+from datetime import timezone
+from typing import cast
 
+import pandas as pd
+import requests
+import yfinance as yf
+from polygon import RESTClient
+from urllib3 import HTTPResponse
+
+from indicators_lib import *
 
 MAX_DISCORD_MESSAGE_LENGTH = 2000
 POLY_API_KEY = os.getenv("POLYGON_API_KEY")
@@ -45,26 +45,26 @@ def load_market_data():
         return pd.read_csv(CSV_FILE_PATH)
     else:
         return pd.DataFrame(columns=["Symbol", "Name", "Country"])
-    
+
 # Predefined suggestions for technical indicators (Single timeframe mode)
 predefined_suggestions = [
-    "sma(period = )[-1]", 
-    "hma(period = )[-1]", 
+    "sma(period = )[-1]",
+    "hma(period = )[-1]",
     "rsi(period = )[-1]",
-    "ema(period = )[-1]", 
-    "slope_sma(period = )[-1]", 
+    "ema(period = )[-1]",
+    "slope_sma(period = )[-1]",
     "slope_ema(period = )[-1]",
-    "slope_hma(period = )[-1]", 
+    "slope_hma(period = )[-1]",
     "bb(period = , std_dev = , type = )[-1]",
-    "macd(fast_period = , slow_period = , signal_period = , type = )[-1]", 
+    "macd(fast_period = , slow_period = , signal_period = , type = )[-1]",
     "breakout",
-    "atr(period = )[-1]", 
-    "cci(period = )[-1]", 
-    "roc(period = )[-1]", 
+    "atr(period = )[-1]",
+    "cci(period = )[-1]",
+    "roc(period = )[-1]",
     "williamsr(period = )[-1]",
-    "Close[-1]", 
+    "Close[-1]",
     "Open[-1]",
-    "Low[-1]", 
+    "Low[-1]",
     "High[-1]",
     "HARSI_Flip(period = , smoothing = )[-1]",
     "SROCST(ma_type = EMA, lsma_offset = 0, smoothing_length = 12, kalman_src = Close, sharpness = 25, filter_period = 1, roc_length = 9, k_length = 14, k_smoothing = 1, d_smoothing = 3)"
@@ -103,7 +103,7 @@ def split_message(message, max_length):
     lines = message.split("\n")
     chunks = []
     current_chunk = ""
-    
+
     for line in lines:
         if len(current_chunk) + len(line) + 1 < max_length - 6:  # 6 for code block fences
             current_chunk += line + "\n"
@@ -112,7 +112,7 @@ def split_message(message, max_length):
             current_chunk = line + "\n"
     if current_chunk:
         chunks.append(f"```{current_chunk.strip()}```")
-    
+
     return chunks
 
 # Function to flush log buffer to Discord
@@ -189,7 +189,7 @@ def grab_new_data_yfinance(ticker, timespan="1d", period="1y"):
                      progress=False)
 
     # if you somehow have old helper columns, drop them first:
-    for col in ["Typical Price", "TP * Volume", "Cumulative TP * Volume", 
+    for col in ["Typical Price", "TP * Volume", "Cumulative TP * Volume",
                 "Cumulative Volume", "VWAP"]:
         if col in df.columns:
             df.drop(columns=col, inplace=True)
@@ -231,27 +231,27 @@ def validate_conditions(entry_conditions_list):
         if condition.count("[") != condition.count("]"):
             print("Unclosed brackets found.")
             return False
-        
+
     return True
 
 #Save an alert with multiple entry conditions as a JSON object in alerts.csv
 def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name, exchange,timeframe,last_triggered, action):
-    alert_id = str(uuid.uuid4())  
+    alert_id = str(uuid.uuid4())
     # Load existing alerts if the JSON file exists
     try:
-        with open(ALERTS_FILE_PATH, "r") as file:
+        with open(ALERTS_FILE_PATH) as file:
             alerts = json.load(file)
 
     except (FileNotFoundError, json.JSONDecodeError):
-        alerts = []  
-    
+        alerts = []
+
     #if conditions are empty, return an error
     if not entry_conditions_list or ticker == "" or stock_name == "" or entry_conditions_list[0].get("conditions",[]) == []:
         raise ValueError("Entry conditions cannot be empty.")
-    
-    if validate_conditions(entry_conditions_list) == False:
+
+    if not validate_conditions(entry_conditions_list):
         raise ValueError("Invalid conditions provided.")
-    
+
     for alert in alerts:
         if alert["stock_name"] == stock_name and alert["ticker"] == ticker and alert["conditions"] == entry_conditions_list and alert["combination_logic"] == combination_logic and alert["exchange"] == exchange and alert["timeframe"] == timeframe:
             raise ValueError("Alert already exists with the same data fields.")
@@ -269,7 +269,7 @@ def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name
         "exchange": exchange
     }
 
-    
+
 
     # Append the new alert
     alerts.append(new_alert)
@@ -284,13 +284,13 @@ def save_alert(name,entry_conditions_list, combination_logic, ticker, stock_name
 ## FOR update_stocks.py ONLY
 # Load alert data from JSON file
 def load_alert_data():
-    with open("alerts.json", "r") as file:
+    with open("alerts.json") as file:
         return json.load(file)
 
 
 # Get all unique stock tickers from alert data
 def get_all_stocks(alert_data,timeframe):
-    return list(set([alert['ticker'] for alert in alert_data if alert['timeframe'] == timeframe]))
+    return list({alert['ticker'] for alert in alert_data if alert['timeframe'] == timeframe})
 
 #get exchange of a stock
 def get_stock_exchange(alert_data, stock):
@@ -338,11 +338,11 @@ def check_database(stock,timeframe):
             df.insert(0, "index", range(1, len(df) + 1))
         return df
 
-    
+
 
 def update_stock_database(stock, new_stock_data,timeframe):
     file_path = f"data/{stock}_{timeframe}.csv"
-    
+
     # Load existing data
     existing_data = check_database(stock,timeframe)
 
@@ -352,20 +352,20 @@ def update_stock_database(stock, new_stock_data,timeframe):
 
     df_combined = pd.concat([existing_data, new_stock_data])
     df_combined.reset_index(drop=True, inplace=True)
-        
+
     # Regenerate the "index" column to be consistent
     df_combined['index'] = range(1, len(df_combined) + 1)
     cols = df_combined.columns.tolist()
     if 'index' in cols:
         cols.insert(0, cols.pop(cols.index('index')))
     df_combined = df_combined[cols]
-    
+
     # Save the combined data consistently without using pandas' default index
     df_combined.to_csv(file_path, index=False, date_format="%Y-%m-%d")
-    
+
     return df_combined
 
-    
+
 def send_alert(stock, alert, condition_str, df):
     # Ensure the condition_str is actually a string
     if not isinstance(condition_str, str):

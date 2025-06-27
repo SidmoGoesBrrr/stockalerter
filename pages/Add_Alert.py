@@ -1,4 +1,5 @@
 import time
+
 import streamlit as st
 
 st.set_page_config(
@@ -7,23 +8,18 @@ st.set_page_config(
     layout="wide",
 )
 
-import sys
 import os
+import sys
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-import pandas as pd
 import uuid
+
+import pandas as pd
 from streamlit_tags import st_tags
 
 # Local imports
-from utils import (
-    load_market_data,
-    bl_sp,
-    predefined_suggestions,
-    grab_new_data_polygon,
-    grab_new_data_yfinance,
-    save_alert
-)
+from utils import bl_sp, grab_new_data_polygon, grab_new_data_yfinance, load_market_data, predefined_suggestions, save_alert
 
 # Load market data
 market_data = load_market_data()
@@ -62,7 +58,7 @@ country_to_code = {
     "Belgium": "BE", "Ireland": "IE", "Portugal": "PT",
     "Denmark": "DK", "Finland": "FI", "Swesden": "SE",
     "Norway": "NO", "Austria": "AT", "Poland": "PL",
-    "Hungary": "HU", "Greece": "GR", "Turkey": "TR", 
+    "Hungary": "HU", "Greece": "GR", "Turkey": "TR",
     "Mexico": "MX", "Czech Republic": "CZ"
 }
 
@@ -90,7 +86,7 @@ timeframe = st.selectbox(
     index=0
 )
 
-    
+
 
 suggests = predefined_suggestions
 for n, (i, condition) in enumerate(st.session_state.entry_conditions.items()):
@@ -105,14 +101,14 @@ for n, (i, condition) in enumerate(st.session_state.entry_conditions.items()):
             value=st.session_state.entry_conditions[i],
             key=f"entry_condition_{i}"
         )
-        
+
         if new_value!=condition:
             st.session_state.entry_conditions[i] = new_value
             st.rerun()
 
     with right:
         st.markdown('<div class="bottom-align">', unsafe_allow_html=True)
-        if st.button(f"╳", key=f'button_{i}'):
+        if st.button("╳", key=f'button_{i}'):
             del st.session_state.entry_conditions[i]
             st.rerun()
         st.markdown('</div>',unsafe_allow_html=True)
@@ -139,7 +135,7 @@ if len(st.session_state.entry_conditions) > 1:
 st.divider()
 
 
-st.subheader(f"Apply Indicators")
+st.subheader("Apply Indicators")
 
 if st.button("Add Alert"):
     if not selected_stocks:
@@ -150,7 +146,7 @@ if st.button("Add Alert"):
         total = len(selected_stocks)
         progress_bar = st.progress(0)
         status_text = st.empty()
-        
+
         for idx, stock_name in enumerate(selected_stocks):
             # 2. Update status text and progress
             status_text.text(f"Processing {stock_name} ({idx+1}/{total})")
@@ -216,8 +212,8 @@ if st.button("Add Alert"):
 
             except Exception as e:
                 failures.append(f"{stock_name}: {e}")
-        
-        time.sleep(2)  
+
+        time.sleep(2)
         # final report
         if successes:
             st.success(f"✅ Alerts saved for: {', '.join(successes)}")
