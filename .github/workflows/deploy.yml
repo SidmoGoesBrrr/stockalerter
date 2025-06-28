@@ -3,19 +3,38 @@ name: Deploy to VPS
 on:
   push:
     branches:
-      - deploy  # Triggers on push to deploy branch
+      - deploy
   pull_request:
     branches:
-      - main  # Run checks on PRs to main
-      - deploy  # Run checks on PRs to deploy
+      - main
+      - deploy
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/deploy' && github.event_name == 'push'  # Only deploy on deploy branch pushes
-    
+    if: github.ref == 'refs/heads/deploy' && github.event_name == 'push'
+
     steps:
-      - name: Deploy to VPS
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Filter only .py files and pages/
+        run: |
+          mkdir filtered
+          find . -name "*.py" -exec cp --parents {} filtered \;
+          if [ -d pages ]; then cp -r pages filtered/pages; fi
+          tar -czf deploy.tar.gz -C filtered .
+
+      - name: Upload filtered files to VPS
+        uses: appleboy/scp-action@v0.1.4
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: "deploy.tar.gz"
+          target: "/root/stockalert"
+
+      - name: SSH & extract + restart with PM2
         uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -25,19 +44,17 @@ jobs:
             echo "🚀 Starting deployment..."
 
             cd /root/stockalert
-
-            echo "📥 Fetching changes from deploy branch..."
-            git fetch origin deploy
-
-            echo "✅ Checking out only .py files and pages/..."
-            git checkout origin/deploy -- '*.py' pages/
+            tar -xzf deploy.tar.gz
 
             if pm2 list | grep -q stockalerter; then
+              echo "🔁 Restarting app..."
               pm2 restart stockalerter
             else
+              echo "🚀 First-time start..."
               pm2 start bash --name stockalerter -- -c "cd /root/stockalert && source venv/bin/activate && streamlit run Home.py --server.port 8503 --server.address 0.0.0.0"
               pm2 save
             fi
+
             echo "✅ Deployment completed!"
 
       - name: Notify success on Discord
