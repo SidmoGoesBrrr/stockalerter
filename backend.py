@@ -218,7 +218,7 @@ def indicator_calculation(df, ind_dict, values = None, debug_mode = False):
         values = (apply_function(df, ind_dict, values))
         return values
 
-def evaluate_expression(df, exp, debug_mode=False):
+def evaluate_expression(df, exp, debug_mode=False, return_values=False):
     exp = simplify_conditions(exp)
     lhs = indicator_calculation(df, exp['ind1'])
     rhs = indicator_calculation(df, exp['ind2'])
@@ -228,7 +228,10 @@ def evaluate_expression(df, exp, debug_mode=False):
 
     op = exp['comparison']
     if not exp['breakout_flag']:
-        return bool(ops[op](lhs,rhs))
+        result = bool(ops[op](lhs,rhs))
+        if return_values:
+            return result, {'lhs': lhs, 'rhs': rhs, 'operator': op}
+        return result
 
     # if breakout is there, we need to calculate yesterdays lhs and rhs too
     exp['ind1']['specifier'] = str(int(exp['ind1']['specifier'])-1)
@@ -240,7 +243,10 @@ def evaluate_expression(df, exp, debug_mode=False):
     if debug_mode:
         print(f"LHS is {lhs} \nRHS is {rhs} \nLHS_yest is {lhs_yest} \nRHS_yest is {rhs_yest}\nExpression: {lhs}{op}{rhs}")
 
-    return bool(ops[op](lhs,rhs) and ops[inverse_map(op)](lhs_yest,rhs_yest))
+    result = bool(ops[op](lhs,rhs) and ops[inverse_map(op)](lhs_yest,rhs_yest))
+    if return_values:
+        return result, {'lhs': lhs, 'rhs': rhs, 'lhs_yest': lhs_yest, 'rhs_yest': rhs_yest, 'operator': op, 'breakout': True}
+    return result
 
 def validate_referenced_indices(expr, bools):
     import re
@@ -263,16 +269,27 @@ def evaluate_boolean_expression(expr, bools):
     return eval(expr, {}, context)
 
 
-def evaluate_expression_list(df, exps, combination = '1'):
+def evaluate_expression_list(df, exps, combination = '1', return_values=False):
     """
     Wrapper on whole backend
     \nAccepts a list of expressions and combination logic, outputs a boolean value
     """
     bools = []
+    values_list = []
+    
     for exp in exps:
-        bools.append(evaluate_expression(df, exp))
+        if return_values:
+            result, values = evaluate_expression(df, exp, return_values=True)
+            bools.append(result)
+            values_list.append(values)
+        else:
+            bools.append(evaluate_expression(df, exp))
 
-    return evaluate_boolean_expression(combination,bools)
+    final_result = evaluate_boolean_expression(combination, bools)
+    
+    if return_values:
+        return final_result, values_list
+    return final_result
 
 
 
@@ -301,14 +318,14 @@ def check_alerts(stock, alert_data,timeframe):
             condition = [item['conditions'] for item in alert['conditions']]
             print(condition)
             comb_logic = alert['combination_logic']
-            result = evaluate_expression_list(df = df, exps = condition, combination='1' if len(comb_logic)==0 else comb_logic)
+            result, calculated_values = evaluate_expression_list(df = df, exps = condition, combination='1' if len(comb_logic)==0 else comb_logic, return_values=True)
 
             print(f"Result: {result}")
             log_to_discord(f"Evaluating alert '{alert['name']}' for {stock}: condition '{condition}' evaluated to {result} at {datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')}.")
 
             if result:
                 # Send alert via Discord
-                send_alert(stock, alert, condition[0], df)
+                send_alert(stock, alert, condition[0], df, calculated_values)
                 log_to_discord(f"[Alert Check] Alert '{alert['name']}' triggered for {stock} with condition '{condition[0]}'.")
                 # Update last triggered time
                 alert["last_triggered"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")

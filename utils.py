@@ -366,7 +366,7 @@ def update_stock_database(stock, new_stock_data,timeframe):
     return df_combined
 
 
-def send_alert(stock, alert, condition_str, df):
+def send_alert(stock, alert, condition_str, df, calculated_values=None):
     # Ensure the condition_str is actually a string
     if not isinstance(condition_str, str):
         print(f"[Alert Check] Provided condition is not a string: {condition_str}")
@@ -377,18 +377,34 @@ def send_alert(stock, alert, condition_str, df):
     action = alert['action']
     timeframe = alert['timeframe']
     # Send the alert via Discord
-    send_stock_alert(WEBHOOK_URL, timeframe, alert["name"], stock, condition_str,current_price, action)
-    send_stock_alert(WEBHOOK_URL_2, timeframe, alert["name"], stock, condition_str,current_price, action)
+    send_stock_alert(WEBHOOK_URL, timeframe, alert["name"], stock, condition_str,current_price, action, calculated_values)
+    send_stock_alert(WEBHOOK_URL_2, timeframe, alert["name"], stock, condition_str,current_price, action, calculated_values)
     log_to_discord(f"[Alert Triggered] '{alert['name']}' for {stock}: condition '{condition_str}' at {datetime.datetime.now()}.")
 
 
-def send_stock_alert(webhook_url, timeframe,alert_name, ticker, triggered_condition, current_price, action):
+def send_stock_alert(webhook_url, timeframe,alert_name, ticker, triggered_condition, current_price, action, calculated_values=None):
     # Change the color based on the action
     color = 0x00ff00 if action == "Buy" else 0xff0000
     timeframe = "Daily" if timeframe == "1d" else "Weekly"
+    
+    # Build description with calculated values if available
+    description = f"The condition **{triggered_condition}** was triggered. \n Action: {action}"
+    
+    if calculated_values and len(calculated_values) > 0:
+        values_info = calculated_values[0]  # Use the first condition's values
+        if 'breakout' in values_info and values_info['breakout']:
+            # For breakout conditions, show current and previous values
+            description += f"\n\n**Calculated Values:**"
+            description += f"\nCurrent: {values_info['lhs']:.4f} {values_info['operator']} {values_info['rhs']:.4f}"
+            description += f"\nPrevious: {values_info['lhs_yest']:.4f} {inverse_map[values_info['operator']]} {values_info['rhs_yest']:.4f}"
+        else:
+            # For regular conditions, show current values
+            description += f"\n\n**Calculated Values:**"
+            description += f"\n{values_info['lhs']:.4f} {values_info['operator']} {values_info['rhs']:.4f}"
+    
     embed = {
         "title": f"📈 {timeframe} Alert Triggered: {alert_name} ({ticker})",
-        "description": f"The condition **{triggered_condition}** was triggered. \n Action: {action}",
+        "description": description,
         "fields": [
             {
                 "name": "Current Price",
