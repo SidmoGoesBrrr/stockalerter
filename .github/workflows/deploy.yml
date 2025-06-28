@@ -32,45 +32,38 @@ jobs:
           target: "/root/stockalert"
 
       - name: ⚙️ SSH Deploy + Restart PM2
-        uses: appleboy/ssh-action@v0.1.5
+        uses: appleboy/ssh-action@v0.1.9
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          # we’ll write .env instead of using envs:
           script: |
             set -e
-
             echo "🚀 Starting deployment..."
-
             cd /root/stockalert
 
-            # Unpack your changes
+            # Unpack code
             tar -xzf deploy.tar.gz
             rm deploy.tar.gz
             rm -rf filtered
 
-            # Write out a .env file from the injected SSH-action secrets
+            # Write .env from GitHub Secrets (injected at compile time)
             cat > .env <<EOF
-            POLYGON_API_KEY=${POLYGON_API_KEY}
-            WEBHOOK_URL=${WEBHOOK_URL}
-            WEBHOOK_URL_2=${WEBHOOK_URL_2}
-            WEBHOOK_URL_LOGGING=${WEBHOOK_URL_LOGGING}
-            WEBHOOK_URL_LOGGING_2=${WEBHOOK_URL_LOGGING_2}
+            POLYGON_API_KEY=${{ secrets.POLYGON_API_KEY }}
+            WEBHOOK_URL=${{ secrets.WEBHOOK_URL }}
+            WEBHOOK_URL_2=${{ secrets.WEBHOOK_URL_2 }}
+            WEBHOOK_URL_LOGGING=${{ secrets.WEBHOOK_URL_LOGGING }}
+            WEBHOOK_URL_LOGGING_2=${{ secrets.WEBHOOK_URL_LOGGING_2 }}
             EOF
+            echo "✅ .env written with all secrets."
 
-            echo "✅ .env file written."
-
-            # Remove any existing process so we pick up new envs
+            # Restart PM2 so it picks up the new .env
             pm2 delete stockalerter || true
-
-            # Start via PM2, loading .env automatically
             pm2 start bash --name stockalerter -- -c "\
               cd /root/stockalert && \
               source venv/bin/activate && \
               set -a && source .env && set +a && \
               streamlit run Home.py --server.port 8503 --server.address 0.0.0.0"
-
             pm2 save
 
             echo "✅ Deployment & restart completed!"
