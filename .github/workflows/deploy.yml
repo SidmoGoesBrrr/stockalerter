@@ -37,36 +37,43 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_SSH_KEY }}
-          envs: POLYGON_API_KEY,WEBHOOK_URL,WEBHOOK_URL_2,WEBHOOK_URL_LOGGING,WEBHOOK_URL_LOGGING_2
+          # we’ll write .env instead of using envs:
           script: |
+            set -e
+
             echo "🚀 Starting deployment..."
 
             cd /root/stockalert
+
+            # Unpack your changes
             tar -xzf deploy.tar.gz
             rm deploy.tar.gz
             rm -rf filtered
 
-            # Export envs for current shell (optional)
-            export POLYGON_API_KEY=${POLYGON_API_KEY}
-            export WEBHOOK_URL=${WEBHOOK_URL}
-            export WEBHOOK_URL_2=${WEBHOOK_URL_2}
-            export WEBHOOK_URL_LOGGING=${WEBHOOK_URL_LOGGING}
-            export WEBHOOK_URL_LOGGING_2=${WEBHOOK_URL_LOGGING_2}
+            # Write out a .env file from the injected SSH-action secrets
+            cat > .env <<EOF
+            POLYGON_API_KEY=${POLYGON_API_KEY}
+            WEBHOOK_URL=${WEBHOOK_URL}
+            WEBHOOK_URL_2=${WEBHOOK_URL_2}
+            WEBHOOK_URL_LOGGING=${WEBHOOK_URL_LOGGING}
+            WEBHOOK_URL_LOGGING_2=${WEBHOOK_URL_LOGGING_2}
+            EOF
 
-            # Set envs for PM2 so they persist
+            echo "✅ .env file written."
+
+            # Remove any existing process so we pick up new envs
             pm2 delete stockalerter || true
 
-            pm2 start bash --name stockalerter -- \
-              -c "cd /root/stockalert && source venv/bin/activate && streamlit run Home.py --server.port 8503 --server.address 0.0.0.0"
-
-            pm2 set env:POLYGON_API_KEY "${POLYGON_API_KEY}"
-            pm2 set env:WEBHOOK_URL "${WEBHOOK_URL}"
-            pm2 set env:WEBHOOK_URL_2 "${WEBHOOK_URL_2}"
-            pm2 set env:WEBHOOK_URL_LOGGING "${WEBHOOK_URL_LOGGING}"
-            pm2 set env:WEBHOOK_URL_LOGGING_2 "${WEBHOOK_URL_LOGGING_2}"
+            # Start via PM2, loading .env automatically
+            pm2 start bash --name stockalerter -- -c "\
+              cd /root/stockalert && \
+              source venv/bin/activate && \
+              set -a && source .env && set +a && \
+              streamlit run Home.py --server.port 8503 --server.address 0.0.0.0"
 
             pm2 save
-            echo "✅ Deployment completed!"
+
+            echo "✅ Deployment & restart completed!"
 
       - name: 📢 Notify success on Discord
         if: success()
