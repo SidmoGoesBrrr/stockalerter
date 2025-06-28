@@ -2,12 +2,9 @@ name: Deploy to VPS
 
 on:
   push:
-    branches:
-      - deploy
+    branches: [deploy]
   pull_request:
-    branches:
-      - main
-      - deploy
+    branches: [main, deploy]
 
 jobs:
   deploy:
@@ -15,17 +12,17 @@ jobs:
     if: github.ref == 'refs/heads/deploy' && github.event_name == 'push'
 
     steps:
-      - name: Checkout code
+      - name: ✅ Checkout code
         uses: actions/checkout@v4
 
-      - name: Filter only .py files and pages/
+      - name: 📦 Filter only .py files and pages/
         run: |
           mkdir filtered
           find . -name "*.py" -exec cp --parents {} filtered \;
           if [ -d pages ]; then cp -r pages filtered/pages; fi
           tar -czf deploy.tar.gz -C filtered .
 
-      - name: Upload filtered files to VPS
+      - name: 📤 Upload filtered files to VPS
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -34,7 +31,7 @@ jobs:
           source: "deploy.tar.gz"
           target: "/root/stockalert"
 
-      - name: SSH & extract + restart with PM2
+      - name: ⚙️ SSH Deploy + Restart PM2
         uses: appleboy/ssh-action@v0.1.5
         with:
           host: ${{ secrets.VPS_HOST }}
@@ -47,25 +44,22 @@ jobs:
             cd /root/stockalert
             tar -xzf deploy.tar.gz
             rm deploy.tar.gz
-            rm -rf filtered  # just in case
+            rm -rf filtered
 
-            if pm2 list | grep -q stockalerter; then
-              echo "🔁 Restarting app..."
-              pm2 restart stockalerter --update-env
-            else
-              echo "🚀 First-time start..."
-              POLYGON_API_KEY=${POLYGON_API_KEY} \
-              WEBHOOK_URL=${WEBHOOK_URL} \
-              WEBHOOK_URL_2=${WEBHOOK_URL_2} \
-              WEBHOOK_URL_LOGGING=${WEBHOOK_URL_LOGGING} \
-              WEBHOOK_URL_LOGGING_2=${WEBHOOK_URL_LOGGING_2} \
-              pm2 start bash --name stockalerter -- -c "cd /root/stockalert && source venv/bin/activate && streamlit run Home.py --server.port 8503 --server.address 0.0.0.0"
-              pm2 save
-            fi
+            echo "🔁 Restarting or starting app with env vars..."
+            pm2 delete stockalerter || true  # Ignore if not running
 
+            POLYGON_API_KEY=${POLYGON_API_KEY} \
+            WEBHOOK_URL=${WEBHOOK_URL} \
+            WEBHOOK_URL_2=${WEBHOOK_URL_2} \
+            WEBHOOK_URL_LOGGING=${WEBHOOK_URL_LOGGING} \
+            WEBHOOK_URL_LOGGING_2=${WEBHOOK_URL_LOGGING_2} \
+            pm2 start bash --name stockalerter -- -c "cd /root/stockalert && source venv/bin/activate && streamlit run Home.py --server.port 8503 --server.address 0.0.0.0"
+
+            pm2 save
             echo "✅ Deployment completed!"
 
-      - name: Notify success on Discord
+      - name: 📢 Notify success on Discord
         if: success()
         run: |
           curl -H "Content-Type: application/json" \
@@ -73,10 +67,10 @@ jobs:
             -d '{"content":"✅ Deployment to VPS succeeded! 🚀"}' \
             https://discord.com/api/webhooks/1352034334306992238/UvKcP8O5I9IzOQ7uE0HDcHa9NJT6gECkg5ZGS2PMRm-MH6ymUCKnFU3xTOy68qA82g4G
 
-      - name: Notify failure on Discord
+      - name: ❌ Notify failure on Discord
         if: failure()
         run: |
           curl -H "Content-Type: application/json" \
             -X POST \
-            -d '{"content":"❌ Deployment to VPS failed! Check the GitHub Actions logs for details."}' \
+            -d '{"content":"❌ Deployment to VPS failed! Check GitHub Actions logs."}' \
             https://discord.com/api/webhooks/1352034334306992238/UvKcP8O5I9IzOQ7uE0HDcHa9NJT6gECkg5ZGS2PMRm-MH6ymUCKnFU3xTOy68qA82g4G
