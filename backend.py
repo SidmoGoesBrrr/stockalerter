@@ -2,8 +2,8 @@ import datetime
 import re
 
 import pandas as pd
-from stockalerter.indicators_lib import *
-from stockalerter.utils import inverse_map, log_to_discord, ops, period_and_input, send_alert, supported_indicators
+from indicators_lib import *
+from utils import inverse_map, log_to_discord, ops, period_and_input, send_alert, supported_indicators
 
 
 def extract_params(s):
