@@ -3,9 +3,9 @@ import datetime
 
 import pytz
 import pandas as pd
-from backend import check_alerts
-from utils import *
-from indicators_lib import *
+from stockalerter.backend import check_alerts
+from stockalerter.utils import *
+from stockalerter.indicators_lib import *
 import time
 import logging
 # Toggle debug mode

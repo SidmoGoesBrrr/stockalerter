@@ -1,6 +1,7 @@
 import talib
 import numpy as np
 import pandas as pd
+from pykalman import KalmanFilter
 
 # CLASSIFICATION ON BASIS OF NUMBER OF INPUTS
 
@@ -198,3 +199,106 @@ def MACD(df, fast_period, slow_period, signal_period, type):
     elif type == "signal":
         return macdsignal
 
+# KALMAN FILTER
+
+def KALMAN(df, period, input):
+    """
+    1-D adaptive Kalman filter on df[input].
+      • period    - lookback to tune observation noise (larger ⇒ smoother)
+      • input     - one of ["Open","High","Low","Close","Volume"] or an array
+    Returns a pd.Series of the filtered states.
+    """
+    price = df[input] if isinstance(input, str) else input
+    kf = KalmanFilter(
+        transition_matrices=[1],
+        observation_matrices=[1],
+        initial_state_mean=price.iloc[0],
+        transition_covariance=0.01,
+        observation_covariance=1.0 / period
+    )
+    state_means, _ = kf.filter(price.values)
+    return pd.Series(state_means.flatten(), index=df.index)
+
+def KALMAN_COLOURS(df, period, input):
+    """
+    "green" when KALMAN ↑, "red" when ↓.
+    """
+    kseries = KALMAN(df, period, input)
+    return pd.Series(
+        np.where(kseries.diff().ge(0), "green", "red"),
+        index=df.index
+    )
+
+def KALMAN_COLOUR_TRANSITIONS(df, period, input):
+    """
+    0 = no change
+    1 = green -> red
+    2 = red -> green
+    """
+    colours = KALMAN_COLOURS(df, period, input)
+    prev = colours.shift(1)
+    codes = pd.Series(0, index=df.index, dtype=int)
+    codes[(prev == "green") & (colours == "red")]   = 1
+    codes[(prev == "red")   & (colours == "green")] = 2
+    return codes
+
+def SUPER_TREND(df, atr_period, multiplier):
+    """
+    Classic Supertrend:
+      -> atr_period - lookback for ATR
+      -> multiplier - factor on ATR for band width
+    Returns +1 for uptrend, -1 for downtrend.
+    """
+    atr = ATR(df, atr_period)
+    hl2 = (df["High"] + df["Low"]) / 2
+
+    basic_upper = hl2 + multiplier * atr
+    basic_lower = hl2 - multiplier * atr
+
+    final_upper = basic_upper.copy()
+    final_lower = basic_lower.copy()
+    for i in range(1, len(df)):
+        if df["Close"].iat[i-1] <= final_upper.iat[i-1]:
+            final_upper.iat[i] = min(basic_upper.iat[i], final_upper.iat[i-1])
+        else:
+            final_upper.iat[i] = basic_upper.iat[i]
+        if df["Close"].iat[i-1] >= final_lower.iat[i-1]:
+            final_lower.iat[i] = max(basic_lower.iat[i], final_lower.iat[i-1])
+        else:
+            final_lower.iat[i] = basic_lower.iat[i]
+
+    trend = pd.Series(index=df.index, dtype=int)
+    trend.iat[0] = 1
+    for i in range(1, len(df)):
+        if df["Close"].iat[i] > final_upper.iat[i-1]:
+            trend.iat[i] = 1
+        elif df["Close"].iat[i] < final_lower.iat[i-1]:
+            trend.iat[i] = -1
+        else:
+            trend.iat[i] = trend.iat[i-1]
+    return trend
+
+
+def SUPER_TREND_COLOURS(df, atr_period, multiplier):
+    """
+    "green" for uptrend (+1), "red" for downtrend (-1).
+    """
+    tr = SUPER_TREND(df, atr_period, multiplier)
+    return pd.Series(
+        np.where(tr.eq(1), "green", "red"),
+        index=df.index
+    )
+
+
+def SUPER_TREND_COLOUR_TRANSITIONS(df, atr_period, multiplier):
+    """
+    0 = no change
+    1 = green → red (up → down)
+    2 = red   → green (down → up)
+    """
+    colours = SUPER_TREND_COLOURS(df, atr_period, multiplier)
+    prev = colours.shift(1)
+    codes = pd.Series(0, index=df.index, dtype=int)
+    codes[(prev == "green") & (colours == "red")]   = 1
+    codes[(prev == "red")   & (colours == "green")] = 2
+    return codes

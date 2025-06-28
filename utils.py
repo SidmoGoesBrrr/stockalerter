@@ -442,7 +442,13 @@ supported_indicators = {
     "macd": MACD,
     "psar": SAR,
     "HARSI_Flip" : HARSI_Flip,
-    "SROCST" : SROCST
+    "SROCST" : SROCST,
+    "kalman": KALMAN,
+    "kalman_colours": KALMAN_COLOURS,
+    "kalman_colour_transtitions": KALMAN_COLOUR_TRANSITIONS,
+    "supertrend": SUPER_TREND,
+    "supertrend_colours": SUPER_TREND_COLOURS,
+    "supertrend_colour_transitions": SUPER_TREND_COLOUR_TRANSITIONS,
 }
 
 period_and_input = ['sma','ema','rsi','hma','slope_sma','slope_ema','slope_hma','roc']

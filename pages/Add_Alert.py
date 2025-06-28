@@ -9,14 +9,14 @@ st.set_page_config(
 
 import sys
 import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..')))
 
 import pandas as pd
 import uuid
 from streamlit_tags import st_tags
 
 # Local imports
-from utils import (
+from stockalerter.utils import (
     load_market_data,
     bl_sp,
     predefined_suggestions,
