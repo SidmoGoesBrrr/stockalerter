@@ -46,15 +46,24 @@ jobs:
             rm deploy.tar.gz
             rm -rf filtered
 
-            echo "🔁 Restarting or starting app with env vars..."
-            pm2 delete stockalerter || true  # Ignore if not running
+            # Export envs for current shell (optional)
+            export POLYGON_API_KEY=${POLYGON_API_KEY}
+            export WEBHOOK_URL=${WEBHOOK_URL}
+            export WEBHOOK_URL_2=${WEBHOOK_URL_2}
+            export WEBHOOK_URL_LOGGING=${WEBHOOK_URL_LOGGING}
+            export WEBHOOK_URL_LOGGING_2=${WEBHOOK_URL_LOGGING_2}
 
-            POLYGON_API_KEY=${POLYGON_API_KEY} \
-            WEBHOOK_URL=${WEBHOOK_URL} \
-            WEBHOOK_URL_2=${WEBHOOK_URL_2} \
-            WEBHOOK_URL_LOGGING=${WEBHOOK_URL_LOGGING} \
-            WEBHOOK_URL_LOGGING_2=${WEBHOOK_URL_LOGGING_2} \
-            pm2 start bash --name stockalerter -- -c "cd /root/stockalert && source venv/bin/activate && streamlit run Home.py --server.port 8503 --server.address 0.0.0.0"
+            # Set envs for PM2 so they persist
+            pm2 delete stockalerter || true
+
+            pm2 start bash --name stockalerter -- \
+              -c "cd /root/stockalert && source venv/bin/activate && streamlit run Home.py --server.port 8503 --server.address 0.0.0.0"
+
+            pm2 set env:POLYGON_API_KEY "${POLYGON_API_KEY}"
+            pm2 set env:WEBHOOK_URL "${WEBHOOK_URL}"
+            pm2 set env:WEBHOOK_URL_2 "${WEBHOOK_URL_2}"
+            pm2 set env:WEBHOOK_URL_LOGGING "${WEBHOOK_URL_LOGGING}"
+            pm2 set env:WEBHOOK_URL_LOGGING_2 "${WEBHOOK_URL_LOGGING_2}"
 
             pm2 save
             echo "✅ Deployment completed!"
