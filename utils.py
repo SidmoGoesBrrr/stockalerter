@@ -386,22 +386,22 @@ def send_stock_alert(webhook_url, timeframe,alert_name, ticker, triggered_condit
     # Change the color based on the action
     color = 0x00ff00 if action == "Buy" else 0xff0000
     timeframe = "Daily" if timeframe == "1d" else "Weekly"
-    
+
     # Build description with calculated values if available
     description = f"The condition **{triggered_condition}** was triggered. \n Action: {action}"
-    
+
     if calculated_values and len(calculated_values) > 0:
         values_info = calculated_values[0]  # Use the first condition's values
         if 'breakout' in values_info and values_info['breakout']:
             # For breakout conditions, show current and previous values
-            description += f"\n\n**Calculated Values:**"
+            description += "\n\n**Calculated Values:**"
             description += f"\nCurrent: {values_info['lhs']:.4f} {values_info['operator']} {values_info['rhs']:.4f}"
             description += f"\nPrevious: {values_info['lhs_yest']:.4f} {inverse_map[values_info['operator']]} {values_info['rhs_yest']:.4f}"
         else:
             # For regular conditions, show current values
-            description += f"\n\n**Calculated Values:**"
+            description += "\n\n**Calculated Values:**"
             description += f"\n{values_info['lhs']:.4f} {values_info['operator']} {values_info['rhs']:.4f}"
-    
+
     embed = {
         "title": f"📈 {timeframe} Alert Triggered: {alert_name} ({ticker})",
         "description": description,

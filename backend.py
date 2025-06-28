@@ -276,7 +276,7 @@ def evaluate_expression_list(df, exps, combination = '1', return_values=False):
     """
     bools = []
     values_list = []
-    
+
     for exp in exps:
         if return_values:
             result, values = evaluate_expression(df, exp, return_values=True)
@@ -286,7 +286,7 @@ def evaluate_expression_list(df, exps, combination = '1', return_values=False):
             bools.append(evaluate_expression(df, exp))
 
     final_result = evaluate_boolean_expression(combination, bools)
-    
+
     if return_values:
         return final_result, values_list
     return final_result
