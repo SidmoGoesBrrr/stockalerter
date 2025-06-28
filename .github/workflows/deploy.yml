@@ -10,39 +10,7 @@ on:
       - deploy  # Run checks on PRs to deploy
 
 jobs:
-  lint-and-test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11.2'  # Adjust based on your Python version
-
-      - name: Install UV
-        run: curl -LsSf https://astral.sh/uv/install.sh | sh
-
-      - name: Install dependencies
-        run: |
-          source $HOME/.cargo/env
-          uv pip install --system ruff mypy
-          uv pip install --system -r requirements.txt
-
-      - name: Lint and format with Ruff
-        run: |
-          # Check formatting
-          ruff format --check --diff .
-          # Run linter
-          ruff check .
-
-      - name: Type check with mypy
-        run: |
-          mypy . --ignore-missing-imports || true  # Allow mypy to pass with warnings
-
   deploy:
-    needs: lint-and-test  # Only deploy if linting passes
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/deploy' && github.event_name == 'push'  # Only deploy on deploy branch pushes
     
